@@ -1,0 +1,53 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\Backend_taller\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1052AD08-EAAB-419F-8F1F-5E3614F425FE}|Backend_taller\\Backend_taller.csproj|d:\\erickbernal\\repos_erickbernal\\fase1_sitecpro\\backend\\backend_taller\\backend_taller\\models\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1052AD08-EAAB-419F-8F1F-5E3614F425FE}|Backend_taller\\Backend_taller.csproj|solutionrelative:backend_taller\\models\\person.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1052AD08-EAAB-419F-8F1F-5E3614F425FE}|Backend_taller\\Backend_taller.csproj|d:\\erickbernal\\repos_erickbernal\\fase1_sitecpro\\backend\\backend_taller\\backend_taller\\context\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1052AD08-EAAB-419F-8F1F-5E3614F425FE}|Backend_taller\\Backend_taller.csproj|solutionrelative:backend_taller\\context\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Person.cs",
+              "DocumentMoniker": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\Backend_taller\\Backend_taller\\Models\\Person.cs",
+              "RelativeDocumentMoniker": "Backend_taller\\Models\\Person.cs",
+              "ToolTip": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\Backend_taller\\Backend_taller\\Models\\Person.cs",
+              "RelativeToolTip": "Backend_taller\\Models\\Person.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-21T22:13:33.497Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\Backend_taller\\Backend_taller\\Context\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "Backend_taller\\Context\\AppDbContext.cs",
+              "ToolTip": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\Backend_taller\\Backend_taller\\Context\\AppDbContext.cs",
+              "RelativeToolTip": "Backend_taller\\Context\\AppDbContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-21T21:13:12.074Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
