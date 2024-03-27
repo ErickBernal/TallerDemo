@@ -62,7 +62,7 @@ namespace TallerApi.Data.migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdDepartment"));
 
-                    b.Property<int>("CountryId")
+                    b.Property<int?>("IdCountry1")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -70,7 +70,7 @@ namespace TallerApi.Data.migrations
 
                     b.HasKey("IdDepartment");
 
-                    b.HasIndex("CountryId");
+                    b.HasIndex("IdCountry1");
 
                     b.ToTable("Department");
                 });
@@ -83,7 +83,7 @@ namespace TallerApi.Data.migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdMunicipality"));
 
-                    b.Property<int>("DepartmentId")
+                    b.Property<int?>("IdDepartment1")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -91,31 +91,27 @@ namespace TallerApi.Data.migrations
 
                     b.HasKey("IdMunicipality");
 
-                    b.HasIndex("DepartmentId");
+                    b.HasIndex("IdDepartment1");
 
                     b.ToTable("Municipality");
                 });
 
             modelBuilder.Entity("TallerApi.Models.Department", b =>
                 {
-                    b.HasOne("TallerApi.Models.Country", "Country")
+                    b.HasOne("TallerApi.Models.Country", "IdCountry")
                         .WithMany("Departments")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IdCountry1");
 
-                    b.Navigation("Country");
+                    b.Navigation("IdCountry");
                 });
 
             modelBuilder.Entity("TallerApi.Models.Municipality", b =>
                 {
-                    b.HasOne("TallerApi.Models.Department", "Department")
+                    b.HasOne("TallerApi.Models.Department", "IdDepartment")
                         .WithMany("Municipalities")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IdDepartment1");
 
-                    b.Navigation("Department");
+                    b.Navigation("IdDepartment");
                 });
 
             modelBuilder.Entity("TallerApi.Models.Country", b =>

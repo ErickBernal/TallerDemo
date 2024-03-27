@@ -9,10 +9,8 @@ namespace TallerApi.Models
         public string? Name { get; set; }
 
         //Fk
-        public int DepartmentId { get; set; }
-
         //Relation
-        public virtual Department? Department { get; set; }
+        public virtual Department? IdDepartment { get; set; }
 
 
     }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TallerApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2f2030ebf4b085b91aabcc2db7af647e13ae505b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a24cad04489506b39ff935a2ae4bf0c17b61c0f6")]
 [assembly: System.Reflection.AssemblyProductAttribute("TallerApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TallerApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -9,11 +9,13 @@ namespace TallerApi.Models
         public string? Name { get; set; } 
         
         //Fk
-        public int CountryId { get; set; }
+        //public int IdCountry { get; set; }
 
         //Relation
-        public virtual Country? Country { get; set; }
-        public virtual List<Municipality>? Municipalities { get; set; }
+        //public virtual Country? Country { get; set; }
+        //public virtual List<Municipality>? Municipalities { get; set; }
+        public virtual Country? IdCountry { get; set; }
+        public virtual ICollection<Municipality> Municipalities { get; set; } = new List<Municipality>();
 
     }
 }
