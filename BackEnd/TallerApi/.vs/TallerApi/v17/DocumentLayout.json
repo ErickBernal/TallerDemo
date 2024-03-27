@@ -1,0 +1,87 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\TallerApi\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5132D06D-56A4-4276-B8A6-C68AA0BCFE41}|TallerApi\\TallerApi.csproj|d:\\erickbernal\\repos_erickbernal\\fase1_sitecpro\\backend\\tallerapi\\tallerapi\\data\\defaultdata\\defaultdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5132D06D-56A4-4276-B8A6-C68AA0BCFE41}|TallerApi\\TallerApi.csproj|solutionrelative:tallerapi\\data\\defaultdata\\defaultdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5132D06D-56A4-4276-B8A6-C68AA0BCFE41}|TallerApi\\TallerApi.csproj|d:\\erickbernal\\repos_erickbernal\\fase1_sitecpro\\backend\\tallerapi\\tallerapi\\data\\tallerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5132D06D-56A4-4276-B8A6-C68AA0BCFE41}|TallerApi\\TallerApi.csproj|solutionrelative:tallerapi\\data\\tallerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5132D06D-56A4-4276-B8A6-C68AA0BCFE41}|TallerApi\\TallerApi.csproj|d:\\erickbernal\\repos_erickbernal\\fase1_sitecpro\\backend\\tallerapi\\tallerapi\\data\\defaultdata\\department.csv||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{5132D06D-56A4-4276-B8A6-C68AA0BCFE41}|TallerApi\\TallerApi.csproj|solutionrelative:tallerapi\\data\\defaultdata\\department.csv||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5132D06D-56A4-4276-B8A6-C68AA0BCFE41}|TallerApi\\TallerApi.csproj|d:\\erickbernal\\repos_erickbernal\\fase1_sitecpro\\backend\\tallerapi\\tallerapi\\models\\municipality.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5132D06D-56A4-4276-B8A6-C68AA0BCFE41}|TallerApi\\TallerApi.csproj|solutionrelative:tallerapi\\models\\municipality.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Municipality.cs",
+              "DocumentMoniker": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\TallerApi\\TallerApi\\Models\\Municipality.cs",
+              "RelativeDocumentMoniker": "TallerApi\\Models\\Municipality.cs",
+              "ToolTip": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\TallerApi\\TallerApi\\Models\\Municipality.cs",
+              "RelativeToolTip": "TallerApi\\Models\\Municipality.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-26T23:06:08.812Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "department.csv",
+              "DocumentMoniker": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\TallerApi\\TallerApi\\Data\\DefaultData\\department.csv",
+              "RelativeDocumentMoniker": "TallerApi\\Data\\DefaultData\\department.csv",
+              "ToolTip": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\TallerApi\\TallerApi\\Data\\DefaultData\\department.csv",
+              "RelativeToolTip": "TallerApi\\Data\\DefaultData\\department.csv",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002120|",
+              "WhenOpened": "2024-03-26T22:31:39.137Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TallerDbContext.cs",
+              "DocumentMoniker": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\TallerApi\\TallerApi\\Data\\TallerDbContext.cs",
+              "RelativeDocumentMoniker": "TallerApi\\Data\\TallerDbContext.cs",
+              "ToolTip": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\TallerApi\\TallerApi\\Data\\TallerDbContext.cs",
+              "RelativeToolTip": "TallerApi\\Data\\TallerDbContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-26T22:14:37.029Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DefaultData.cs",
+              "DocumentMoniker": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\TallerApi\\TallerApi\\Data\\DefaultData\\DefaultData.cs",
+              "RelativeDocumentMoniker": "TallerApi\\Data\\DefaultData\\DefaultData.cs",
+              "ToolTip": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\TallerApi\\TallerApi\\Data\\DefaultData\\DefaultData.cs",
+              "RelativeToolTip": "TallerApi\\Data\\DefaultData\\DefaultData.cs",
+              "ViewState": "AQIAACIAAAAAAAAAAAAgwDkAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-26T17:12:13.349Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

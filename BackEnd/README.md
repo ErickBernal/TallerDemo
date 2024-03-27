@@ -7,3 +7,33 @@
 
 ## Glosario
 - **DbSet** : repsenta una tabla en la base de datos.
+
+
+Comando utilizado para conectar la **Capa de datos** con la base de datos **DBEB**
+```bash
+dotnet ef dbcontext scaffold "Data Source=localhost;Database=DBEB;User ID=sa;Password=yourStrong#Password;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False" Microsoft.EntityFrameworkCore.SqlServer --context-dir .\Data --output-dir .\Data\Models
+```
+
+---
+# Comandos 
+```bash
+# crear un proyecto webapi llamado TallerApi
+dotnet new webapi -o TallerApi2
+```
+
+# Compilando models
+
+- Abrir **Consola de administracion de paquetes**
+```bash
+# En consola ejecutar 
+# la migracion creara dos clases, se utilizaran para actualizar la base de datos con las modificaciones realizadas 
+add-migration initial -o Data/migrations
+ EntityFrameworkCore\add-migration initiaD
+# initial: nombre de la migracion
+# DataAccess/migrations: destino de los archivos generados
+
+# Para actualizar la base de datos ejecutar:
+update-database
+```
+
+
