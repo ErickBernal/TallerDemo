@@ -11,8 +11,8 @@ using Taller.Data;
 namespace Taller.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240401181121_initia")]
-    partial class initia
+    [Migration("20240401224341_initiaD")]
+    partial class initiaD
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,74 @@ namespace Taller.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Taller.Entities.Address", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MunicipalityId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Zone")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MunicipalityId");
+
+                    b.ToTable("Addresses");
+                });
+
+            modelBuilder.Entity("Taller.Entities.Client", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Cellphone")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DPI")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Nit")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Phone")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TypeClientId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
+
+                    b.HasIndex("TypeClientId");
+
+                    b.ToTable("Clients");
+                });
 
             modelBuilder.Entity("Taller.Entities.Country", b =>
                 {
@@ -425,7 +493,7 @@ namespace Taller.Migrations
 
                     b.HasIndex("DepartmentId");
 
-                    b.ToTable("Municipality");
+                    b.ToTable("Municipalities");
 
                     b.HasData(
                         new
@@ -5584,6 +5652,98 @@ namespace Taller.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Taller.Entities.TypeClient", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TypeClients");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Type = "Individual"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Type = "Empresa"
+                        });
+                });
+
+            modelBuilder.Entity("Taller.Entities.VehicleBrand", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Brand")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("VehicleBrands");
+                });
+
+            modelBuilder.Entity("Taller.Entities.VehicleModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Model")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("VehicleModels");
+                });
+
+            modelBuilder.Entity("Taller.Entities.Address", b =>
+                {
+                    b.HasOne("Taller.Entities.Municipality", "Municipality")
+                        .WithMany("Addresses")
+                        .HasForeignKey("MunicipalityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Municipality");
+                });
+
+            modelBuilder.Entity("Taller.Entities.Client", b =>
+                {
+                    b.HasOne("Taller.Entities.Address", "Address")
+                        .WithMany("Clients")
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Taller.Entities.TypeClient", "TypeClient")
+                        .WithMany("Clients")
+                        .HasForeignKey("TypeClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Address");
+
+                    b.Navigation("TypeClient");
+                });
+
             modelBuilder.Entity("Taller.Entities.Department", b =>
                 {
                     b.HasOne("Taller.Entities.Country", "Country")
@@ -5598,7 +5758,7 @@ namespace Taller.Migrations
             modelBuilder.Entity("Taller.Entities.Municipality", b =>
                 {
                     b.HasOne("Taller.Entities.Department", "Department")
-                        .WithMany()
+                        .WithMany("Municipalities")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -5606,9 +5766,29 @@ namespace Taller.Migrations
                     b.Navigation("Department");
                 });
 
+            modelBuilder.Entity("Taller.Entities.Address", b =>
+                {
+                    b.Navigation("Clients");
+                });
+
             modelBuilder.Entity("Taller.Entities.Country", b =>
                 {
                     b.Navigation("Departments");
+                });
+
+            modelBuilder.Entity("Taller.Entities.Department", b =>
+                {
+                    b.Navigation("Municipalities");
+                });
+
+            modelBuilder.Entity("Taller.Entities.Municipality", b =>
+                {
+                    b.Navigation("Addresses");
+                });
+
+            modelBuilder.Entity("Taller.Entities.TypeClient", b =>
+                {
+                    b.Navigation("Clients");
                 });
 #pragma warning restore 612, 618
         }

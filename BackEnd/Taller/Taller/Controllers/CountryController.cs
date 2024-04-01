@@ -6,7 +6,7 @@ using Taller.Entities;
 
 namespace Taller.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("taller/[controller]")]
     [ApiController]
     public class CountryController : ControllerBase
     {

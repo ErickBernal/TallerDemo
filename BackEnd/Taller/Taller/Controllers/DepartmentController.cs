@@ -6,7 +6,7 @@ using Taller.Entities;
 
 namespace Taller.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("taller/[controller]")]
     [ApiController]
     public class DepartmentController : ControllerBase
     {
@@ -19,12 +19,60 @@ namespace Taller.Controllers
 
 
         [HttpGet]
-        public async Task<ActionResult<List<Department>>> GetAllCountry()
+        public async Task<ActionResult<List<Department>>> GetAllDepartment()
         {
-            var country = await _context.Departments.ToListAsync();
+            var Department = await _context.Departments.ToListAsync();
 
-            return Ok(country);
+            return Ok(Department);
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Department>> GetDepartmentById(int id)
+        {
+            var c = await _context.Departments.FindAsync(id);
+            if (c == null)
+                return NotFound("Department not found.");
+
+            return Ok(c);
+
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<List<Department>>> AddDepartment(Department Department)
+        {
+            _context.Departments.Add(Department);
+            await _context.SaveChangesAsync();
+            return Ok(await _context.Departments.ToListAsync());
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<Department>> UpdateDepartment(Department updateDepartment)
+        {
+            var dbDepartment = await _context.Departments.FindAsync(updateDepartment.Id);
+            if (dbDepartment == null)
+                return NotFound("Department not found (put).");
+
+            dbDepartment.Name = updateDepartment.Name;
+            await _context.SaveChangesAsync();
+
+            return Ok(await _context.Departments.ToListAsync());
+
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult<Department>> DeleteDepartment(int id)
+        {
+            var dbDepartment = await _context.Departments.FindAsync(id);
+            if (dbDepartment == null)
+                return NotFound("Department not found (del).");
+
+            _context.Departments.Remove(dbDepartment);
+            await _context.SaveChangesAsync();
+
+            return Ok(await _context.Departments.ToListAsync());
+
+        }
+
 
     }
 }

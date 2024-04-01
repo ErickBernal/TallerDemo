@@ -92,16 +92,14 @@ namespace TallerApi.Data.DefaultData
             return list;
         }
 
-        //public static List<Department> GetDepartmentsToLoad()
-        //{
-        //    List<Department> list = new List<Department> {
-        //        new Department { Id = 1, CountryId = 1, Name = "Alta Verapaz" },
-        //        new Department { Id = 2, CountryId = 1, Name = "Baja Verapaz" },
-        //        new Department { Id = 3, CountryId = 1, Name = "Chimaltenango"}
-        //    };
-
-        //    return list;
-        //}
+        public static List<TypeClient> GetTypeClientToLoad()
+        {
+            List<TypeClient> list = new List<TypeClient> {
+                new TypeClient { Id = 1,Type = "Individual" },
+                new TypeClient { Id = 2,Type = "Empresa" }
+            };
+            return list;
+        }
 
 
     }//class
