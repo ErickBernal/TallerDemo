@@ -23,4 +23,16 @@ namespace Taller.Entities
         public Country Country { get; set; }
     }
 
+
+    public class Municipality
+    {
+        [Key]
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+        [ForeignKey("Department")]
+        public int DepartmentId { get; set; }
+        public Department Department { get; set; }
+    }
+
 }

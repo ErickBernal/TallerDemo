@@ -1,0 +1,860 @@
+CountryId,DepartmentId,Id,Name
+1,16,1,Cobán
+1,16,2,San Pedro Carchá
+1,16,3,San Juan Chamelco
+1,16,4,Tactic
+1,16,5,San Cristóbal Verapaz
+1,16,6,Santa Cruz Verapaz
+1,16,7,Tamahú
+1,16,8,Tucurú
+1,16,9,Senahú
+1,16,10,Santa Catalina La Tinta
+1,16,11,Santa María Cahabón
+1,16,12,Lanquín
+1,16,13,Chahal
+1,16,14,San Miguel Tucurú
+1,16,15,Chisec
+1,15,16,Salamá
+1,15,17,San Miguel Chicaj
+1,15,18,Rabinal
+1,15,19,Cubulco
+1,15,20,Granados
+1,15,21,Santa Cruz El Chol
+1,4,22,Chimaltenango
+1,4,23,San José Poaquil
+1,4,24,San Martín Jilotepeque
+1,4,25,San Juan Comalapa
+1,4,26,Santa Apolonia
+1,4,27,Tecpán Guatemala
+1,4,28,Patzún
+1,4,29,Pochuta
+1,4,30,Santa Cruz Balanyá
+1,4,31,Acatenango
+1,4,32,Yepocapa
+1,4,33,San Andrés Itzapa
+1,4,34,Parramos
+1,4,35,Zaragoza
+1,4,36,El Tejar
+1,4,37,San Juan Sacatepéquez
+1,4,38,Santo Domingo Xenacoj
+1,4,39,Santiago Sacatepéquez
+1,4,40,San Bartolomé Milpas Altas
+1,4,41,San Lucas Sacatepéquez
+1,4,42,Santa Lucia Milpas Altas
+1,4,43,Magdalena Milpas Altas
+1,4,44,Santa María de Jesús
+1,21,45,Jalapa
+1,21,46,San Pedro Pinula
+1,21,47,San Luis Jilotepeque
+1,21,48,San Manuel Chaparrón
+1,21,49,San Carlos Alzatate
+1,21,50,Monjas
+1,21,51,Mataquescuintla
+1,22,52,Jutiapa
+1,22,53,El Progreso
+1,22,54,Santa Catarina Mita
+1,22,55,Agua Blanca
+1,22,56,Asunción Mita
+1,22,57,Yupiltepeque
+1,22,58,Atiquizaya
+1,22,59,Jerez
+1,22,60,El Adelanto
+1,22,61,Zapotitlán
+1,22,62,Comapa
+1,22,63,Jalpatagua
+1,22,64,Conguaco
+1,22,65,Moyuta
+1,22,66,Pasaco
+1,22,67,San José Acatempa
+1,22,68,Quesada
+1,20,69,Chiquimula
+1,20,70,San José La Arada
+1,20,71,San Juan Ermita
+1,20,72,Jocotán
+1,20,73,Camotán
+1,20,74,Olopa
+1,20,75,Esquipulas
+1,20,76,Quezaltepeque
+1,20,77,Concepción Las Minas
+1,20,78,Ipala
+1,19,79,Zacapa
+1,19,80,Estanzuela
+1,19,81,Río Hondo
+1,19,82,Gualán
+1,19,83,Teculután
+1,19,84,Usumatlán
+1,19,85,Cabañas
+1,19,86,San Diego
+1,19,87,La Unión
+1,3,88,Antigua Guatemala
+1,3,89,Jocotenango
+1,3,90,Ciudad Vieja
+1,3,91,San Miguel Dueñas
+1,3,92,Pastores
+1,3,93,Santiago Sacatepéquez
+1,3,94,Santo Domingo Xenacoj
+1,3,95,San Bartolomé Milpas Altas
+1,3,96,Santa Lucía Milpas Altas
+1,3,97,Magdalena Milpas Altas
+1,3,98,Santa María de Jesús
+1,3,99,Santa Catarina Barahona
+1,3,100,Alotenango
+1,3,101,San Antonio Aguas Calientes
+1,3,102,Santa Catarina Barahona
+1,3,103,Alotenango
+1,13,104,Huehuetenango
+1,13,105,Chiantla
+1,13,106,Malacatancito
+1,13,107,Cuilco
+1,13,108,Nentón
+1,13,109,San Pedro Necta
+1,13,110,Jacaltenango
+1,13,111,San Pedro Soloma
+1,13,112,San Ildefonso Ixtahuacán
+1,13,113,Santa Bárbara
+1,13,114,La Libertad
+1,13,115,La Democracia
+1,13,116,San Miguel Acatán
+1,13,117,San Rafael La Independencia
+1,13,118,Todos Santos Cuchumatán
+1,13,119,San Juan Atitán
+1,13,120,Santa Eulalia
+1,13,121,San Mateo Ixtatán
+1,13,122,Colotenango
+1,13,123,San Sebastián Huehuetenango
+1,13,124,Tectitán
+1,13,125,Concepción Huista
+1,13,126,San Juan Ixcoy
+1,13,127,San Antonio Huista
+1,13,128,San Sebastián Coatán
+1,13,129,Barillas
+1,13,130,Acul
+1,13,131,Soloma
+1,13,132,Aguacatán
+1,13,133,San Rafael Petzal
+1,13,134,San Gaspar Ixchil
+1,13,135,Santiago Chimaltenango
+1,13,136,Santa Ana Huista
+1,14,137,Santa Cruz del Quiché
+1,14,138,Chichicastenango
+1,14,139,San Andrés Sajcabajá
+1,14,140,Uspantán
+1,14,141,Sacapulas
+1,14,142,San Bartolomé Jocotenango
+1,14,143,Canillá
+1,14,144,Chajul
+1,14,145,Chinique
+1,14,146,Cunén
+1,14,147,Ixcán
+1,14,148,Pachalum
+1,14,149,Chiché
+1,14,150,San Pedro Necta
+1,14,151,San Gaspar Chajul
+1,5,152,Escuintla
+1,5,153,Santa Lucía Cotzumalguapa
+1,5,154,La Democracia
+1,5,155,Siquinalá
+1,5,156,Masagua
+1,5,157,Tiquisate
+1,5,158,La Gomera
+1,5,159,Guanagazapa
+1,5,160,San José
+1,5,161,Iztapa
+1,5,162,Palín
+1,5,163,San Vicente Pacaya
+1,5,164,Nueva Concepción
+1,5,165,Santa Catarina Pinula
+1,5,166,Santa Teresa
+1,5,167,La Reforma
+1,5,168,Pueblo Nuevo Tiquisate
+1,5,169,Taxisco
+1,1,170,Guatemala
+1,1,171,Santa Catarina Pinula
+1,1,172,San José Pinula
+1,1,173,San José del Golfo
+1,1,174,Palencia
+1,1,175,Chinautla
+1,1,176,San Pedro Ayampuc
+1,1,177,Mixco
+1,1,178,San Pedro Sacatepéquez
+1,1,179,San Juan Sacatepéquez
+1,1,180,San Raymundo
+1,1,181,Chuarrancho
+1,1,182,Fraijanes
+1,1,183,Amatitlán
+1,1,184,Villa Nueva
+1,1,185,Villa Canales
+1,1,186,Petapa
+1,12,187,San Marcos
+1,12,188,San Pedro Sacatepéquez
+1,12,189,San Antonio Sacatepéquez
+1,12,190,Comitancillo
+1,12,191,San Miguel Ixtahuacán
+1,12,192,Concepción Tutuapa
+1,12,193,Tacaná
+1,12,194,Sibinal
+1,12,195,Tajumulco
+1,12,196,Tejutla
+1,12,197,San Rafael Pie de la Cuesta
+1,12,198,Nuevo Progreso
+1,12,199,El Tumbador
+1,12,200,Malacatán
+1,12,201,Catarina
+1,12,202,Ayutla
+1,12,203,Ocos
+1,12,204,San Pablo
+1,12,205,El Rodeo
+1,12,206,Ixchiguan
+1,12,207,San José Ojetenam
+1,12,208,San Cristóbal Cucho
+1,12,209,Sipacapa
+1,12,210,Esquipulas Palo Gordo
+1,12,211,Río Blanco
+1,12,212,San Lorenzo
+1,7,213,Sololá
+1,7,214,San José Chacayá
+1,7,215,Santa María Visitación
+1,7,216,Santa Lucía Utatlán
+1,7,217,Nahualá
+1,7,218,Santa Catarina Ixtahuacán
+1,7,219,Santa Clara La Laguna
+1,7,220,Concepción
+1,7,221,San Andrés Semetabaj
+1,7,222,Panajachel
+1,7,223,Santa Catarina Palopó
+1,7,224,San Antonio Palopó
+1,7,225,San Lucas Tolimán
+1,7,226,Santa Cruz La Laguna
+1,7,227,San Marcos La Laguna
+1,7,228,San Juan La Laguna
+1,7,229,San Pablo La Laguna
+1,7,230,San Pedro La Laguna
+1,7,231,Santiago Atitlán
+1,10,232,Mazatenango
+1,10,233,Cuyotenango
+1,10,234,San Francisco Zapotitlán
+1,10,235,San Bernardino
+1,10,236,San José El Ídolo
+1,10,237,San Antonio Suchitepéquez
+1,10,238,Santo Domingo Suchitepéquez
+1,10,239,San Lorenzo
+1,10,240,Samayac
+1,10,241,Patulul
+1,10,242,San Pablo Jocopilas
+1,10,243,San Antonio Suchitepéquez
+1,10,244,Santo Domingo Suchitepéquez
+1,10,245,San Lorenzo
+1,10,246,Samayac
+1,10,247,Patulul
+1,10,248,San Pablo Jocopilas
+1,10,249,San Antonio Suchitepéquez
+1,10,250,Santo Domingo Suchitepéquez
+1,10,251,San Lorenzo
+1,10,252,Samayac
+1,10,253,Patulul
+1,10,254,San Pablo Jocopilas
+1,10,255,San Antonio Suchitepéquez
+1,10,256,Santo Domingo Suchitepéquez
+1,10,257,San Lorenzo
+1,10,258,Samayac
+1,10,259,Patulul
+1,10,260,San Pablo Jocopilas
+1,10,261,San Antonio Suchitepéquez
+1,10,262,Santo Domingo Suchitepéquez
+1,10,263,San Lorenzo
+1,10,264,Samayac
+1,10,265,Patulul
+1,10,266,San Pablo Jocopilas
+1,10,267,San Antonio Suchitepéquez
+1,10,268,Santo Domingo Suchitepéquez
+1,8,269,Totonicapán
+1,8,270,San Cristóbal Totonicapán
+1,8,271,San Francisco El Alto
+1,8,272,San Andrés Xecul
+1,8,273,Momostenango
+1,8,274,Santa María Chiquimula
+1,8,275,Santa Lucía La Reforma
+1,8,276,San Bartolo
+1,9,277,Quetzaltenango
+1,9,278,Salcajá
+1,9,279,Olintepeque
+1,9,280,San Carlos Sija
+1,9,281,Sibilia
+1,9,282,Cantel
+1,9,283,Huitán
+1,9,284,Zunil
+1,9,285,Colomba
+1,9,286,San Francisco La Unión
+1,9,287,El Palmar
+1,9,288,Concepción Chiquirichapa
+1,9,289,San Mateo
+1,9,290,La Esperanza
+1,9,291,Flores Costa Cuca
+1,9,292,Génova
+1,9,293,Palestina de los Altos
+1,9,294,Coatepeque
+1,9,295,Flores Costa Cuca
+1,9,296,Génova
+1,9,297,Palestina de los Altos
+1,9,298,La Esperanza
+1,9,299,Flores Costa Cuca
+1,9,300,Génova
+1,9,301,Palestina de los Altos
+1,9,302,San Carlos Sija
+1,9,303,Sibilia
+1,9,304,Cantel
+1,9,305,Huitán
+1,9,306,Zunil
+1,9,307,Colomba
+1,9,308,San Francisco La Unión
+1,9,309,El Palmar
+1,9,310,Concepción Chiquirichapa
+1,9,311,San Mateo
+1,9,312,La Esperanza
+1,9,313,Flores Costa Cuca
+1,9,314,Génova
+1,9,315,Palestina de los Altos
+1,9,316,Coatepeque
+1,9,317,Flores Costa Cuca
+1,9,318,Génova
+1,9,319,Palestina de los Altos
+1,9,320,La Esperanza
+1,9,321,Flores Costa Cuca
+1,9,322,Génova
+1,9,323,Palestina de los Altos
+1,9,324,La Esperanza
+1,9,325,Flores Costa Cuca
+1,9,326,Génova
+1,9,327,Palestina de los Altos
+1,9,328,La Esperanza
+1,9,329,Flores Costa Cuca
+1,9,330,Génova
+1,9,331,Palestina de los Altos
+2,23,332,Ahuachapán
+2,23,333,Apaneca
+2,23,334,Atiquizaya
+2,23,335,Concepción de Ataco
+2,23,336,El Refugio
+2,23,337,Guaymango
+2,23,338,Jujutla
+2,23,339,San Francisco Menéndez
+2,23,340,San Lorenzo
+2,23,341,San Pedro Puxtla
+2,23,342,Turín
+2,23,343,La Concordia
+2,23,344,El Sauce
+2,23,345,Tacuba
+2,24,346,Sensuntepeque
+2,24,347,Dolores
+2,24,348,Ilobasco
+2,24,349,Victoria
+2,24,350,Guacotecti
+2,24,351,San Isidro
+2,24,352,Tejutepeque
+2,24,353,Jutiapa
+2,25,354,Chalatenango
+2,25,355,Arcatao
+2,25,356,Azacualpa
+2,25,357,Comalapa
+2,25,358,Citalá
+2,25,359,Concepción Quezaltepeque
+2,25,360,La Laguna
+2,25,361,La Palma
+2,25,362,La Reina
+2,25,363,San Antonio Los Ranchos
+2,25,364,San Antonio de la Cruz
+2,25,365,San Fernando
+2,25,366,San Francisco Lempa
+2,25,367,San Francisco Morazán
+2,25,368,San Ignacio
+2,25,369,San Isidro Labrador
+2,25,370,San José Cancasque
+2,25,371,San José Las Flores
+2,25,372,San Luis La Herradura
+2,25,373,San Luis Talpa
+2,25,374,San Miguel Tepezontes
+2,25,375,San Pedro Masahuat
+2,25,376,San Pedro Nonualco
+2,25,377,San Rafael Obrajuelo
+2,25,378,Santa María Ostuma
+2,25,379,Santiago Nonualco
+2,25,380,Tapalhuaca
+2,26,381,Cojutepeque
+2,26,382,Candelaria
+2,26,383,El Carmen
+2,26,384,El Rosario
+2,26,385,Monte San Juan
+2,26,386,Oratorio de Concepción
+2,26,387,Suchitoto
+2,26,388,Tecoluca
+2,26,389,Victoria
+2,27,390,Chiltiupán
+2,27,391,Ciudad Arce
+2,27,392,Colón
+2,27,393,Comasagua
+2,27,394,Huizúcar
+2,27,395,Jayaque
+2,27,396,Jicalapa
+2,27,397,La Libertad
+2,27,398,Nuevo Cuscatlán
+2,27,399,Opico
+2,27,400,Quezaltepeque
+2,27,401,Sacacoyo
+2,27,402,San José Villanueva
+2,27,403,San Matías
+2,27,404,San Pablo Tacachico
+2,27,405,Santa Tecla
+2,27,406,Talnique
+2,27,407,Tamanique
+2,27,408,Teotepeque
+2,27,409,Tepecoyo
+2,27,410,Zaragoza
+2,28,411,La Paz
+2,28,412,Cuyultitán
+2,28,413,El Rosario
+2,28,414,Jerusalén
+2,28,415,Mercedes La Ceiba
+2,28,416,Olocuilta
+2,28,417,Paraíso de Osorio
+2,28,418,San Antonio Masahuat
+2,28,419,San Emigdio
+2,28,420,San Francisco Chinameca
+2,28,421,San Juan Nonualco
+2,28,422,San Juan Talpa
+2,28,423,San Juan Tepezontes
+2,28,424,San Luis La Herradura
+2,28,425,San Luis Talpa
+2,28,426,San Miguel Tepezontes
+2,28,427,San Pedro Masahuat
+2,28,428,San Pedro Nonualco
+2,28,429,San Rafael Obrajuelo
+2,28,430,Santa María Ostuma
+2,28,431,Santiago Nonualco
+2,28,432,Tapalhuaca
+2,29,433,La Unión
+2,29,434,Anamorós
+2,29,435,Bolívar
+2,29,436,Concepción de Oriente
+2,29,437,Conchagua
+2,29,438,El Carmen
+2,29,439,El Sauce
+2,29,440,Intipucá
+2,29,441,Lislique
+2,29,442,Meanguera del Golfo
+2,29,443,Nueva Esparta
+2,29,444,Pasaquina
+2,29,445,Perquín
+2,29,446,Polorós
+2,29,447,San Alejo
+2,29,448,San José
+2,29,449,Santa Rosa de Lima
+2,29,450,Yayantique
+2,29,451,Yucuaiquín
+2,30,452,Guatajiagua
+2,30,453,Joateca
+2,30,454,Jocoaitique
+2,30,455,Morazán
+2,30,456,San Carlos
+2,30,457,San Fernando
+2,30,458,San Francisco Gotera
+2,30,459,San Isidro
+2,30,460,San Simón
+2,30,461,Sociedad
+2,30,462,Torre
+2,31,463,San Miguel
+2,31,464,Alegria
+2,31,465,Carolina
+2,31,466,Chapeltique
+2,31,467,Chinameca
+2,31,468,Chirilagua
+2,31,469,Ciudad Barrios
+2,31,470,Comacarán
+2,31,471,El Tránsito
+2,31,472,Lolotique
+2,31,473,Moncagua
+2,31,474,Nueva Guadalupe
+2,31,475,Quelepa
+2,31,476,San Antonio
+2,31,477,San Gerardo
+2,31,478,San Jorge
+2,31,479,San Luis de la Reina
+2,31,480,San Rafael
+2,31,481,Sesori
+2,31,482,Uluazapa
+2,32,483,San Salvador
+2,32,484,Aguilares
+2,32,485,Apopa
+2,32,486,Ayutuxtepeque
+2,32,487,Cuscatancingo
+2,32,488,Delgado
+2,32,489,El Paisnal
+2,32,490,Guazapa
+2,32,491,Ilopango
+2,32,492,Mejicanos
+2,32,493,Nejapa
+2,32,494,Panchimalco
+2,32,495,San Marcos
+2,32,496,San Martín
+2,32,497,Santiago Texacuangos
+2,32,498,Santo Tomás
+2,32,499,Soyapango
+2,32,500,Tonacatepeque
+2,33,501,San Vicente
+2,33,502,Azacualpa
+2,33,503,Candelaria
+2,33,504,Colon
+2,33,505,Guadalupe
+2,33,506,San Cayetano Istepeque
+2,33,507,San Esteban Catarina
+2,33,508,San Ildefonso
+2,33,509,San Lorenzo
+2,33,510,San Sebastián
+2,33,511,Santa Clara
+2,33,512,Santo Domingo
+2,33,513,Tecoluca
+2,33,514,Tepetitán
+2,33,515,Verapaz
+2,34,516,Santa Ana
+2,34,517,Candelaria de la Frontera
+2,34,518,Chalchuapa
+2,34,519,Coatepeque
+2,34,520,El Congo
+2,34,521,El Porvenir
+2,34,522,Masahuat
+2,34,523,Metapán
+2,34,524,San Antonio Pajonal
+2,34,525,San Sebastián Salitrillo
+2,34,526,Santa Rosa Guachipilín
+2,34,527,Santiago de la Frontera
+2,34,528,Texistepeque
+2,35,529,Sonsonate
+2,35,530,Acajutla
+2,35,531,Armenia
+2,35,532,Caluco
+2,35,533,Cuisnahuat
+2,35,534,Izalco
+2,35,535,Jayaque
+2,35,536,Juayúa
+2,35,537,Nahuizalco
+2,35,538,Nahulingo
+2,35,539,Salamá
+2,35,540,Sta. Catarina Masahuat
+2,35,541,Sta. Isabel Ishuatán
+2,35,542,Sensuntepeque
+2,35,543,Sonsonate
+2,35,544,Sonzacate
+2,36,545,Usulután
+2,36,546,Alegría
+2,36,547,Berlín
+2,36,548,California
+2,36,549,Concepción Batres
+2,36,550,El Triunfo
+2,36,551,Ereguayquín
+2,36,552,Estanzuelas
+2,36,553,Jiquilisco
+2,36,554,Jucuapa
+2,36,555,Jucuarán
+2,36,556,Mercedes Umaña
+2,36,557,Nueva Granada
+2,36,558,Ozatlán
+2,36,559,Pueblo Nuevo
+2,36,560,San Agustín
+2,36,561,San Buenaventura
+2,36,562,San Dionisio
+2,36,563,San Francisco Javier
+2,36,564,Santa Elena
+2,36,565,Santa María
+3,37,566,Arizona
+3,37,567,El Porvenir
+3,37,568,Esperanza
+3,37,569,Ilama
+3,37,570,La Ceiba
+3,37,571,La Masica
+3,37,572,Potrerillos
+3,37,573,San Francisco
+3,37,574,Tela
+3,37,575,Arizona
+3,38,576,Apacilagua
+3,38,577,Choluteca
+3,38,578,Duyure
+3,38,579,El Corpus
+3,38,580,El Triunfo
+3,38,581,Morolica
+3,38,582,Namasigüe
+3,38,583,Orocuina
+3,38,584,Pespire
+3,38,585,San Antonio de Flores
+3,38,586,San Isidro
+3,38,587,San José
+3,38,588,San Marcos de Colón
+3,38,589,San Nicolás
+3,38,590,Santa Ana de Yusguare
+3,38,591,Santa Lucía
+3,38,592,Yusguare
+3,39,593,Balfate
+3,39,594,Bonito Oriental
+3,39,595,iriboca
+3,39,596,El Porvenir
+3,39,597,limones
+3,39,598,Saba
+3,39,599,Santa Rosa de Aguán
+3,39,600,Sonaguera
+3,39,601,Tocoa
+3,40,602,Comayagua
+3,40,603,El Rosario
+3,40,604,Esquías
+3,40,605,Humuya
+3,40,606,La Libertad
+3,40,607,Lamaní
+3,40,608,La Trinidad
+3,40,609,Lejamaní
+3,40,610,Meámbar
+3,40,611,Minas de Oro
+3,40,612,Ojos de Agua
+3,40,613,San Jerónimo
+3,40,614,San José de Comayagua
+3,40,615,San José del Potrero
+3,40,616,San Luis
+3,40,617,San Sebastián
+3,40,618,Siguatepeque
+3,40,619,Taulabé
+3,40,620,Villa de San Antonio
+3,41,621,Cabañas
+3,41,622,Concepción
+3,41,623,Copán Ruinas
+3,41,624,Corquín
+3,41,625,Cucuyagua
+3,41,626,Dolores
+3,41,627,Dulce Nombre
+3,41,628,El Paraíso
+3,41,629,Florida
+3,41,630,La Jigua
+3,41,631,La Unión
+3,41,632,Nueva Arcadia
+3,41,633,San Agustín
+3,41,634,San Antonio
+3,41,635,San Jerónimo
+3,41,636,San José
+3,41,637,San Juan de Opoa
+3,41,638,San Nicolás
+3,41,639,San Pedro
+3,41,640,Santa Rita
+3,41,641,Santa Rosa de Copán
+3,41,642,Trinidad de Copán
+3,41,643,Veracruz
+3,41,644,Viñetas
+3,42,645,Choloma
+3,42,646,La Lima
+3,42,647,Omoa
+3,42,648,Pimienta
+3,42,649,Puerto Cortés
+3,42,650,San Antonio de Cortés
+3,42,651,San Francisco de Yojoa
+3,42,652,San Manuel
+3,42,653,San Pedro Sula
+3,42,654,Santa Cruz de Yojoa
+3,42,655,Villanueva
+3,43,656,Alauca
+3,43,657,Danlí
+3,43,658,El Paraíso
+3,43,659,Güinope
+3,43,660,Liure
+3,43,661,Morocelí
+3,43,662,Oropolí
+3,43,663,Potrerillos
+3,43,664,Reitoca
+3,43,665,San Antonio de Flores
+3,43,666,San Lucas
+3,43,667,San Matías
+3,43,668,Soledad
+3,43,669,Taujica
+3,43,670,Texiguat
+3,43,671,Vado Ancho
+3,43,672,Yauyupe
+3,43,673,Yuscarán
+3,44,674,Alubarén
+3,44,675,Cedros
+3,44,676,Distrito Central
+3,44,677,El Porvenir
+3,44,678,Guaimaca
+3,44,679,La Libertad
+3,44,680,La Venta
+3,44,681,Lepaterique
+3,44,682,Maraita
+3,44,683,Marale
+3,44,684,Nueva Armenia
+3,44,685,Ojojona
+3,44,686,Orica
+3,44,687,Reitoca
+3,44,688,Sabanagrande
+3,44,689,San Antonio de Oriente
+3,44,690,San Buenaventura
+3,44,691,San Ignacio
+3,44,692,San Juan de Flores
+3,44,693,San Marcos de Colón
+3,44,694,Santa Ana
+3,44,695,Santa Lucía
+3,44,696,Talanga
+3,44,697,Tatumbla
+3,44,698,Valle de Angeles
+3,44,699,Vallecillo
+3,45,700,Ahuas
+3,45,701,Brus Laguna
+3,45,702,Juan Francisco Bulnes
+3,45,703,Puerto Lempira
+3,45,704,Wampusirpi
+3,46,705,Camacaro
+3,46,706,Colomoncagua
+3,46,707,Concepción
+3,46,708,Dolores
+3,46,709,Intibucá
+3,46,710,Jesus de Otoro
+3,46,711,La Esperanza
+3,46,712,Magdalena
+3,46,713,Masaguara
+3,46,714,San Antonio
+3,46,715,San Francisco de Opalaca
+3,46,716,San Isidro
+3,46,717,San Juan
+3,46,718,San Marco de Sierra
+3,46,719,San Miguelito
+3,46,720,San Rafael
+3,46,721,San Sebastián
+3,46,722,Santa Lucía
+3,46,723,Yamaranguila
+3,46,724,Yauyupe
+3,46,725,Zapotillo
+3,47,726,Roatán
+3,47,727,Santos Guardiola
+3,47,728,Utila
+3,48,729,Aguaqueterique
+3,48,730,Alegría
+3,48,731,Cabañas
+3,48,732,Cane
+3,48,733,Chinacla
+3,48,734,Guajiquiro
+3,48,735,La Paz
+3,48,736,Lauterique
+3,48,737,Marcala
+3,48,738,Mercedes de Oriente
+3,48,739,Opatoro
+3,48,740,San Antonio del Norte
+3,48,741,San José
+3,48,742,San Juan
+3,48,743,San Pedro de Tutule
+3,48,744,Santa Ana
+3,48,745,Santa Elena
+3,48,746,Santa María
+3,48,747,Santiago de Puringla
+3,48,748,Yarula
+3,49,749,Belen
+3,49,750,Candelaria
+3,49,751,Cololaca
+3,49,752,Erandique
+3,49,753,Gracias
+3,49,754,Gualcince
+3,49,755,Guarita
+3,49,756,La Campa
+3,49,757,La Iguala
+3,49,758,Lepaera
+3,49,759,Nueva Arcadia
+3,49,760,San Andrés
+3,49,761,San Francisco
+3,49,762,San Juan Guarita
+3,49,763,San Manuel Colohete
+3,49,764,San Marcos de Caiquín
+3,49,765,San Rafael
+3,49,766,San Sebastian
+3,49,767,Santa Cruz
+3,49,768,Talgua
+3,49,769,Tamarindo
+3,49,770,Tomalá
+3,49,771,Valladolid
+3,49,772,Virgen
+3,50,773,Belen Gualcho
+3,50,774,Concepción
+3,50,775,Dolores Merendon
+3,50,776,Fraternidad
+3,50,777,La Encarnación
+3,50,778,La Labor
+3,50,779,Lepaera
+3,50,780,Nueva Ocotepeque
+3,50,781,San Fernando
+3,50,782,San Francisco del Valle
+3,50,783,San Jorge
+3,50,784,San Marcos
+3,50,785,San Matías
+3,50,786,San Pedro
+3,50,787,Santa Fe
+3,50,788,Sensenti
+3,51,789,Campamento
+3,51,790,Catacamas
+3,51,791,Concordia
+3,51,792,Dulce Nombre de Culmí
+3,51,793,El Rosario
+3,51,794,Esquipulas del Norte
+3,51,795,Gualaco
+3,51,796,Guarizama
+3,51,797,Jano
+3,51,798,Juticalpa
+3,51,799,La Unión
+3,51,800,Mangulile
+3,51,801,Manto
+3,51,802,Salamá
+3,51,803,San Esteban
+3,51,804,San Francisco de Becerra
+3,51,805,San Francisco de la Paz
+3,51,806,Santa Maria del Real
+3,51,807,Silca
+3,51,808,Yocón
+3,51,809,Yoro
+3,52,810,Arada
+3,52,811,Atima
+3,52,812,Azacualpa
+3,52,813,Ceguaca
+3,52,814,Concepción del Norte
+3,52,815,Concepción del Sur
+3,52,816,Chinda
+3,52,817,El Nispero
+3,52,818,Gualala
+3,52,819,Ilama
+3,52,820,Macuelizo
+3,52,821,Naranjito
+3,52,822,Petoa
+3,52,823,Protección
+3,52,824,Quimistán
+3,52,825,San Francisco de Ojuera
+3,52,826,San Luis
+3,52,827,San Marcos
+3,52,828,San Nicolás
+3,52,829,San Pedro Zacapa
+3,52,830,Santa Bárbara
+3,52,831,Santa Rita
+3,52,832,San Vicente Centenario
+3,52,833,Trinidad
+3,53,834,Alianza
+3,53,835,Amapala
+3,53,836,Aramecina
+3,53,837,Caridad
+3,53,838,Goascorán
+3,53,839,Langue
+3,53,840,Nacaome
+3,53,841,San Francisco de Coray
+3,53,842,San Lorenzo
+3,53,843,San Marcos de Colón
+3,53,844,Santa Ana
+3,53,845,Pespire
+3,53,846,Quebrada Seca
+3,53,847,San Antonio de Flores
+3,53,848,San José
+3,54,849,Arada
+3,54,850,El Negrito
+3,54,851,El Progreso
+3,54,852,Jocón
+3,54,853,Morazán
+3,54,854,Olanchito
+3,54,855,Sabá
+3,54,856,San Francisco de la Paz
+3,54,857,Santa Rita
+3,54,858,Sulaco
+3,54,859,Yorito
