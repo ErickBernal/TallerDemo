@@ -12,19 +12,31 @@ namespace Taller.Data
 
         public DbSet<Department> Departments { get; set; }
 
+        public DbSet<Municipality> Municipalities { get; set; }
+
+        public DbSet<Address> Addresses { get; set; }
+
+        public DbSet<TypeClient> TypeClients { get; set; }
+
+        public DbSet<Client> Clients { get; set; }
+
+        public DbSet<VehicleModel> VehicleModels { get; set; }
+
+        public DbSet<VehicleBrand> VehicleBrands { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Country>()
-                .HasMany(o => o.Departments)
-                .WithOne(oi => oi.Country)
-                .HasForeignKey(oi => oi.CountryId);
+            //modelBuilder.Entity<Country>()
+            //    .HasMany(o => o.Departments)
+            //    .WithOne(oi => oi.Country)
+            //    .HasForeignKey(oi => oi.CountryId);
 
             modelBuilder.Entity<Country>().HasData(DbInitializer.GetCountriesToLoad());
             modelBuilder.Entity<Department>().HasData(DbInitializer.GetDepartmentsToLoad());
             modelBuilder.Entity<Municipality>().HasData(DbInitializer.GetMunicipalitiesToLoad());
-
+            modelBuilder.Entity<TypeClient>().HasData(DbInitializer.GetTypeClientToLoad());
 
         }
 

@@ -7,7 +7,7 @@
 namespace Taller.Migrations
 {
     /// <inheritdoc />
-    public partial class initia : Migration
+    public partial class initiaD : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -23,6 +23,45 @@ namespace Taller.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Countries", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TypeClients",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TypeClients", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "VehicleBrands",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Brand = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VehicleBrands", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "VehicleModels",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Model = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VehicleModels", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -46,7 +85,7 @@ namespace Taller.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Municipality",
+                name: "Municipalities",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -56,11 +95,64 @@ namespace Taller.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Municipality", x => x.Id);
+                    table.PrimaryKey("PK_Municipalities", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Municipality_Departments_DepartmentId",
+                        name: "FK_Municipalities_Departments_DepartmentId",
                         column: x => x.DepartmentId,
                         principalTable: "Departments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Addresses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Zone = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MunicipalityId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Addresses", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Addresses_Municipalities_MunicipalityId",
+                        column: x => x.MunicipalityId,
+                        principalTable: "Municipalities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Clients",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DPI = table.Column<int>(type: "int", nullable: false),
+                    Nit = table.Column<int>(type: "int", nullable: false),
+                    Phone = table.Column<int>(type: "int", nullable: false),
+                    Cellphone = table.Column<int>(type: "int", nullable: false),
+                    TypeClientId = table.Column<int>(type: "int", nullable: false),
+                    AddressId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Clients", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Clients_Addresses_AddressId",
+                        column: x => x.AddressId,
+                        principalTable: "Addresses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Clients_TypeClients_TypeClientId",
+                        column: x => x.TypeClientId,
+                        principalTable: "TypeClients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -73,6 +165,15 @@ namespace Taller.Migrations
                     { 1, "Guatemala" },
                     { 2, "El Salvador" },
                     { 3, "Honduras" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "TypeClients",
+                columns: new[] { "Id", "Type" },
+                values: new object[,]
+                {
+                    { 1, "Individual" },
+                    { 2, "Empresa" }
                 });
 
             migrationBuilder.InsertData(
@@ -137,7 +238,7 @@ namespace Taller.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Municipality",
+                table: "Municipalities",
                 columns: new[] { "Id", "DepartmentId", "Name" },
                 values: new object[,]
                 {
@@ -1003,13 +1104,28 @@ namespace Taller.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Addresses_MunicipalityId",
+                table: "Addresses",
+                column: "MunicipalityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Clients_AddressId",
+                table: "Clients",
+                column: "AddressId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Clients_TypeClientId",
+                table: "Clients",
+                column: "TypeClientId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Departments_CountryId",
                 table: "Departments",
                 column: "CountryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Municipality_DepartmentId",
-                table: "Municipality",
+                name: "IX_Municipalities_DepartmentId",
+                table: "Municipalities",
                 column: "DepartmentId");
         }
 
@@ -1017,7 +1133,22 @@ namespace Taller.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Municipality");
+                name: "Clients");
+
+            migrationBuilder.DropTable(
+                name: "VehicleBrands");
+
+            migrationBuilder.DropTable(
+                name: "VehicleModels");
+
+            migrationBuilder.DropTable(
+                name: "Addresses");
+
+            migrationBuilder.DropTable(
+                name: "TypeClients");
+
+            migrationBuilder.DropTable(
+                name: "Municipalities");
 
             migrationBuilder.DropTable(
                 name: "Departments");
