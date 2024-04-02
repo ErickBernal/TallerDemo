@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Taller.Data;
 using Taller.Entities;
 
-namespace Taller.Controllers
+namespace Taller.Controllers.ClientC
 {
     [Route("taller/[controller]")]
     [ApiController]
@@ -54,8 +54,8 @@ namespace Taller.Controllers
 
             dbClient.Name = updateClient.Name;
             dbClient.LastName = updateClient.LastName;
-            dbClient.DPI  = updateClient.DPI;
-            dbClient.Nit  = updateClient.Nit;
+            dbClient.DPI = updateClient.DPI;
+            dbClient.Nit = updateClient.Nit;
             dbClient.Phone = updateClient.Phone;
             dbClient.Cellphone = updateClient.Cellphone;
             await _context.SaveChangesAsync();

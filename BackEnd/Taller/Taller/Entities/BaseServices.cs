@@ -8,7 +8,6 @@ namespace Taller.Entities
         [Key]
         public int Id { get; set; }
         public required string Name { get; set; }
-        //public string Description { get; set; } = string.Empty;
         public ICollection<Department> Departments { get; set; }
     }
 
@@ -44,6 +43,7 @@ namespace Taller.Entities
         public int Id { get; set; }
         public int Zone { get; set; }
         public string Description { get; set; }
+        public int MunicipalityId { get; set; }
         public Municipality Municipality { get; set; }
         public ICollection<Client> Clients { get; set; }
     }
@@ -67,29 +67,15 @@ namespace Taller.Entities
         public int Nit { get; set; }
         public int Phone { get; set; }
         public int Cellphone { get; set; }
+
+        public int TypeClientId { get; set; }
         public TypeClient TypeClient { get; set; }
+
+        public int AddressId { get; set; }
         public Address Address { get; set; }
 
 
-        //public ICollection<Department> Departments { get; set; }
+        public ICollection<DetalleClientService> DetalleClientServices { get; set; } //detalle cliente sevicio
     }
 
-    //------------------
-    public class VehicleModel
-    {
-        [Key]
-        public int Id { get; set; }
-        public int Model { get; set; }
-
-        //public ICollection<Department> Departments { get; set; }
-    }
-    public class VehicleBrand
-    {
-        [Key]
-        public int Id { get; set; }
-        public string Brand { get; set; }
-
-        //public ICollection<Department> Departments { get; set; }
-    }
-
-}//------------------
+}//
