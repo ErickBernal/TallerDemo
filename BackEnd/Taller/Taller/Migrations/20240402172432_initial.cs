@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -7,7 +8,7 @@
 namespace Taller.Migrations
 {
     /// <inheritdoc />
-    public partial class initiaD : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -23,6 +24,47 @@ namespace Taller.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Countries", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Invoices",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Value = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Invoices", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ServiceTypes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ServiceTypes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ServiceWorks",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Work = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PriceWork = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ServiceWorks", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -65,6 +107,21 @@ namespace Taller.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "VehicleParts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Stock = table.Column<int>(type: "int", nullable: false),
+                    UnitPrice = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VehicleParts", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Departments",
                 columns: table => new
                 {
@@ -80,6 +137,61 @@ namespace Taller.Migrations
                         name: "FK_Departments_Countries_CountryId",
                         column: x => x.CountryId,
                         principalTable: "Countries",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ServiceListWorks",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ServiceTypeId = table.Column<int>(type: "int", nullable: false),
+                    ServiceWorkId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ServiceListWorks", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ServiceListWorks_ServiceTypes_ServiceTypeId",
+                        column: x => x.ServiceTypeId,
+                        principalTable: "ServiceTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ServiceListWorks_ServiceWorks_ServiceWorkId",
+                        column: x => x.ServiceWorkId,
+                        principalTable: "ServiceWorks",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "VehicleLineas",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Color = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Line = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    VehicleModelId = table.Column<int>(type: "int", nullable: false),
+                    VehicleBrandId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VehicleLineas", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_VehicleLineas_VehicleBrands_VehicleBrandId",
+                        column: x => x.VehicleBrandId,
+                        principalTable: "VehicleBrands",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_VehicleLineas_VehicleModels_VehicleModelId",
+                        column: x => x.VehicleModelId,
+                        principalTable: "VehicleModels",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -105,6 +217,52 @@ namespace Taller.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Vehicles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Placa = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    VehicleLineaId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Vehicles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Vehicles_VehicleLineas_VehicleLineaId",
+                        column: x => x.VehicleLineaId,
+                        principalTable: "VehicleLineas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "VpartsCompatibles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    VehicleLineaId = table.Column<int>(type: "int", nullable: false),
+                    VehiclePartId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_VpartsCompatibles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_VpartsCompatibles_VehicleLineas_VehicleLineaId",
+                        column: x => x.VehicleLineaId,
+                        principalTable: "VehicleLineas",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_VpartsCompatibles_VehicleParts_VehiclePartId",
+                        column: x => x.VehiclePartId,
+                        principalTable: "VehicleParts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Addresses",
                 columns: table => new
                 {
@@ -121,6 +279,34 @@ namespace Taller.Migrations
                         name: "FK_Addresses_Municipalities_MunicipalityId",
                         column: x => x.MunicipalityId,
                         principalTable: "Municipalities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ServiceDetalles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    State = table.Column<int>(type: "int", nullable: false),
+                    Km = table.Column<int>(type: "int", nullable: false),
+                    ServiceTypeId = table.Column<int>(type: "int", nullable: false),
+                    VehicleId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ServiceDetalles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ServiceDetalles_ServiceTypes_ServiceTypeId",
+                        column: x => x.ServiceTypeId,
+                        principalTable: "ServiceTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ServiceDetalles_Vehicles_VehicleId",
+                        column: x => x.VehicleId,
+                        principalTable: "Vehicles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -153,6 +339,105 @@ namespace Taller.Migrations
                         name: "FK_Clients_TypeClients_TypeClientId",
                         column: x => x.TypeClientId,
                         principalTable: "TypeClients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DetalleVehicleParts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    VehiclePartId = table.Column<int>(type: "int", nullable: false),
+                    ServiceDetalleId = table.Column<int>(type: "int", nullable: false),
+                    InvoiceId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DetalleVehicleParts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DetalleVehicleParts_Invoices_InvoiceId",
+                        column: x => x.InvoiceId,
+                        principalTable: "Invoices",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DetalleVehicleParts_ServiceDetalles_ServiceDetalleId",
+                        column: x => x.ServiceDetalleId,
+                        principalTable: "ServiceDetalles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DetalleVehicleParts_VehicleParts_VehiclePartId",
+                        column: x => x.VehiclePartId,
+                        principalTable: "VehicleParts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DetalleWorkServices",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ServiceWorkId = table.Column<int>(type: "int", nullable: false),
+                    ServiceDetalleId = table.Column<int>(type: "int", nullable: false),
+                    InvoiceId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DetalleWorkServices", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DetalleWorkServices_Invoices_InvoiceId",
+                        column: x => x.InvoiceId,
+                        principalTable: "Invoices",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DetalleWorkServices_ServiceDetalles_ServiceDetalleId",
+                        column: x => x.ServiceDetalleId,
+                        principalTable: "ServiceDetalles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DetalleWorkServices_ServiceWorks_ServiceWorkId",
+                        column: x => x.ServiceWorkId,
+                        principalTable: "ServiceWorks",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DetalleClientServices",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClientId = table.Column<int>(type: "int", nullable: false),
+                    ServiceDetalleId = table.Column<int>(type: "int", nullable: false),
+                    InvoiceId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DetalleClientServices", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_DetalleClientServices_Clients_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Clients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DetalleClientServices_Invoices_InvoiceId",
+                        column: x => x.InvoiceId,
+                        principalTable: "Invoices",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DetalleClientServices_ServiceDetalles_ServiceDetalleId",
+                        column: x => x.ServiceDetalleId,
+                        principalTable: "ServiceDetalles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -1124,22 +1409,133 @@ namespace Taller.Migrations
                 column: "CountryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_DetalleClientServices_ClientId",
+                table: "DetalleClientServices",
+                column: "ClientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DetalleClientServices_InvoiceId",
+                table: "DetalleClientServices",
+                column: "InvoiceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DetalleClientServices_ServiceDetalleId",
+                table: "DetalleClientServices",
+                column: "ServiceDetalleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DetalleVehicleParts_InvoiceId",
+                table: "DetalleVehicleParts",
+                column: "InvoiceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DetalleVehicleParts_ServiceDetalleId",
+                table: "DetalleVehicleParts",
+                column: "ServiceDetalleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DetalleVehicleParts_VehiclePartId",
+                table: "DetalleVehicleParts",
+                column: "VehiclePartId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DetalleWorkServices_InvoiceId",
+                table: "DetalleWorkServices",
+                column: "InvoiceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DetalleWorkServices_ServiceDetalleId",
+                table: "DetalleWorkServices",
+                column: "ServiceDetalleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DetalleWorkServices_ServiceWorkId",
+                table: "DetalleWorkServices",
+                column: "ServiceWorkId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Municipalities_DepartmentId",
                 table: "Municipalities",
                 column: "DepartmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ServiceDetalles_ServiceTypeId",
+                table: "ServiceDetalles",
+                column: "ServiceTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ServiceDetalles_VehicleId",
+                table: "ServiceDetalles",
+                column: "VehicleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ServiceListWorks_ServiceTypeId",
+                table: "ServiceListWorks",
+                column: "ServiceTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ServiceListWorks_ServiceWorkId",
+                table: "ServiceListWorks",
+                column: "ServiceWorkId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VehicleLineas_VehicleBrandId",
+                table: "VehicleLineas",
+                column: "VehicleBrandId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VehicleLineas_VehicleModelId",
+                table: "VehicleLineas",
+                column: "VehicleModelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vehicles_VehicleLineaId",
+                table: "Vehicles",
+                column: "VehicleLineaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VpartsCompatibles_VehicleLineaId",
+                table: "VpartsCompatibles",
+                column: "VehicleLineaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_VpartsCompatibles_VehiclePartId",
+                table: "VpartsCompatibles",
+                column: "VehiclePartId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "DetalleClientServices");
+
+            migrationBuilder.DropTable(
+                name: "DetalleVehicleParts");
+
+            migrationBuilder.DropTable(
+                name: "DetalleWorkServices");
+
+            migrationBuilder.DropTable(
+                name: "ServiceListWorks");
+
+            migrationBuilder.DropTable(
+                name: "VpartsCompatibles");
+
+            migrationBuilder.DropTable(
                 name: "Clients");
 
             migrationBuilder.DropTable(
-                name: "VehicleBrands");
+                name: "Invoices");
 
             migrationBuilder.DropTable(
-                name: "VehicleModels");
+                name: "ServiceDetalles");
+
+            migrationBuilder.DropTable(
+                name: "ServiceWorks");
+
+            migrationBuilder.DropTable(
+                name: "VehicleParts");
 
             migrationBuilder.DropTable(
                 name: "Addresses");
@@ -1148,10 +1544,25 @@ namespace Taller.Migrations
                 name: "TypeClients");
 
             migrationBuilder.DropTable(
+                name: "ServiceTypes");
+
+            migrationBuilder.DropTable(
+                name: "Vehicles");
+
+            migrationBuilder.DropTable(
                 name: "Municipalities");
 
             migrationBuilder.DropTable(
+                name: "VehicleLineas");
+
+            migrationBuilder.DropTable(
                 name: "Departments");
+
+            migrationBuilder.DropTable(
+                name: "VehicleBrands");
+
+            migrationBuilder.DropTable(
+                name: "VehicleModels");
 
             migrationBuilder.DropTable(
                 name: "Countries");

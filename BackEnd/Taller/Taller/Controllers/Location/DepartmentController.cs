@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Taller.Data;
 using Taller.Entities;
 
-namespace Taller.Controllers
+namespace Taller.Controllers.Location
 {
     [Route("taller/[controller]")]
     [ApiController]

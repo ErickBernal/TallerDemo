@@ -9,21 +9,30 @@ namespace Taller.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
         public DbSet<Country> Countries { get; set; }
-
         public DbSet<Department> Departments { get; set; }
-
         public DbSet<Municipality> Municipalities { get; set; }
 
         public DbSet<Address> Addresses { get; set; }
-
         public DbSet<TypeClient> TypeClients { get; set; }
-
         public DbSet<Client> Clients { get; set; }
 
         public DbSet<VehicleModel> VehicleModels { get; set; }
-
         public DbSet<VehicleBrand> VehicleBrands { get; set; }
+        public DbSet<VehicleLinea> VehicleLineas { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<VehiclePart> VehicleParts { get; set; }
+        public DbSet<VehiclePartsCompatible> VpartsCompatibles { get; set; }
 
+
+        public DbSet<ServiceType> ServiceTypes { get; set; }
+        public DbSet<ServiceWork> ServiceWorks { get; set; }
+        public DbSet<ServiceListWork> ServiceListWorks { get; set; }
+        public DbSet<ServiceDetalle> ServiceDetalles { get; set; }
+
+        public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<DetalleClientService> DetalleClientServices { get; set; }
+        public DbSet<DetalleWorkService> DetalleWorkServices { get; set; }
+        public DbSet<DetalleVehicleParts> DetalleVehicleParts { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -37,9 +46,7 @@ namespace Taller.Data
             modelBuilder.Entity<Department>().HasData(DbInitializer.GetDepartmentsToLoad());
             modelBuilder.Entity<Municipality>().HasData(DbInitializer.GetMunicipalitiesToLoad());
             modelBuilder.Entity<TypeClient>().HasData(DbInitializer.GetTypeClientToLoad());
-
         }
-
     }
 }
 
