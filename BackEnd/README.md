@@ -32,11 +32,19 @@ dotnet new webapi -o TallerApi2
 # En consola ejecutar
 # la migracion creara dos clases, se utilizaran para actualizar la base de datos con las modificaciones realizadas
 add-migration initial -o Data/migrations
+<<<<<<< HEAD
 EntityFrameworkCore\add-migration initiaD
+=======
+EntityFrameworkCore\add-migration initiaD -o Data/migrations
+>>>>>>> 864aa13248b092b7ab0a7069be091acd9fc761dd
 # initial: nombre de la migracion
 # DataAccess/migrations: destino de los archivos generados
 
 # Para actualizar la base de datos ejecutar:
 update-database
+<<<<<<< HEAD
 EntityFrameworkCore\update-database
+=======
+EntityFrameworkCore\Update-Database
+>>>>>>> 864aa13248b092b7ab0a7069be091acd9fc761dd
 ```

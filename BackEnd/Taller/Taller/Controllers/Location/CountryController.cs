@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Taller.Data;
@@ -16,7 +17,6 @@ namespace Taller.Controllers.Location
         {
             _context = context;
         }
-
 
         [HttpGet]
         public async Task<ActionResult<List<Country>>> GetAllCountry()
