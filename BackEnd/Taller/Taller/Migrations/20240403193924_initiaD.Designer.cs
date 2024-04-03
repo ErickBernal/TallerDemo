@@ -12,7 +12,7 @@ using Taller.Data;
 namespace Taller.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240403151546_initiaD")]
+    [Migration("20240403193924_initiaD")]
     partial class initiaD
     {
         /// <inheritdoc />
@@ -5932,6 +5932,28 @@ namespace Taller.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("VehicleBrands");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Brand = "Toyota"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Brand = "Susuki"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Brand = "Kia"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Brand = "Subaru"
+                        });
                 });
 
             modelBuilder.Entity("Taller.Entities.VehicleLinea", b =>
@@ -5967,6 +5989,35 @@ namespace Taller.Migrations
                     b.HasIndex("VehicleModelId");
 
                     b.ToTable("VehicleLineas");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Color = "Negro",
+                            Line = "Tacoma",
+                            Type = "pick up",
+                            VehicleBrandId = 1,
+                            VehicleModelId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Color = "Azul",
+                            Line = "Yaris",
+                            Type = "cedan",
+                            VehicleBrandId = 1,
+                            VehicleModelId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Color = "verde",
+                            Line = "Carry",
+                            Type = "pick up",
+                            VehicleBrandId = 2,
+                            VehicleModelId = 6
+                        });
                 });
 
             modelBuilder.Entity("Taller.Entities.VehicleModel", b =>
@@ -5983,6 +6034,48 @@ namespace Taller.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("VehicleModels");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Model = 2000
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Model = 2001
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Model = 2002
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Model = 2003
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Model = 2004
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Model = 2006
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Model = 2011
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Model = 2020
+                        });
                 });
 
             modelBuilder.Entity("Taller.Entities.VehiclePart", b =>
@@ -6006,6 +6099,50 @@ namespace Taller.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("VehicleParts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Aceite 10 w 40",
+                            Stock = 10,
+                            UnitPrice = 100.0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Aceite 20 w 50",
+                            Stock = 9,
+                            UnitPrice = 99.0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Llanta Rin 22",
+                            Stock = 12,
+                            UnitPrice = 400.0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Llanta Rin 17",
+                            Stock = 4,
+                            UnitPrice = 250.0
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Plumilla",
+                            Stock = 25,
+                            UnitPrice = 50.0
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Pastillas de freno",
+                            Stock = 10,
+                            UnitPrice = 200.0
+                        });
                 });
 
             modelBuilder.Entity("Taller.Entities.VehiclePartsCompatible", b =>

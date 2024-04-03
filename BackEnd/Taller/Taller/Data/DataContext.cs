@@ -48,7 +48,15 @@ namespace Taller.Data
             modelBuilder.Entity<Department>().HasData(DbInitializer.GetDepartmentsToLoad());
             modelBuilder.Entity<Municipality>().HasData(DbInitializer.GetMunicipalitiesToLoad());
             modelBuilder.Entity<TypeClient>().HasData(DbInitializer.GetTypeClientToLoad());
+
+            modelBuilder.Entity<VehiclePart>().HasData(DbInitializer.GetVehiclePartsToLoad());
+            modelBuilder.Entity<VehicleBrand>().HasData(DbInitializer.GetVehicleBrandToLoad());
+            modelBuilder.Entity<VehicleModel>().HasData(DbInitializer.GetVehicleModelToLoad());
+            modelBuilder.Entity<VehicleLinea>().HasData(DbInitializer.GetVehicleLineasToLoad());
+
         }
+
+
     }
 }
 
