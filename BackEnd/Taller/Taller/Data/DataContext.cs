@@ -8,6 +8,8 @@ namespace Taller.Data
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
+        public DbSet<Log> Logs { get; set; }
+
         public DbSet<Country> Countries { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Municipality> Municipalities { get; set; }
@@ -41,7 +43,6 @@ namespace Taller.Data
             //    .HasMany(o => o.Departments)
             //    .WithOne(oi => oi.Country)
             //    .HasForeignKey(oi => oi.CountryId);
-
             modelBuilder.Entity<Country>().HasData(DbInitializer.GetCountriesToLoad());
             modelBuilder.Entity<Department>().HasData(DbInitializer.GetDepartmentsToLoad());
             modelBuilder.Entity<Municipality>().HasData(DbInitializer.GetMunicipalitiesToLoad());

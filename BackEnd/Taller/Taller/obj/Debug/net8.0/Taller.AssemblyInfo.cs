@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Taller")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6915d790ed7bd3868a12190ac07748c393f64fae")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3badc60b08267706406d70e86502fdb780cf764e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Taller")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Taller")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
