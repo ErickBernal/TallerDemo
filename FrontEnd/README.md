@@ -44,3 +44,10 @@ Comandos
 # transformar el codigo para produccion
     npm run build
 ```
+
+## Dependencias
+
+```bash
+#Instalar
+    npm install vue-router
+```

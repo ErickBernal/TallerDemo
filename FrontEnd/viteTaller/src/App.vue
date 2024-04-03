@@ -1,6 +1,7 @@
 <script>
 import MyComponent from "./components/MyComponent.vue";
 import Wallcome from "./components/Wallcome.vue";
+import NavBar from "./components/NavBar.vue";
 export default {
   name: "App",
   components: {
@@ -10,7 +11,10 @@ export default {
 </script>
 
 <template>
-  <Wallcome />
+  <RouterView />
+  <div>
+    <NavBar />
+  </div>
 </template>
 
 <style></style>
