@@ -476,6 +476,45 @@ namespace Taller.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "VehicleBrands",
+                columns: new[] { "Id", "Brand" },
+                values: new object[,]
+                {
+                    { 1, "Toyota" },
+                    { 2, "Susuki" },
+                    { 3, "Kia" },
+                    { 4, "Subaru" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "VehicleModels",
+                columns: new[] { "Id", "Model" },
+                values: new object[,]
+                {
+                    { 1, 2000 },
+                    { 2, 2001 },
+                    { 3, 2002 },
+                    { 4, 2003 },
+                    { 5, 2004 },
+                    { 6, 2006 },
+                    { 7, 2011 },
+                    { 8, 2020 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "VehicleParts",
+                columns: new[] { "Id", "Name", "Stock", "UnitPrice" },
+                values: new object[,]
+                {
+                    { 1, "Aceite 10 w 40", 10, 100.0 },
+                    { 2, "Aceite 20 w 50", 9, 99.0 },
+                    { 3, "Llanta Rin 22", 12, 400.0 },
+                    { 4, "Llanta Rin 17", 4, 250.0 },
+                    { 5, "Plumilla", 25, 50.0 },
+                    { 6, "Pastillas de freno", 10, 200.0 }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Departments",
                 columns: new[] { "Id", "CountryId", "Name" },
                 values: new object[,]
@@ -534,6 +573,16 @@ namespace Taller.Migrations
                     { 52, 3, "Santa Bárbara" },
                     { 53, 3, "Valle" },
                     { 54, 3, "Yoro" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "VehicleLineas",
+                columns: new[] { "Id", "Color", "Line", "Type", "VehicleBrandId", "VehicleModelId" },
+                values: new object[,]
+                {
+                    { 1, "Negro", "Tacoma", "pick up", 1, 1 },
+                    { 2, "Azul", "Yaris", "cedan", 1, 1 },
+                    { 3, "verde", "Carry", "pick up", 2, 6 }
                 });
 
             migrationBuilder.InsertData(
