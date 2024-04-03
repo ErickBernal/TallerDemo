@@ -12,8 +12,8 @@ using Taller.Data;
 namespace Taller.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240402172432_initial")]
-    partial class initial
+    [Migration("20240403151546_initiaD")]
+    partial class initiaD
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -576,6 +576,26 @@ namespace Taller.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Invoices");
+                });
+
+            modelBuilder.Entity("Taller.Entities.Log", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Logs");
                 });
 
             modelBuilder.Entity("Taller.Entities.Municipality", b =>

@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Taller.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class initiaD : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -38,6 +38,20 @@ namespace Taller.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Invoices", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Logs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Logs", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -1515,6 +1529,9 @@ namespace Taller.Migrations
 
             migrationBuilder.DropTable(
                 name: "DetalleWorkServices");
+
+            migrationBuilder.DropTable(
+                name: "Logs");
 
             migrationBuilder.DropTable(
                 name: "ServiceListWorks");
