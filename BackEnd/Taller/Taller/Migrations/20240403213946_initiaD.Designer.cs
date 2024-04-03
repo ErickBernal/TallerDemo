@@ -12,7 +12,7 @@ using Taller.Data;
 namespace Taller.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240403193924_initiaD")]
+    [Migration("20240403213946_initiaD")]
     partial class initiaD
     {
         /// <inheritdoc />
@@ -5774,6 +5774,23 @@ namespace Taller.Migrations
                             DepartmentId = 54,
                             Name = "Yorito"
                         });
+                });
+
+            modelBuilder.Entity("Taller.Entities.Owner", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Pwd")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Owner");
                 });
 
             modelBuilder.Entity("Taller.Entities.ServiceDetalle", b =>

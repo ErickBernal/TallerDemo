@@ -4,6 +4,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Taller.Entities
 {
+    public class Owner
+    {
+        [Key]
+        public int Id { get; set; }
+        public string Pwd { get; set; }
+    }
     public class Log
     {
         [Key]

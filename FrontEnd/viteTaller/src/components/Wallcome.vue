@@ -19,7 +19,7 @@
     </div> -->
       <br />
       <div class="user-buttons">
-        <button v-on:click="toRepuestos">Repuestoss</button>
+        <button v-on:click="toRepuestos">Repuestos</button>
         <router-link :to="'/servicios'">
           <button>Servicios</button>
         </router-link>

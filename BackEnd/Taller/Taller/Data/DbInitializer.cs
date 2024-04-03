@@ -42,7 +42,6 @@ namespace TallerApi.Data.DefaultData
             }
             return list;
         }
-
         public static List<Department> GetDepartmentsToLoad()
         {
             List<Department> list = new List<Department>();
@@ -66,8 +65,6 @@ namespace TallerApi.Data.DefaultData
             }
             return list;
         }
-
-
         public static List<Municipality> GetMunicipalitiesToLoad()
         {
             List<Municipality> list = new List<Municipality>();
@@ -147,6 +144,26 @@ namespace TallerApi.Data.DefaultData
                 new VehicleLinea { Id = 1, Color = "Negro", Type = "pick up", Line = "Tacoma" ,VehicleModelId = 1, VehicleBrandId = 1},
                 new VehicleLinea { Id = 2, Color = "Azul", Type = "cedan", Line = "Yaris" ,VehicleModelId = 1, VehicleBrandId = 1},
                 new VehicleLinea { Id = 3, Color = "verde", Type = "pick up", Line = "Carry" , VehicleModelId = 6,VehicleBrandId = 2}
+            };
+        }
+
+
+        public static List<ServiceType> GetSerTypeToLoad(){
+            return new List<ServiceType>
+            {
+                new ServiceType {Id = 1,Type = "Motor"},
+                new ServiceType {Id = 2,Type = "Frenos"},
+                new ServiceType {Id = 3,Type = "Hidraulico"},
+                new ServiceType {Id = 3,Type = "Carroceria"},
+
+            };
+        }
+
+        public static List<ServiceWork> GetSerWorkToLoad()
+        {
+            return new List<ServiceWork>
+            {
+                new ServiceWork { Id = 1, Work = "", PriceWork=""}
             };
         }
 

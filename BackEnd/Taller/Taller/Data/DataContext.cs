@@ -8,6 +8,7 @@ namespace Taller.Data
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
+        public DbSet<Owner> Owner {  get; set; }
         public DbSet<Log> Logs { get; set; }
 
         public DbSet<Country> Countries { get; set; }

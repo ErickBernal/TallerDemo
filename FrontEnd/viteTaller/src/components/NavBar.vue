@@ -1,13 +1,19 @@
 <template>
   <nav class="navbar">
     <div class="navbar-brand">
-      <router-link to="/">Inicio</router-link>
+      <div>
+        <router-link to="/">Inicio</router-link>
+      </div>
+      <div>
+        <router-link to="/servicios">Servicios</router-link>
+      </div>
     </div>
+
     <div class="navbar-menu" :class="{ active: isMenuActive }">
       <div class="menu-toggle" @click="toggleMenu">Menú</div>
       <ul v-show="isMenuActive">
         <li>
-          <router-link to="/Logs">Logs</router-link>
+          <button @click="verificarContrasena">Logs</button>
         </li>
       </ul>
     </div>
@@ -18,13 +24,32 @@
 export default {
   data() {
     return {
-      components: [{ name: "Logs", route: "Logs" }],
       isMenuActive: false,
     };
   },
   methods: {
     toggleMenu() {
       this.isMenuActive = !this.isMenuActive;
+    },
+    async verificarContrasena() {
+      const contrasena = prompt("Ingrese la contraseña:");
+      if (!contrasena) return; // Si no se ingresa contraseña, salir
+
+      try {
+        const response = await fetch("https://localhost:7099/taller/Owner/1");
+        const ownerData = await response.json();
+        if (ownerData.pwd === contrasena) {
+          this.$router.push("/Logs");
+        } else {
+          alert("Contraseña incorrecta. Acceso denegado.");
+          this.$router.push("/");
+        }
+      } catch (error) {
+        console.error("Error al verificar la contraseña:", error);
+        alert(
+          "Error al verificar la contraseña. Por favor, intenta de nuevo más tarde."
+        );
+      }
     },
   },
 };
@@ -43,6 +68,12 @@ export default {
 
 .navbar-brand {
   font-size: 18px;
+  display: flex; /* Alinea los elementos horizontalmente */
+  justify-content: center; /* Centra los elementos horizontalmente */
+}
+
+.navbar-brand div {
+  margin-right: 20px; /* Espacio entre los elementos */
 }
 
 .navbar-menu {

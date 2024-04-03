@@ -7,6 +7,8 @@ import Wallcome from "./components/Wallcome.vue";
 import NavBar from "./components/NavBar.vue";
 import Logs from "./components/Logs.vue";
 import Servicios from "./components/Servicios.vue";
+import NuevoServicio from "./components/NuevoServicio.vue";
+import EstadoServicio from "./components/EstadoServicio.vue";
 
 const routes = [
   { path: "/", component: Wallcome },
@@ -14,6 +16,8 @@ const routes = [
   { path: "/navbar", component: NavBar },
   { path: "/logs", component: Logs },
   { path: "/servicios", component: Servicios },
+  { path: "/nuevoServicio", component: NuevoServicio },
+  { path: "/estadoServicio", component: EstadoServicio },
 ];
 
 const router = createRouter({
