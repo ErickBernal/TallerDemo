@@ -4,12 +4,26 @@
       <NavBar />
     </div>
     <div>
-      <h2>Los</h2>
-      <ul>
-        <li v-for="repuesto in repuestos" :key="repuesto.id">
-          {{ repuesto.nombre_repuesto }} - Cantidad: {{ repuesto.cantidad }}
-        </li>
-      </ul>
+      <h2>Reporte de trasacciones</h2>
+      <input type="text" v-model="searchTerm" placeholder="Buscar Log..." />
+      <br />
+      <br />
+      <table class="Logs-table">
+        <thead>
+          <tr style="color: black">
+            <th>Id</th>
+            <th>Descripcion</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="Log in filteredLogs" :key="Log.id">
+            <td>{{ Log.id }}</td>
+            <td>{{ Log.description }}</td>
+            <td>{{ Log.date }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
@@ -22,22 +36,27 @@ export default {
   },
   data() {
     return {
-      repuestos: [],
+      Logs: [],
+      searchTerm: "",
     };
   },
+  computed: {
+    filteredLogs() {
+      return this.Logs;
+    },
+  },
   mounted() {
-    // Aquí llamamos a la función para obtener los repuestos de vehículos
-    this.fetchRepuestos();
+    this.fetchLogs();
   },
   methods: {
-    async fetchRepuestos() {
+    async fetchLogs() {
       try {
-        // Realizamos la solicitud GET para obtener los repuestos de vehículos
-        const response = await fetch("URL_DE_TU_API");
+        const response = await fetch("https://localhost:7099/taller/Logs");
         const data = await response.json();
-        this.repuestos = data; // Actualizamos el arreglo de repuestos con los datos obtenidos
+        this.Logs = data;
       } catch (error) {
-        console.error("Error al obtener los repuestos:", error);
+        alert("Error al obtener Logs:" + error);
+        // console.error("Error al obtener Logs:", ºerror);
       }
     },
   },
@@ -45,5 +64,19 @@ export default {
 </script>
 
 <style scoped>
-/* Agrega estilos si es necesario */
+.Logs-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.Logs-table th,
+.Logs-table td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.Logs-table th {
+  background-color: #f2f2f2;
+}
 </style>

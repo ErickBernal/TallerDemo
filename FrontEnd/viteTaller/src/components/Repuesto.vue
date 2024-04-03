@@ -5,11 +5,35 @@
     </div>
     <div>
       <h2>Listado de Repuestos de Vehículos</h2>
-      <ul>
-        <li v-for="repuesto in repuestos" :key="repuesto.id">
-          {{ repuesto.nombre_repuesto }} - Cantidad: {{ repuesto.cantidad }}
-        </li>
-      </ul>
+      <input
+        type="text"
+        v-model="searchTerm"
+        placeholder="Buscar repuesto..."
+      />
+      <br />
+      <br />
+      <table class="repuestos-table">
+        <thead>
+          <tr style="color: black">
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Cantidad</th>
+            <th>Precio Unitario</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="repuesto in filteredRepuestos" :key="repuesto.id">
+            <td>{{ repuesto.id }}</td>
+            <td>{{ repuesto.name }}</td>
+            <td>{{ repuesto.stock }}</td>
+            <td>Q.{{ repuesto.unitPrice }}</td>
+            <td>
+              <button @click="seleccionarFila(repuesto)">Seleccionar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
@@ -23,21 +47,61 @@ export default {
   data() {
     return {
       repuestos: [],
+      searchTerm: "",
+      filaSeleccionada: null,
     };
   },
+  computed: {
+    filteredRepuestos() {
+      return this.repuestos.filter((repuesto) =>
+        repuesto.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    },
+  },
   mounted() {
-    // Aquí llamamos a la función para obtener los repuestos de vehículos
     this.fetchRepuestos();
   },
   methods: {
     async fetchRepuestos() {
       try {
-        // Realizamos la solicitud GET para obtener los repuestos de vehículos
-        const response = await fetch("URL_DE_TU_API");
+        const response = await fetch(
+          "https://localhost:7099/taller/VechicleParts"
+        );
         const data = await response.json();
-        this.repuestos = data; // Actualizamos el arreglo de repuestos con los datos obtenidos
+        this.repuestos = data;
       } catch (error) {
         console.error("Error al obtener los repuestos:", error);
+      }
+    },
+    async seleccionarFila(repuesto) {
+      this.filaSeleccionada = repuesto;
+      console.log(this.filaSeleccionada.id);
+
+      // Crear el objeto de datos para la solicitud POST
+      const postData = {
+        description:
+          "Repuestos: Se filtro el repuesto = [id: " +
+          repuesto.id +
+          " , nombre: " +
+          repuesto.name +
+          " ]",
+        date: new Date().toISOString(),
+      };
+
+      // Realizar la solicitud POST
+      try {
+        const response = await fetch("https://localhost:7099/taller/Logs", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(postData),
+        });
+        const responseData = await response.json();
+        // console.log("Solicitud POST exitosa:", responseData);
+      } catch (error) {
+        alert("Error al realizar la solicitud POST:" + error);
+        // console.error("Error al realizar la solicitud POST:", error);
       }
     },
   },
@@ -45,5 +109,19 @@ export default {
 </script>
 
 <style scoped>
-/* Agrega estilos si es necesario */
+.repuestos-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.repuestos-table th,
+.repuestos-table td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.repuestos-table th {
+  background-color: #f2f2f2;
+}
 </style>

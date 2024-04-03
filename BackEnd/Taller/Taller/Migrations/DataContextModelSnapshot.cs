@@ -5773,6 +5773,23 @@ namespace Taller.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Taller.Entities.Owner", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Pwd")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Owner");
+                });
+
             modelBuilder.Entity("Taller.Entities.ServiceDetalle", b =>
                 {
                     b.Property<int>("Id")
