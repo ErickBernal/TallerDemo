@@ -12,7 +12,7 @@ using Taller.Data;
 namespace Taller.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240403213946_initiaD")]
+    [Migration("20240405205856_initiaD")]
     partial class initiaD
     {
         /// <inheritdoc />
@@ -25,31 +25,6 @@ namespace Taller.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Taller.Entities.Address", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("MunicipalityId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Zone")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MunicipalityId");
-
-                    b.ToTable("Addresses");
-                });
-
             modelBuilder.Entity("Taller.Entities.Client", b =>
                 {
                     b.Property<int>("Id")
@@ -58,8 +33,9 @@ namespace Taller.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AddressId")
-                        .HasColumnType("int");
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Cellphone")
                         .HasColumnType("int");
@@ -70,6 +46,9 @@ namespace Taller.Migrations
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MunicipalityId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -84,9 +63,12 @@ namespace Taller.Migrations
                     b.Property<int>("TypeClientId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Zone")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId");
+                    b.HasIndex("MunicipalityId");
 
                     b.HasIndex("TypeClientId");
 
@@ -5860,6 +5842,18 @@ namespace Taller.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ServiceTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Type = "Individual"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Type = "Empresa"
+                        });
                 });
 
             modelBuilder.Entity("Taller.Entities.ServiceWork", b =>
@@ -5870,9 +5864,8 @@ namespace Taller.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("PriceWork")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PriceWork")
+                        .HasColumnType("int");
 
                     b.Property<string>("Work")
                         .IsRequired()
@@ -5881,6 +5874,26 @@ namespace Taller.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ServiceWorks");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            PriceWork = 300,
+                            Work = "Servicio Menor"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            PriceWork = 400,
+                            Work = "Servicio Recurrente"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            PriceWork = 500,
+                            Work = "Servicio Mayor"
+                        });
                 });
 
             modelBuilder.Entity("Taller.Entities.TypeClient", b =>
@@ -6185,22 +6198,11 @@ namespace Taller.Migrations
                     b.ToTable("VpartsCompatibles");
                 });
 
-            modelBuilder.Entity("Taller.Entities.Address", b =>
-                {
-                    b.HasOne("Taller.Entities.Municipality", "Municipality")
-                        .WithMany("Addresses")
-                        .HasForeignKey("MunicipalityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Municipality");
-                });
-
             modelBuilder.Entity("Taller.Entities.Client", b =>
                 {
-                    b.HasOne("Taller.Entities.Address", "Address")
+                    b.HasOne("Taller.Entities.Municipality", "Municipality")
                         .WithMany("Clients")
-                        .HasForeignKey("AddressId")
+                        .HasForeignKey("MunicipalityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -6210,7 +6212,7 @@ namespace Taller.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Address");
+                    b.Navigation("Municipality");
 
                     b.Navigation("TypeClient");
                 });
@@ -6405,11 +6407,6 @@ namespace Taller.Migrations
                     b.Navigation("VehiclePart");
                 });
 
-            modelBuilder.Entity("Taller.Entities.Address", b =>
-                {
-                    b.Navigation("Clients");
-                });
-
             modelBuilder.Entity("Taller.Entities.Client", b =>
                 {
                     b.Navigation("DetalleClientServices");
@@ -6436,7 +6433,7 @@ namespace Taller.Migrations
 
             modelBuilder.Entity("Taller.Entities.Municipality", b =>
                 {
-                    b.Navigation("Addresses");
+                    b.Navigation("Clients");
                 });
 
             modelBuilder.Entity("Taller.Entities.ServiceDetalle", b =>

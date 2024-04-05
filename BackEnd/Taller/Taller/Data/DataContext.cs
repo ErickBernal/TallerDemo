@@ -15,7 +15,6 @@ namespace Taller.Data
         public DbSet<Department> Departments { get; set; }
         public DbSet<Municipality> Municipalities { get; set; }
 
-        public DbSet<Address> Addresses { get; set; }
         public DbSet<TypeClient> TypeClients { get; set; }
         public DbSet<Client> Clients { get; set; }
 

@@ -5,10 +5,14 @@
       <q-card-section>
         <q-form @submit="submitForm">
           <q-input v-model="newClient.name" label="Nombre" />
-          <q-input v-model="newClient.email" label="Correo electrónico" />
+          <q-input v-model="newClient.lastName" label="Apellido" />
+          <q-input v-model="newClient.dpi" label="DPI" />
+          <q-input v-model="newClient.nit" label="NIT" />
           <q-input v-model="newClient.phone" label="Teléfono" />
+          <q-input v-model="newClient.cellphone" label="Celular" />
+
           <q-select
-            v-model="newClient.clientType"
+            v-model="newClient.TypeClientId"
             :options="clientTypes"
             label="Tipo de Cliente"
           />
@@ -53,12 +57,18 @@ import { useQuasar } from "quasar";
 const $q = useQuasar();
 
 const newClient = ref({
+  MunicipalityId: "",
+  Zone: "",
   name: "",
-  email: "",
+  lastName: "",
+  dpi: "",
+  nit: "",
   phone: "",
-  clientType: "",
-  address: "",
+  cellphone: "",
+  TypeClientId: "",
   zone: "",
+  address: "",
+  MunicipalityId: "",
 });
 
 const clientTypes = ref([]);
@@ -102,27 +112,33 @@ onMounted(async () => {
 
 const submitForm = async () => {
   try {
-    newAddress.value = {
-      MunicipalityId: MunicipalityId.value.id,
-      Description: newClient.value.address,
-      Zone: newClient.value.zone,
-    };
     const response = await axios.post(
-      process.env.API_BASE_URL + "/taller/Address",
-      newAddress.value
+      process.env.API_BASE_URL + "/taller/Client",
+      {
+        name: newClient.value.name,
+        lastname: newClient.value.lastName,
+        dpi: newClient.value.dpi,
+        nit: newClient.value.nit,
+        phone: newClient.value.phone,
+        cellphone: newClient.value.cellphone,
+        typeClientId: newClient.value.TypeClientId.id,
+        zone: newClient.value.zone,
+        address: newClient.value.address,
+        municipalityId: selectedMunicipality.value.id,
+      }
     );
 
     console.log("Address agregado correctamente:", response.data);
-    $q.notify({
-      type: "positive",
-      message: "Cliente agregado correctamente",
-    });
+    // $q.notify({
+    //   type: "positive",
+    //   message: "Cliente agregado correctamente",
+    // });
   } catch (error) {
     console.error("Error al agregar cliente:", error);
-    $q.notify({
-      type: "negative",
-      message: "Error al agregar cliente",
-    });
+    // $q.notify({
+    //   type: "negative",
+    //   message: "Error al agregar cliente",
+    // });
   }
 };
 

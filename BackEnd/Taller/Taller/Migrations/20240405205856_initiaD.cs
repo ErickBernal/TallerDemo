@@ -87,7 +87,7 @@ namespace Taller.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Work = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PriceWork = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    PriceWork = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -290,22 +290,35 @@ namespace Taller.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Addresses",
+                name: "Clients",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DPI = table.Column<int>(type: "int", nullable: false),
+                    Nit = table.Column<int>(type: "int", nullable: false),
+                    Phone = table.Column<int>(type: "int", nullable: false),
+                    Cellphone = table.Column<int>(type: "int", nullable: false),
+                    TypeClientId = table.Column<int>(type: "int", nullable: false),
                     Zone = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MunicipalityId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Addresses", x => x.Id);
+                    table.PrimaryKey("PK_Clients", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Addresses_Municipalities_MunicipalityId",
+                        name: "FK_Clients_Municipalities_MunicipalityId",
                         column: x => x.MunicipalityId,
                         principalTable: "Municipalities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Clients_TypeClients_TypeClientId",
+                        column: x => x.TypeClientId,
+                        principalTable: "TypeClients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -339,33 +352,34 @@ namespace Taller.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Clients",
+                name: "DetalleClientServices",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DPI = table.Column<int>(type: "int", nullable: false),
-                    Nit = table.Column<int>(type: "int", nullable: false),
-                    Phone = table.Column<int>(type: "int", nullable: false),
-                    Cellphone = table.Column<int>(type: "int", nullable: false),
-                    TypeClientId = table.Column<int>(type: "int", nullable: false),
-                    AddressId = table.Column<int>(type: "int", nullable: false)
+                    ClientId = table.Column<int>(type: "int", nullable: false),
+                    ServiceDetalleId = table.Column<int>(type: "int", nullable: false),
+                    InvoiceId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Clients", x => x.Id);
+                    table.PrimaryKey("PK_DetalleClientServices", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Clients_Addresses_AddressId",
-                        column: x => x.AddressId,
-                        principalTable: "Addresses",
+                        name: "FK_DetalleClientServices_Clients_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Clients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Clients_TypeClients_TypeClientId",
-                        column: x => x.TypeClientId,
-                        principalTable: "TypeClients",
+                        name: "FK_DetalleClientServices_Invoices_InvoiceId",
+                        column: x => x.InvoiceId,
+                        principalTable: "Invoices",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DetalleClientServices_ServiceDetalles_ServiceDetalleId",
+                        column: x => x.ServiceDetalleId,
+                        principalTable: "ServiceDetalles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -436,39 +450,6 @@ namespace Taller.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "DetalleClientServices",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ClientId = table.Column<int>(type: "int", nullable: false),
-                    ServiceDetalleId = table.Column<int>(type: "int", nullable: false),
-                    InvoiceId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DetalleClientServices", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DetalleClientServices_Clients_ClientId",
-                        column: x => x.ClientId,
-                        principalTable: "Clients",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_DetalleClientServices_Invoices_InvoiceId",
-                        column: x => x.InvoiceId,
-                        principalTable: "Invoices",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_DetalleClientServices_ServiceDetalles_ServiceDetalleId",
-                        column: x => x.ServiceDetalleId,
-                        principalTable: "ServiceDetalles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.InsertData(
                 table: "Countries",
                 columns: new[] { "Id", "Name" },
@@ -477,6 +458,25 @@ namespace Taller.Migrations
                     { 1, "Guatemala" },
                     { 2, "El Salvador" },
                     { 3, "Honduras" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ServiceTypes",
+                columns: new[] { "Id", "Type" },
+                values: new object[,]
+                {
+                    { 1, "Individual" },
+                    { 2, "Empresa" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ServiceWorks",
+                columns: new[] { "Id", "PriceWork", "Work" },
+                values: new object[,]
+                {
+                    { 1, 300, "Servicio Menor" },
+                    { 2, 400, "Servicio Recurrente" },
+                    { 3, 500, "Servicio Mayor" }
                 });
 
             migrationBuilder.InsertData(
@@ -1465,14 +1465,9 @@ namespace Taller.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Addresses_MunicipalityId",
-                table: "Addresses",
-                column: "MunicipalityId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Clients_AddressId",
+                name: "IX_Clients_MunicipalityId",
                 table: "Clients",
-                column: "AddressId");
+                column: "MunicipalityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Clients_TypeClientId",
@@ -1620,7 +1615,7 @@ namespace Taller.Migrations
                 name: "VehicleParts");
 
             migrationBuilder.DropTable(
-                name: "Addresses");
+                name: "Municipalities");
 
             migrationBuilder.DropTable(
                 name: "TypeClients");
@@ -1632,22 +1627,19 @@ namespace Taller.Migrations
                 name: "Vehicles");
 
             migrationBuilder.DropTable(
-                name: "Municipalities");
+                name: "Departments");
 
             migrationBuilder.DropTable(
                 name: "VehicleLineas");
 
             migrationBuilder.DropTable(
-                name: "Departments");
+                name: "Countries");
 
             migrationBuilder.DropTable(
                 name: "VehicleBrands");
 
             migrationBuilder.DropTable(
                 name: "VehicleModels");
-
-            migrationBuilder.DropTable(
-                name: "Countries");
         }
     }
 }

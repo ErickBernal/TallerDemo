@@ -48,19 +48,19 @@ namespace Taller.Entities
         public int DepartmentId { get; set; }
         public Department Department { get; set; }
 
-        public ICollection <Address> Addresses { get; set; }
+        public ICollection <Client> Clients { get; set; }
     }
     //-------------------------------------- client------------------------------------------------------
-    public class Address
-    {
-        [Key]
-        public int Id { get; set; }
-        public int Zone { get; set; }
-        public string Description { get; set; }
-        public int MunicipalityId { get; set; }
-        public Municipality Municipality { get; set; }
-        public ICollection<Client> Clients { get; set; }
-    }
+    //public class Address
+    //{
+    //    [Key]
+    //    public int Id { get; set; }
+    //    public int Zone { get; set; }
+    //    public string Description { get; set; }
+    //    public int MunicipalityId { get; set; }
+    //    public Municipality Municipality { get; set; }
+    //    public ICollection<Client> Clients { get; set; }
+    //}
 
     public class TypeClient
     {
@@ -83,13 +83,16 @@ namespace Taller.Entities
         public int Cellphone { get; set; }
 
         public int TypeClientId { get; set; }
-        public TypeClient TypeClient { get; set; }
-
-        public int AddressId { get; set; }
-        public Address Address { get; set; }
+        public TypeClient? TypeClient { get; set; }
 
 
-        public ICollection<DetalleClientService> DetalleClientServices { get; set; } //detalle cliente sevicio
+        public int Zone { get; set; }
+        public string Address { get; set; }
+        public int MunicipalityId { get; set; }
+        public Municipality? Municipality { get; set; }
+
+
+        public ICollection<DetalleClientService>? DetalleClientServices { get; set; } //detalle cliente sevicio
     }
 
 }//
