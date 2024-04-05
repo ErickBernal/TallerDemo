@@ -19,6 +19,16 @@ builder.Services.AddDbContext<DataContext>(options =>
 
 var app = builder.Build();
 
+// Crea el contexto de datos dentro del ámbito del middleware
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<DataContext>();
+    context.Database.EnsureCreated();
+    context.Database.Migrate();
+}
+
+
 app.UseCors(options =>{
     options.AllowAnyOrigin();
     options.AllowAnyMethod();
@@ -31,6 +41,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+//app.UseMiddleware<RequestResponseLoggingMiddleware>();
+app.UseMiddleware<EndpointLoggerMiddleware>();
 
 app.UseHttpsRedirection();
 

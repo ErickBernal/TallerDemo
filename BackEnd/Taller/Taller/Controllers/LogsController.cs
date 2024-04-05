@@ -12,7 +12,6 @@ namespace Taller.Controllers.Location
     public class LogsController : ControllerBase
     {
         private readonly DataContext _context;
-
         public LogsController(DataContext context)
         {
             _context = context;
@@ -44,36 +43,5 @@ namespace Taller.Controllers.Location
             await _context.SaveChangesAsync();
             return Ok(await _context.Logs.ToListAsync());
         }
-
-        [HttpPut]
-        public async Task<ActionResult<Log>> UpdateLog(Log updateLog)
-        {
-            var dbLog = await _context.Logs.FindAsync(updateLog.Id);
-            if (dbLog == null)
-                return NotFound("Log not found (put).");
-
-            dbLog.Description = updateLog.Description;
-            dbLog.Date = updateLog.Date;
-            await _context.SaveChangesAsync();
-
-            return Ok(await _context.Logs.ToListAsync());
-
-        }
-
-        [HttpDelete]
-        public async Task<ActionResult<Log>> DeleteLog(int id)
-        {
-            var dbLog = await _context.Logs.FindAsync(id);
-            if (dbLog == null)
-                return NotFound("Log not found (del).");
-
-            _context.Logs.Remove(dbLog);
-            await _context.SaveChangesAsync();
-
-            return Ok(await _context.Logs.ToListAsync());
-
-        }
-
-
     }
 }

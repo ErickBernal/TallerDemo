@@ -18,21 +18,21 @@ namespace Taller.Controllers.Location
             _context = context;
         }
 
-        [HttpGet]
-
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Owner>> GetLogById(int id)
+        [HttpPost]
+        public async Task<ActionResult<List<Owner>>> AddCountry(Owner ow)
         {
-            var c = await _context.Owner.FindAsync(id);
-            if (c == null)
-                return NotFound("Owner not found.");
+            Console.WriteLine("------- woner -------");
 
-            return Ok(c);
+            var isOwner = await _context.Owner.FindAsync(1);
+            if (isOwner == null)
+                return NotFound("Owner, no hay datos en DB");
 
+            if (isOwner.Pwd == ow.Pwd)
+                return Ok(true);
+
+            //return NotFound("Owner, No coincide la contraseña");
+            return Unauthorized();
         }
-
-
 
     }
 }
