@@ -27,6 +27,10 @@ const routes = [
         path: "/estatusservicio",
         component: () => import("pages/StatusServices.vue"),
       },
+      {
+        path: "/nuevocliente",
+        component: () => import("pages/NewClient.vue"),
+      },
     ],
   },
 

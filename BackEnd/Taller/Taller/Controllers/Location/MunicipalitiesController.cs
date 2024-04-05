@@ -26,15 +26,29 @@ namespace Taller.Controllers.Location
             return Ok(Municipality);
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Municipality>> GetMunicipalityById(int id)
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<Municipality>> GetMunicipalityById(int id)
+        //{
+        //    var c = await _context.Municipalities.FindAsync(id);
+        //    if (c == null)
+        //        return NotFound("Municipality not found.");
+
+        //    return Ok(c);
+
+        //}
+
+
+        [HttpGet("{idDepartment}")]
+        public async Task<ActionResult<List<Department>>> GetDepartmentsByCountryId(int idDepartment)
         {
-            var c = await _context.Municipalities.FindAsync(id);
-            if (c == null)
-                return NotFound("Municipality not found.");
+            var municipalities = await _context.Municipalities
+                                             .Where(d => d.DepartmentId == idDepartment)
+                                             .ToListAsync();
 
-            return Ok(c);
+            if (municipalities == null || municipalities.Count == 0)
+                return NotFound("Municipalities not found for the provided Department id.");
 
+            return Ok(municipalities);
         }
 
         [HttpPost]

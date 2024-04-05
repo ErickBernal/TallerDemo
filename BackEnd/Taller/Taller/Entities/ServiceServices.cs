@@ -18,7 +18,7 @@ namespace Taller.Entities
         [Key]
         public int Id { get; set; }
         public string Work { get; set; }
-        public string PriceWork { get; set; }
+        public int PriceWork { get; set; }
         public ICollection<ServiceListWork> ServiceListWorks { get; set; }
         public ICollection<DetalleWorkService> DetalleWorkServices { get; set; }
 

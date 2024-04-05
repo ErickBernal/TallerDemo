@@ -8,7 +8,7 @@ namespace Taller.Data
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
-        public DbSet<Owner> Owner {  get; set; }
+        public DbSet<Owner> Owner { get; set; }
         public DbSet<Log> Logs { get; set; }
 
         public DbSet<Country> Countries { get; set; }
@@ -48,6 +48,7 @@ namespace Taller.Data
             modelBuilder.Entity<Country>().HasData(DbInitializer.GetCountriesToLoad());
             modelBuilder.Entity<Department>().HasData(DbInitializer.GetDepartmentsToLoad());
             modelBuilder.Entity<Municipality>().HasData(DbInitializer.GetMunicipalitiesToLoad());
+
             modelBuilder.Entity<TypeClient>().HasData(DbInitializer.GetTypeClientToLoad());
 
             modelBuilder.Entity<VehiclePart>().HasData(DbInitializer.GetVehiclePartsToLoad());
@@ -55,13 +56,11 @@ namespace Taller.Data
             modelBuilder.Entity<VehicleModel>().HasData(DbInitializer.GetVehicleModelToLoad());
             modelBuilder.Entity<VehicleLinea>().HasData(DbInitializer.GetVehicleLineasToLoad());
 
+            modelBuilder.Entity<ServiceType>().HasData(DbInitializer.GetTypeClientToLoad());    
+            modelBuilder.Entity<ServiceWork>().HasData(DbInitializer.GetServiceWorkToLoad());
         }
-
-
     }
 }
-
-
 
 //modelBuilder.Entity<Country>().HasData(DefaultData.GetCountriesToLoad());
 //public override void OnModelCreating(ModelBuilder modelBuilder)

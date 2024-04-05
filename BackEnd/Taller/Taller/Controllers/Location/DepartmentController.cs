@@ -26,16 +26,30 @@ namespace Taller.Controllers.Location
             return Ok(Department);
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Department>> GetDepartmentById(int id)
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<Department>> GetDepartmentById(int id)
+        //{
+        //    var c = await _context.Departments.FindAsync(id);
+        //    if (c == null)
+        //        return NotFound("Department not found.");
+
+        //    return Ok(c);
+
+        //}
+
+        [HttpGet("{idCountry}")]
+        public async Task<ActionResult<List<Department>>> GetDepartmentsByCountryId(int idCountry)
         {
-            var c = await _context.Departments.FindAsync(id);
-            if (c == null)
-                return NotFound("Department not found.");
+            var departments = await _context.Departments
+                                             .Where(d => d.CountryId == idCountry)
+                                             .ToListAsync();
 
-            return Ok(c);
+            if (departments == null || departments.Count == 0)
+                return NotFound("Departments not found for the provided country id.");
 
+            return Ok(departments);
         }
+
 
         [HttpPost]
         public async Task<ActionResult<List<Department>>> AddDepartment(Department Department)
