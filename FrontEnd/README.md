@@ -67,6 +67,8 @@ Older V2 to latest v2
     npm i -g @quasar/cli
     yarn add axios
     yarn add --dev dotenv
+    yarn add dotenv --dev
+
 
 # Crear proyecto
     yarn create quasar

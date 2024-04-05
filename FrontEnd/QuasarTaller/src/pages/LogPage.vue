@@ -60,7 +60,7 @@ async function fetchData() {
       description: res.description,
       date: res.date,
     }));
-    console.log("--1123123123123123 " + rows.value[0].description);
+    // console.log("--1123123123123123 " + rows.value[0].description);
   } catch (error) {
     console.error("Error al obtener datos:", error);
   } finally {

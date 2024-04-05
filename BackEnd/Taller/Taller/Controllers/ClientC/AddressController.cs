@@ -38,11 +38,11 @@ namespace Taller.Controllers.ClientC
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<Address>>> AddAddress(Address Address)
+        public async Task<ActionResult<int>> AddAddress(Address Address)
         {
             _context.Addresses.Add(Address);
             await _context.SaveChangesAsync();
-            return Ok(await _context.Addresses.ToListAsync());
+            return Ok(Address);
         }
 
         [HttpPut]

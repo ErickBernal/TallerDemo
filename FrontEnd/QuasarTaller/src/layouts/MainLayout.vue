@@ -10,7 +10,7 @@
           Taller los tres hermanos
         </q-toolbar-title>
         <q-space />
-        <h5>{{ amIn }}</h5>
+        <h5>{{ $q.localStorage.getItem("bannerName") }}</h5>
         <q-btn flat round dense icon="more_vert" />
       </q-toolbar>
 
@@ -80,9 +80,9 @@ const submitPassword = async () => {
       closePasswordModal();
       // Redirige a la página de log
       $q.localStorage.set("owner", true);
-      console.log("localStorage: " + $q.localStorage.getItem(1));
+      // console.log("localStorage: " + $q.localStorage.getItem(1));
       router.push("/log");
-      amIn.value = "Logs";
+      $q.localStorage.set("bannerName", "Logs");
     } else {
       // Contraseña inválida, muestra un mensaje de error
       console.error("Contraseña inválida");
@@ -92,16 +92,17 @@ const submitPassword = async () => {
     // console.error("Error al validar la contraseña", error);
     alert("Contraseña incorrecta");
     router.push("/");
-    amIn.value = "";
+    $q.localStorage.set("bannerName", "");
+
     // Aquí puedes manejar el error de la llamada al endpoint
   }
 };
 
 const amInVehicleParts = () => {
-  amIn.value = "Repuestos";
+  $q.localStorage.set("bannerName", "Repuestos");
 };
 const amInServices = () => {
-  amIn.value = "Servicios";
+  $q.localStorage.set("bannerName", "Servicios");
 };
 
 const serviceOptions = [

@@ -108,8 +108,6 @@ namespace TallerApi.Data.DefaultData
                 new VehiclePart { Id = 6,Name = "Pastillas de freno",Stock = 10, UnitPrice = 200 }
             };
         }
-
-
         public static List<VehicleBrand> GetVehicleBrandToLoad()
         {
             return new List<VehicleBrand>
@@ -120,7 +118,6 @@ namespace TallerApi.Data.DefaultData
                 new VehicleBrand {Id = 4, Brand = "Subaru" }
             };
         }
-
         public static List<VehicleModel> GetVehicleModelToLoad()
         {
             return new List<VehicleModel>
@@ -135,7 +132,6 @@ namespace TallerApi.Data.DefaultData
                 new () {Id= 8, Model= 2020}
             };
         }
-
         public static List<VehicleLinea> GetVehicleLineasToLoad()
         {
 
@@ -147,8 +143,8 @@ namespace TallerApi.Data.DefaultData
             };
         }
 
-
-        public static List<ServiceType> GetSerTypeToLoad(){
+        public static List<ServiceType> GetServiceTypeToLoad()
+        {
             return new List<ServiceType>
             {
                 new ServiceType {Id = 1,Type = "Motor"},
@@ -158,15 +154,15 @@ namespace TallerApi.Data.DefaultData
 
             };
         }
-
-        public static List<ServiceWork> GetSerWorkToLoad()
+        public static List<ServiceWork> GetServiceWorkToLoad()
         {
             return new List<ServiceWork>
             {
-                new ServiceWork { Id = 1, Work = "", PriceWork=""}
+                new ServiceWork { Id = 1, Work = "Servicio Menor", PriceWork=300},
+                new ServiceWork { Id = 2, Work = "Servicio Recurrente", PriceWork=400},
+                new ServiceWork { Id = 3, Work = "Servicio Mayor", PriceWork=500},
+
             };
         }
-
-
     }//class
 }//namespace
