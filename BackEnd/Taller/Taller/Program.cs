@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Taller.Data;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using Taller.Migrations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -43,11 +46,14 @@ if (app.Environment.IsDevelopment())
 }
 //app.UseMiddleware<RequestResponseLoggingMiddleware>();
 app.UseMiddleware<EndpointLoggerMiddleware>();
-
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();
+
+//comands
+//add - migration initial - o Data / migrations
+//EntityFrameworkCore\add-migration initiaD -o Data/migrations
+//update-database
+//EntityFrameworkCore\Update-Database
