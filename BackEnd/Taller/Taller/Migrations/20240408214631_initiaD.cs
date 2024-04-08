@@ -476,7 +476,8 @@ namespace Taller.Migrations
                 {
                     { 1, 300, "Servicio Menor" },
                     { 2, 400, "Servicio Recurrente" },
-                    { 3, 500, "Servicio Mayor" }
+                    { 3, 500, "Servicio Mayor" },
+                    { 4, 1000, "Servicio por flotilla" }
                 });
 
             migrationBuilder.InsertData(

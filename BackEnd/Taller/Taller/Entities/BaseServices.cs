@@ -22,7 +22,7 @@ namespace Taller.Entities
         [Key]
         public int Id { get; set; }
         public required string Name { get; set; }
-        public ICollection<Department> Departments { get; set; }
+        public List<Department> Departments { get; set; }
     }
 
     public class Department
@@ -33,9 +33,9 @@ namespace Taller.Entities
 
         [ForeignKey("Country")]
         public int CountryId { get; set; }
-        public Country Country { get; set; }
+        public Country Country { get; set; } = null;
 
-        public ICollection <Municipality> Municipalities { get; set; }
+        public List<Municipality> Municipalities { get; set; }
     }
 
     public class Municipality
@@ -44,11 +44,11 @@ namespace Taller.Entities
         public int Id { get; set; }
         public string Name { get; set; }
 
-        [ForeignKey("Department")]
+        [ForeignKey("DepartmentId")]
         public int DepartmentId { get; set; }
-        public Department Department { get; set; }
+        public Department Department { get; set; } = null;
 
-        public ICollection <Client> Clients { get; set; }
+        //public ICollection <Client> Clients { get; set; }
     }
     //-------------------------------------- client------------------------------------------------------
     //public class Address

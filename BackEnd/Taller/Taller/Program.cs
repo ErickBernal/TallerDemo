@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Taller.Data;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using static System.Runtime.InteropServices.JavaScript.JSType;
-using Taller.Migrations;
+//using Taller.Migrations;
 
 var builder = WebApplication.CreateBuilder(args);
 

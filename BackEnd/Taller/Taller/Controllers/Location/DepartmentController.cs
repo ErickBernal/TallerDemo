@@ -26,19 +26,8 @@ namespace Taller.Controllers.Location
             return Ok(Department);
         }
 
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<Department>> GetDepartmentById(int id)
-        //{
-        //    var c = await _context.Departments.FindAsync(id);
-        //    if (c == null)
-        //        return NotFound("Department not found.");
-
-        //    return Ok(c);
-
-        //}
-
         [HttpGet("{idCountry}")]
-        public async Task<ActionResult<List<Department>>> GetDepartmentsByCountryId(int idCountry)
+        public async Task<ActionResult<List<Department>>> GetDepartmentsByCountryId(int? idCountry)
         {
             var departments = await _context.Departments
                                              .Where(d => d.CountryId == idCountry)

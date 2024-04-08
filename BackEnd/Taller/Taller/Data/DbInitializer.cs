@@ -89,12 +89,63 @@ namespace TallerApi.Data.DefaultData
             return list;
         }
 
-        public static List<TypeClient> GetTypeClientToLoad()
+        public static List<Country> Prub()
         {
-            return new List<TypeClient> {
+            List<Municipality> l_muni = GetMunicipalitiesToLoad();
+            List<Department> l_dep = GetDepartmentsToLoad();
+            List<Country> l_country = GetCountriesToLoad();
+
+            foreach (Country c in l_country)
+            {
+                c.Departments =[];
+                foreach (Department d in l_dep)
+                {
+                    if (d.CountryId == c.Id)
+                    {
+                        d.CountryId = c.Id;
+                        d.Municipalities = []; // Mover esta línea aquí para evitar que se cree una nueva lista en cada iteración del bucle externo
+                        d.Country = c; // Establecer el país del departamento
+                        foreach (Municipality m in l_muni)
+                        {
+                            if (m.DepartmentId == d.Id)
+                            {
+                                m.DepartmentId = d.Id;
+                                m.Department = d; // Establecer el departamento de la municipalidad
+                                d.Municipalities.Add(m);
+                            }
+                        }
+                        c.Departments.Add(d);
+                    }
+                }
+            
+            
+            }
+
+            List<Municipality> listm = new List<Municipality>();
+            listm.Add(new Municipality { Id = 3, DepartmentId = 2, Name = "municipio"});
+
+
+            List<Department> listd = new List<Department>();
+            listd.Add(new Department { Id = 2, CountryId = 1, Name = "Departamaento" ,Municipalities= listm});
+
+
+            List<Country> list = new List<Country>();
+            list.Add(new Country { Id = 1, Name = "country", Departments = listd });
+
+
+
+            return list;
+        }
+
+
+        static List<TypeClient> typeClients = new List<TypeClient> {
                 new TypeClient { Id = 1,Type = "Individual" },
                 new TypeClient { Id = 2,Type = "Empresa" }
             };
+
+        public static List<TypeClient> GetTypeClientToLoad()
+        {
+            return typeClients;
         }
 
         public static List<VehiclePart> GetVehiclePartsToLoad()
