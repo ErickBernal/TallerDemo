@@ -42,6 +42,7 @@
               </q-form>
             </q-card-section>
           </q-card>
+
           <q-btn type="submit" label="Agregar Cliente" color="primary" />
         </q-form>
       </q-card-section>
