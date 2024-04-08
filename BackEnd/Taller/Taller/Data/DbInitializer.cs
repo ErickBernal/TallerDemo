@@ -147,10 +147,8 @@ namespace TallerApi.Data.DefaultData
         {
             return new List<ServiceType>
             {
-                new ServiceType {Id = 1,Type = "Motor"},
-                new ServiceType {Id = 2,Type = "Frenos"},
-                new ServiceType {Id = 3,Type = "Hidraulico"},
-                new ServiceType {Id = 3,Type = "Carroceria"},
+                new ServiceType {Id = 1,Type = "Individual"},
+                new ServiceType {Id = 2,Type = "Empresa"},
 
             };
         }
@@ -161,7 +159,7 @@ namespace TallerApi.Data.DefaultData
                 new ServiceWork { Id = 1, Work = "Servicio Menor", PriceWork=300},
                 new ServiceWork { Id = 2, Work = "Servicio Recurrente", PriceWork=400},
                 new ServiceWork { Id = 3, Work = "Servicio Mayor", PriceWork=500},
-
+                new ServiceWork { Id = 4, Work = "Servicio por flotilla", PriceWork=1000},
             };
         }
     }//class

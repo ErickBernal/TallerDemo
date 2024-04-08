@@ -29,16 +29,46 @@
           />
         </div>
       </div>
-      <div class="col-auto q-mx-md">
-        <q-btn
-          padding="xl"
-          square
-          color="orange"
-          icon="search"
-          label="Nuevo Cliente"
-          to="/nuevocliente"
-          @click="handleButtonClick(3)"
-        />
+      <div class="row justify-center q-my-md">
+        <div class="col-auto q-mx-md">
+          <q-btn
+            padding="xl"
+            square
+            color="orange"
+            icon="search"
+            label="Nuevo Cliente"
+            to="/nuevocliente"
+            @click="handleButtonClick(3)"
+          />
+        </div>
+      </div>
+
+      <div class="row justify-center q-my-md">
+        <div class="col-auto q-mx-md">
+          <q-btn
+            padding="xl"
+            square
+            color="brown"
+            icon="search"
+            label="Agregar Trabajo"
+            to="/agregartrabajo"
+            @click="handleButtonClick(4)"
+          />
+        </div>
+      </div>
+
+      <div class="row justify-center q-my-md">
+        <div class="col-auto q-mx-md">
+          <q-btn
+            padding="xl"
+            square
+            color="black"
+            icon="search"
+            label="Nuevo vehiculo"
+            to="/nuevovehiculo"
+            @click="handleButtonClick(4)"
+          />
+        </div>
       </div>
     </div>
   </q-page>
