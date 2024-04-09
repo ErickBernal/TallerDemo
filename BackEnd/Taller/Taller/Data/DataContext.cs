@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 using Taller.Entities;
 using TallerApi.Data.DefaultData;
 
@@ -39,10 +40,18 @@ namespace Taller.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            base.OnModelCreating(modelBuilder);
+
+  
+            //modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
             //modelBuilder.Entity<Country>()
             //    .HasMany(o => o.Departments)
             //    .WithOne(oi => oi.Country)
             //    .HasForeignKey(oi => oi.CountryId);
+            //modelBuilder.Entity<Country>().HasData(DbInitializer.Prub());
+
 
             modelBuilder.Entity<Country>().HasData(DbInitializer.GetCountriesToLoad());
             modelBuilder.Entity<Department>().HasData(DbInitializer.GetDepartmentsToLoad());
@@ -55,7 +64,7 @@ namespace Taller.Data
             modelBuilder.Entity<VehicleModel>().HasData(DbInitializer.GetVehicleModelToLoad());
             modelBuilder.Entity<VehicleLinea>().HasData(DbInitializer.GetVehicleLineasToLoad());
 
-            modelBuilder.Entity<ServiceType>().HasData(DbInitializer.GetTypeClientToLoad());    
+            modelBuilder.Entity<ServiceType>().HasData(DbInitializer.GetTypeClientToLoad());
             modelBuilder.Entity<ServiceWork>().HasData(DbInitializer.GetServiceWorkToLoad());
         }
     }

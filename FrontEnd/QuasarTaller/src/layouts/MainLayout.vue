@@ -7,21 +7,35 @@
           <q-avatar class="bg-white">
             <img src="~assets/logo.png" />
           </q-avatar>
-          Taller los tres hermanos
+          Taller
         </q-toolbar-title>
         <q-space />
-        <h5>{{ $q.localStorage.getItem("bannerName") }}</h5>
+        {{ localStorage.getItem("bannerName") }}
         <q-btn flat round dense icon="more_vert" />
       </q-toolbar>
 
       <q-tabs align="left">
         <q-route-tab @click="openPasswordModal" label="Log" />
-        <q-route-tab
-          to="/repuestos"
-          label="Repuestos"
-          @click="amInVehicleParts"
-        />
+
+        <!--  -->
+        <q-btn-dropdown auto-close stretch flat icon="build" label="Repuestos">
+          <q-list>
+            <q-item clickable to="/buscarrepuesto" @click="amInVehicleParts">
+              <q-item-section>Buscar repuesto</q-item-section>
+            </q-item>
+
+            <q-item clickable to="/nuevorepuesto" @click="amInVehicleParts">
+              <q-item-section>Crear repuesto</q-item-section>
+            </q-item>
+          </q-list>
+        </q-btn-dropdown>
+        <!--  -->
         <q-route-tab to="/servicios" label="Servicios" @click="amInServices" />
+        <q-route-tab label="Cliente" />
+        <q-route-tab label="Factura" />
+        <!--  -->
+
+        <!--  -->
       </q-tabs>
     </q-header>
 
@@ -50,7 +64,7 @@ import axios from "axios";
 import { useRoute, useRouter } from "vue-router";
 import { useQuasar } from "quasar";
 
-const $q = useQuasar();
+const { localStorage } = useQuasar();
 const passwordModalVisible = ref(false);
 const password = ref("");
 const router = useRouter();
@@ -79,10 +93,10 @@ const submitPassword = async () => {
       // Contraseña válida, redirige al usuario a la página de log
       closePasswordModal();
       // Redirige a la página de log
-      $q.localStorage.set("owner", true);
-      // console.log("localStorage: " + $q.localStorage.getItem(1));
+      localStorage.set("owner", true);
+      // console.log("localStorage: " + localStorage.getItem(1));
       router.push("/log");
-      $q.localStorage.set("bannerName", "Logs");
+      localStorage.set("bannerName", "Logs");
     } else {
       // Contraseña inválida, muestra un mensaje de error
       console.error("Contraseña inválida");
@@ -92,23 +106,18 @@ const submitPassword = async () => {
     // console.error("Error al validar la contraseña", error);
     alert("Contraseña incorrecta");
     router.push("/");
-    $q.localStorage.set("bannerName", "");
+    localStorage.set("bannerName", "");
 
     // Aquí puedes manejar el error de la llamada al endpoint
   }
 };
 
 const amInVehicleParts = () => {
-  $q.localStorage.set("bannerName", "Repuestos");
+  localStorage.set("bannerName", "Repuestos");
 };
 const amInServices = () => {
-  $q.localStorage.set("bannerName", "Servicios");
+  localStorage.set("bannerName", "Servicios");
 };
-
-const serviceOptions = [
-  { label: "Servicio 1", value: "servicio1" },
-  { label: "Servicio 2", value: "servicio2" },
-];
 
 defineOptions({
   name: "MainLayout",

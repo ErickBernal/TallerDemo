@@ -5890,6 +5890,12 @@ namespace Taller.Migrations
                             Id = 3,
                             PriceWork = 500,
                             Work = "Servicio Mayor"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            PriceWork = 1000,
+                            Work = "Servicio por flotilla"
                         });
                 });
 
@@ -6198,7 +6204,7 @@ namespace Taller.Migrations
             modelBuilder.Entity("Taller.Entities.Client", b =>
                 {
                     b.HasOne("Taller.Entities.Municipality", "Municipality")
-                        .WithMany("Clients")
+                        .WithMany()
                         .HasForeignKey("MunicipalityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -6426,11 +6432,6 @@ namespace Taller.Migrations
                     b.Navigation("DetalleVehiclePartss");
 
                     b.Navigation("DetalleWorkServices");
-                });
-
-            modelBuilder.Entity("Taller.Entities.Municipality", b =>
-                {
-                    b.Navigation("Clients");
                 });
 
             modelBuilder.Entity("Taller.Entities.ServiceDetalle", b =>

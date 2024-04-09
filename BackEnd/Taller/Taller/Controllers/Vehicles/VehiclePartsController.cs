@@ -8,11 +8,11 @@ namespace Taller.Controllers.Vehicles
 {
     [Route("taller/[controller]")]
     [ApiController]
-    public class VechiclePartsController : ControllerBase
+    public class VehiclePartsController : ControllerBase
     {
         private readonly DataContext _context;
 
-        public VechiclePartsController(DataContext context)
+        public VehiclePartsController(DataContext context)
         {
             _context = context;
         }

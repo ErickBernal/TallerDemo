@@ -129,22 +129,22 @@ function selected() {
     console.log("---------------------------");
   });
 }
-const rowSelected = ref([]);
+const idSelected = ref("");
 
 const saveNewVehicle = async () => {
   selected();
 
   rows.value.forEach((row) => {
     if (row.selected) {
-      rowSelected.value = row;
+      idSelected.value = row.id;
     }
   });
   const dataSend = ref({
     Placa: newVehicle.value.Placa,
-    VechicleLineId: rowSelected.value.VehicleLineId,
-    VehicleLinea: rowSelected.value,
+    VehicleLineaId: idSelected.value,
   });
 
+  console.log("--> " + dataSend.value.Placa, dataSend.value.VehicleLineaId);
   try {
     const response = await axios.post(
       process.env.API_BASE_URL + "/taller/Vehicle",
