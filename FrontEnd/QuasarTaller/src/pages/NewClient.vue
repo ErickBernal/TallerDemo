@@ -55,7 +55,7 @@ import { ref, onMounted } from "vue";
 import axios from "axios";
 import { useQuasar } from "quasar";
 
-const $q = useQuasar();
+const { cookies, fullscreen } = useQuasar();
 
 const newClient = ref({
   MunicipalityId: "",

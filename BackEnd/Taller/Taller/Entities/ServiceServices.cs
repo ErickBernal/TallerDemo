@@ -6,9 +6,9 @@ namespace Taller.Entities
     {
         [Key]
         public int Id { get; set; }
-        public string Type { get; set; }
-        public ICollection<ServiceListWork> ServiceListWorks { get; set; }
-        public ICollection<ServiceDetalle> ServiceDetalles { get; set; }
+        public string? Type { get; set; }
+        public ICollection<ServiceListWork>? ServiceListWorks { get; set; }
+        public ICollection<ServiceDetalle>? ServiceDetalles { get; set; }
 
     }
 
@@ -17,10 +17,10 @@ namespace Taller.Entities
     {
         [Key]
         public int Id { get; set; }
-        public string Work { get; set; }
+        public string? Work { get; set; }
         public int PriceWork { get; set; }
-        public ICollection<ServiceListWork> ServiceListWorks { get; set; }
-        public ICollection<DetalleWorkService> DetalleWorkServices { get; set; }
+        public ICollection<ServiceListWork>? ServiceListWorks { get; set; }
+        public ICollection<DetalleWorkService>? DetalleWorkServices { get; set; }
 
     }
     public class ServiceListWork
@@ -28,9 +28,9 @@ namespace Taller.Entities
         [Key]
         public int Id { get; set; }
         public int ServiceTypeId { get; set; }
-        public ServiceType ServiceType { get; set; }
+        public ServiceType? ServiceType { get; set; }
         public int ServiceWorkId { get; set; }
-        public ServiceWork ServiceWork { get; set; }
+        public ServiceWork? ServiceWork { get; set; }
     }
 
     public class ServiceDetalle
@@ -41,12 +41,12 @@ namespace Taller.Entities
         public int Km { get; set; }
 
         public int ServiceTypeId { get; set; }
-        public ServiceType ServiceType { get; set; }
+        public ServiceType? ServiceType { get; set; }
         public int VehicleId { get; set; }
-        public Vehicle Vehicle { get; set; }
-        public ICollection<DetalleClientService> DetalleClientServices { get; set; }
-        public ICollection<DetalleWorkService> DetalleWorkServices { get; set; }
-        public ICollection<DetalleVehicleParts> DetalleVehicleParts { get; set; }
+        public Vehicle? Vehicle { get; set; }
+        public ICollection<DetalleClientService>? DetalleClientServices { get; set; }
+        public ICollection<DetalleWorkService>? DetalleWorkServices { get; set; }
+        public ICollection<DetalleVehicleParts>? DetalleVehicleParts { get; set; }
 
     }
 }//

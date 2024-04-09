@@ -17,7 +17,7 @@ const routes = [
           }
         },
       },
-      { path: "/repuestos", component: () => import("pages/VehicleParts.vue") },
+
       { path: "/servicios", component: () => import("pages/ServicesPage.vue") },
       {
         path: "/nuevoservicio",
@@ -38,6 +38,15 @@ const routes = [
       {
         path: "/nuevovehiculo",
         component: () => import("pages/NewVehicle.vue"),
+      },
+
+      {
+        path: "/buscarrepuesto",
+        component: () => import("pages/vehicleParts/FindVehicleParts.vue"),
+      },
+      {
+        path: "/nuevorepuesto",
+        component: () => import("pages/vehicleParts/NewVehiclePart.vue"),
       },
     ],
   },

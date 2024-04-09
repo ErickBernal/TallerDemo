@@ -17,7 +17,7 @@ namespace Taller.Entities
     {
         [Key]
         public int Id { get; set; }
-        public string Brand { get; set; } 
+        public string? Brand { get; set; } 
 
         public ICollection<VehicleLinea>? vehicleLineas { get; set; }
     }
@@ -26,14 +26,14 @@ namespace Taller.Entities
     {
         [Key]
         public int Id { get; set; }
-        public string Color { get; set; }
-        public string Type { get; set; }
-        public string Line { get; set; }
+        public string? Color { get; set; }
+        public string? Type { get; set; }
+        public string? Line { get; set; }
 
         [ForeignKey("VehicleModel")]
 
         public int VehicleModelId { get; set; }
-        public VehicleModel VehicleModel { get; set; } 
+        public VehicleModel? VehicleModel { get; set; } 
 
         [ForeignKey("VehicleBrand")]
 
@@ -64,7 +64,7 @@ namespace Taller.Entities
     {
         [Key]
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public int Stock { get; set; }
         public double UnitPrice { get; set; }
         public ICollection<VehiclePartsCompatible>? VehiclePartsCompatibles { get; set; }
