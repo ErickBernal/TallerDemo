@@ -31,8 +31,8 @@
         </q-btn-dropdown>
         <!--  -->
         <q-route-tab to="/servicios" label="Servicios" @click="amInServices" />
-        <q-route-tab label="Cliente" />
-        <q-route-tab label="Factura" />
+        <q-route-tab label="Cliente" to="/cliente" @click="amInClient" />
+        <q-route-tab label="Factura" to="/factura" @click="amInInvoice" />
         <!--  -->
 
         <!--  -->
@@ -117,6 +117,14 @@ const amInVehicleParts = () => {
 };
 const amInServices = () => {
   localStorage.set("bannerName", "Servicios");
+};
+
+const amInClient = () => {
+  localStorage.set("bannerName", "Cliente");
+};
+
+const amInInvoice = () => {
+  localStorage.set("bannerName", "Factura");
 };
 
 defineOptions({

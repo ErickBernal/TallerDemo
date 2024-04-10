@@ -46,8 +46,8 @@ namespace Taller.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -60,7 +60,7 @@ namespace Taller.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Pwd = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Pwd = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -73,7 +73,7 @@ namespace Taller.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -86,7 +86,7 @@ namespace Taller.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Work = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Work = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PriceWork = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -100,7 +100,7 @@ namespace Taller.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -113,7 +113,7 @@ namespace Taller.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Brand = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Brand = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -139,7 +139,7 @@ namespace Taller.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Stock = table.Column<int>(type: "int", nullable: false),
                     UnitPrice = table.Column<double>(type: "float", nullable: false)
                 },
@@ -154,7 +154,7 @@ namespace Taller.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CountryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -200,9 +200,9 @@ namespace Taller.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Color = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Line = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Color = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Line = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     VehicleModelId = table.Column<int>(type: "int", nullable: false),
                     VehicleBrandId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -229,7 +229,7 @@ namespace Taller.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DepartmentId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -249,7 +249,7 @@ namespace Taller.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Placa = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Placa = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     VehicleLineaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -295,15 +295,15 @@ namespace Taller.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DPI = table.Column<int>(type: "int", nullable: false),
                     Nit = table.Column<int>(type: "int", nullable: false),
                     Phone = table.Column<int>(type: "int", nullable: false),
                     Cellphone = table.Column<int>(type: "int", nullable: false),
                     TypeClientId = table.Column<int>(type: "int", nullable: false),
                     Zone = table.Column<int>(type: "int", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MunicipalityId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -332,11 +332,18 @@ namespace Taller.Migrations
                     State = table.Column<int>(type: "int", nullable: false),
                     Km = table.Column<int>(type: "int", nullable: false),
                     ServiceTypeId = table.Column<int>(type: "int", nullable: false),
-                    VehicleId = table.Column<int>(type: "int", nullable: false)
+                    VehicleId = table.Column<int>(type: "int", nullable: false),
+                    ClientId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ServiceDetalles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ServiceDetalles_Clients_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Clients",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ServiceDetalles_ServiceTypes_ServiceTypeId",
                         column: x => x.ServiceTypeId,
@@ -347,39 +354,6 @@ namespace Taller.Migrations
                         name: "FK_ServiceDetalles_Vehicles_VehicleId",
                         column: x => x.VehicleId,
                         principalTable: "Vehicles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DetalleClientServices",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ClientId = table.Column<int>(type: "int", nullable: false),
-                    ServiceDetalleId = table.Column<int>(type: "int", nullable: false),
-                    InvoiceId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DetalleClientServices", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DetalleClientServices_Clients_ClientId",
-                        column: x => x.ClientId,
-                        principalTable: "Clients",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_DetalleClientServices_Invoices_InvoiceId",
-                        column: x => x.InvoiceId,
-                        principalTable: "Invoices",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_DetalleClientServices_ServiceDetalles_ServiceDetalleId",
-                        column: x => x.ServiceDetalleId,
-                        principalTable: "ServiceDetalles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -1481,21 +1455,6 @@ namespace Taller.Migrations
                 column: "CountryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DetalleClientServices_ClientId",
-                table: "DetalleClientServices",
-                column: "ClientId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DetalleClientServices_InvoiceId",
-                table: "DetalleClientServices",
-                column: "InvoiceId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DetalleClientServices_ServiceDetalleId",
-                table: "DetalleClientServices",
-                column: "ServiceDetalleId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_DetalleVehicleParts_InvoiceId",
                 table: "DetalleVehicleParts",
                 column: "InvoiceId");
@@ -1529,6 +1488,11 @@ namespace Taller.Migrations
                 name: "IX_Municipalities_DepartmentId",
                 table: "Municipalities",
                 column: "DepartmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ServiceDetalles_ClientId",
+                table: "ServiceDetalles",
+                column: "ClientId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ServiceDetalles_ServiceTypeId",
@@ -1580,9 +1544,6 @@ namespace Taller.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "DetalleClientServices");
-
-            migrationBuilder.DropTable(
                 name: "DetalleVehicleParts");
 
             migrationBuilder.DropTable(
@@ -1601,9 +1562,6 @@ namespace Taller.Migrations
                 name: "VpartsCompatibles");
 
             migrationBuilder.DropTable(
-                name: "Clients");
-
-            migrationBuilder.DropTable(
                 name: "Invoices");
 
             migrationBuilder.DropTable(
@@ -1616,10 +1574,7 @@ namespace Taller.Migrations
                 name: "VehicleParts");
 
             migrationBuilder.DropTable(
-                name: "Municipalities");
-
-            migrationBuilder.DropTable(
-                name: "TypeClients");
+                name: "Clients");
 
             migrationBuilder.DropTable(
                 name: "ServiceTypes");
@@ -1628,19 +1583,25 @@ namespace Taller.Migrations
                 name: "Vehicles");
 
             migrationBuilder.DropTable(
-                name: "Departments");
+                name: "Municipalities");
+
+            migrationBuilder.DropTable(
+                name: "TypeClients");
 
             migrationBuilder.DropTable(
                 name: "VehicleLineas");
 
             migrationBuilder.DropTable(
-                name: "Countries");
+                name: "Departments");
 
             migrationBuilder.DropTable(
                 name: "VehicleBrands");
 
             migrationBuilder.DropTable(
                 name: "VehicleModels");
+
+            migrationBuilder.DropTable(
+                name: "Countries");
         }
     }
 }

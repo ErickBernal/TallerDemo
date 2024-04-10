@@ -81,7 +81,9 @@ namespace Taller.Entities
         public Municipality? Municipality { get; set; }
 
 
-        public ICollection<DetalleClientService>? DetalleClientServices { get; set; } //detalle cliente sevicio
+        //public ICollection<DetalleClientService>? DetalleClientServices { get; set; } //detalle cliente sevicio
+        public ICollection<ServiceDetalle>? ServiceDetalles { get; set; } 
+
     }
 
 }//

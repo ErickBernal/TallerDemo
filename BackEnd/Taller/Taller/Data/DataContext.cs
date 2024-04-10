@@ -33,7 +33,7 @@ namespace Taller.Data
         public DbSet<ServiceDetalle> ServiceDetalles { get; set; }
 
         public DbSet<Invoice> Invoices { get; set; }
-        public DbSet<DetalleClientService> DetalleClientServices { get; set; }
+        //public DbSet<DetalleClientService> DetalleClientServices { get; set; }
         public DbSet<DetalleWorkService> DetalleWorkServices { get; set; }
         public DbSet<DetalleVehicleParts> DetalleVehicleParts { get; set; }
 
