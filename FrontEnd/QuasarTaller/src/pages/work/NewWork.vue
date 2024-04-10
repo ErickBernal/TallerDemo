@@ -1,5 +1,5 @@
 <template>
-  <h4>Modificar Servicios</h4>
+  <div class="text-h5 q-mt-sm q-mb-xs">Modificar Servicios</div>
   <q-page class="q-pa-md">
     <!-- Botón para desplegar la tabla -->
     <q-btn

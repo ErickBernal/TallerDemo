@@ -23,6 +23,11 @@
                       label="Cantidad"
                       type="number"
                       mask="int"
+                      lazy-rules
+                      :rules="[
+                        (val) =>
+                          (val && val.length > 0) || 'Please type something',
+                      ]"
                     />
                     <q-input
                       v-model="newVehiclePat.unitPrice"

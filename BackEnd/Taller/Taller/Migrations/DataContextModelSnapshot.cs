@@ -31,7 +31,6 @@ namespace Taller.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Cellphone")
@@ -41,14 +40,12 @@ namespace Taller.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MunicipalityId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Nit")
@@ -118,7 +115,6 @@ namespace Taller.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -454,34 +450,6 @@ namespace Taller.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Taller.Entities.DetalleClientService", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("ClientId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("InvoiceId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ServiceDetalleId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClientId");
-
-                    b.HasIndex("InvoiceId");
-
-                    b.HasIndex("ServiceDetalleId");
-
-                    b.ToTable("DetalleClientServices");
-                });
-
             modelBuilder.Entity("Taller.Entities.DetalleVehicleParts", b =>
                 {
                     b.Property<int>("Id")
@@ -565,11 +533,10 @@ namespace Taller.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("Date")
+                    b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -589,7 +556,6 @@ namespace Taller.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -5764,7 +5730,6 @@ namespace Taller.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Pwd")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -5780,6 +5745,9 @@ namespace Taller.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Km")
                         .HasColumnType("int");
 
@@ -5793,6 +5761,8 @@ namespace Taller.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
 
                     b.HasIndex("ServiceTypeId");
 
@@ -5833,7 +5803,6 @@ namespace Taller.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Type")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -5865,7 +5834,6 @@ namespace Taller.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Work")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -5908,7 +5876,6 @@ namespace Taller.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Type")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -5937,7 +5904,6 @@ namespace Taller.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Placa")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("VehicleLineaId")
@@ -5959,7 +5925,6 @@ namespace Taller.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Brand")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -5998,15 +5963,12 @@ namespace Taller.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Color")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Line")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Type")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("VehicleBrandId")
@@ -6120,7 +6082,6 @@ namespace Taller.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Stock")
@@ -6231,33 +6192,6 @@ namespace Taller.Migrations
                     b.Navigation("Country");
                 });
 
-            modelBuilder.Entity("Taller.Entities.DetalleClientService", b =>
-                {
-                    b.HasOne("Taller.Entities.Client", "Client")
-                        .WithMany("DetalleClientServices")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Taller.Entities.Invoice", "Invoice")
-                        .WithMany("DetalleClientServices")
-                        .HasForeignKey("InvoiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Taller.Entities.ServiceDetalle", "ServiceDetalle")
-                        .WithMany("DetalleClientServices")
-                        .HasForeignKey("ServiceDetalleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Client");
-
-                    b.Navigation("Invoice");
-
-                    b.Navigation("ServiceDetalle");
-                });
-
             modelBuilder.Entity("Taller.Entities.DetalleVehicleParts", b =>
                 {
                     b.HasOne("Taller.Entities.Invoice", "Invoice")
@@ -6325,6 +6259,12 @@ namespace Taller.Migrations
 
             modelBuilder.Entity("Taller.Entities.ServiceDetalle", b =>
                 {
+                    b.HasOne("Taller.Entities.Client", "Client")
+                        .WithMany("ServiceDetalles")
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Taller.Entities.ServiceType", "ServiceType")
                         .WithMany("ServiceDetalles")
                         .HasForeignKey("ServiceTypeId")
@@ -6336,6 +6276,8 @@ namespace Taller.Migrations
                         .HasForeignKey("VehicleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Client");
 
                     b.Navigation("ServiceType");
 
@@ -6412,7 +6354,7 @@ namespace Taller.Migrations
 
             modelBuilder.Entity("Taller.Entities.Client", b =>
                 {
-                    b.Navigation("DetalleClientServices");
+                    b.Navigation("ServiceDetalles");
                 });
 
             modelBuilder.Entity("Taller.Entities.Country", b =>
@@ -6427,8 +6369,6 @@ namespace Taller.Migrations
 
             modelBuilder.Entity("Taller.Entities.Invoice", b =>
                 {
-                    b.Navigation("DetalleClientServices");
-
                     b.Navigation("DetalleVehiclePartss");
 
                     b.Navigation("DetalleWorkServices");
@@ -6436,8 +6376,6 @@ namespace Taller.Migrations
 
             modelBuilder.Entity("Taller.Entities.ServiceDetalle", b =>
                 {
-                    b.Navigation("DetalleClientServices");
-
                     b.Navigation("DetalleVehicleParts");
 
                     b.Navigation("DetalleWorkServices");

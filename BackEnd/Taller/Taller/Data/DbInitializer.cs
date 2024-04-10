@@ -97,7 +97,7 @@ namespace TallerApi.Data.DefaultData
 
             foreach (Country c in l_country)
             {
-                c.Departments =[];
+                c.Departments = [];
                 foreach (Department d in l_dep)
                 {
                     if (d.CountryId == c.Id)
@@ -117,16 +117,16 @@ namespace TallerApi.Data.DefaultData
                         c.Departments.Add(d);
                     }
                 }
-            
-            
+
+
             }
 
             List<Municipality> listm = new List<Municipality>();
-            listm.Add(new Municipality { Id = 3, DepartmentId = 2, Name = "municipio"});
+            listm.Add(new Municipality { Id = 3, DepartmentId = 2, Name = "municipio" });
 
 
             List<Department> listd = new List<Department>();
-            listd.Add(new Department { Id = 2, CountryId = 1, Name = "Departamaento" ,Municipalities= listm});
+            listd.Add(new Department { Id = 2, CountryId = 1, Name = "Departamaento", Municipalities = listm });
 
 
             List<Country> list = new List<Country>();
@@ -198,9 +198,10 @@ namespace TallerApi.Data.DefaultData
         {
             return new List<ServiceType>
             {
-                new ServiceType {Id = 1,Type = "Individual"},
-                new ServiceType {Id = 2,Type = "Empresa"},
-
+                new ServiceType {Id = 1,Type = "Motor" },
+                new ServiceType {Id = 2,Type = "Frenos" },
+                new ServiceType { Id = 2, Type = "Hidraulico" },
+                new ServiceType { Id = 2, Type = "Carroceria" },
             };
         }
         public static List<ServiceWork> GetServiceWorkToLoad()

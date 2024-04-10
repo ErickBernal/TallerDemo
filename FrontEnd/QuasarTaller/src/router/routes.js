@@ -18,22 +18,25 @@ const routes = [
         },
       },
 
-      { path: "/servicios", component: () => import("pages/ServicesPage.vue") },
+      {
+        path: "/servicios",
+        component: () => import("pages/serviceTaller/ServicesPage.vue"),
+      },
       {
         path: "/nuevoservicio",
-        component: () => import("pages/NewServices.vue"),
+        component: () => import("pages/serviceTaller/NewServices.vue"),
       },
       {
         path: "/estatusservicio",
-        component: () => import("pages/StatusServices.vue"),
+        component: () => import("pages/serviceTaller/StatusServices.vue"),
       },
       {
         path: "/nuevocliente",
-        component: () => import("pages/NewClient.vue"),
+        component: () => import("pages/client/NewClient.vue"),
       },
       {
         path: "/agregartrabajo",
-        component: () => import("pages/NewWork.vue"),
+        component: () => import("src/pages/work/NewWork.vue"),
       },
       {
         path: "/nuevovehiculo",
@@ -47,6 +50,14 @@ const routes = [
       {
         path: "/nuevorepuesto",
         component: () => import("pages/vehicleParts/NewVehiclePart.vue"),
+      },
+      {
+        path: "/cliente",
+        component: () => import("pages/client/ClientBaner.vue"),
+      },
+      {
+        path: "/factura",
+        component: () => import("pages/invoice/InvoicePage.vue"),
       },
     ],
   },

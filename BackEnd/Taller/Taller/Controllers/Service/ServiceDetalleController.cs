@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using Taller.Data;
 using Taller.Entities;
 
@@ -23,7 +24,22 @@ namespace Taller.Controllers.Location
         {
             var ServiceDetalle = await _context.ServiceDetalles.ToListAsync();
 
+
             return Ok(ServiceDetalle);
+
+            //public List<Vehicle> = new List<Vehicle>{};
+
+            //var ServiceDetalle = await _context.ServiceDetalles
+            //    .Include(sd => sd.Vehicle)
+            //    .Select(sd => new EditServiceDetalle
+            //    {
+            //        // Mapea los datos que deseas devolver
+            //        Id = sd.Id,
+
+            //    })
+            //    .ToListAsync();
+
+            //return Ok(ServiceDetalle);
         }
 
         [HttpGet("{id}")]

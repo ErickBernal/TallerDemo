@@ -44,9 +44,24 @@ namespace Taller.Entities
         public ServiceType? ServiceType { get; set; }
         public int VehicleId { get; set; }
         public Vehicle? Vehicle { get; set; }
-        public ICollection<DetalleClientService>? DetalleClientServices { get; set; }
+        public int ClientId { get; set; }
+        public Client? Client { get; set; }
+        //public ICollection<DetalleClientService>? DetalleClientServices { get; set; }
+
         public ICollection<DetalleWorkService>? DetalleWorkServices { get; set; }
         public ICollection<DetalleVehicleParts>? DetalleVehicleParts { get; set; }
 
+    }
+
+    public class EditServiceDetalle
+    {
+        [Key]
+        public int Id { get; set; }
+
+        public Vehicle? Vehicle { get; set; }
+        public Client? Client { get; set; }
+        public ServiceDetalle? ServiceDetalle { get; set; }
+        
+        public string? Placa { get; set; }
     }
 }//

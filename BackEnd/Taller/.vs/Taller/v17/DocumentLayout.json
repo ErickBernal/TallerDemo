@@ -3,28 +3,16 @@
   "WorkspaceRootPath": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\Taller\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A01BEB9A-2A32-4011-9F68-9B88BA025956}|Taller\\Taller.csproj|d:\\erickbernal\\repos_erickbernal\\fase1_sitecpro\\backend\\taller\\taller\\controllers\\vehicles\\vehiclepartscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A01BEB9A-2A32-4011-9F68-9B88BA025956}|Taller\\Taller.csproj|solutionrelative:taller\\controllers\\vehicles\\vehiclepartscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A01BEB9A-2A32-4011-9F68-9B88BA025956}|Taller\\Taller.csproj|d:\\erickbernal\\repos_erickbernal\\fase1_sitecpro\\backend\\taller\\taller\\controllers\\service\\servicedetallecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A01BEB9A-2A32-4011-9F68-9B88BA025956}|Taller\\Taller.csproj|solutionrelative:taller\\controllers\\service\\servicedetallecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A01BEB9A-2A32-4011-9F68-9B88BA025956}|Taller\\Taller.csproj|d:\\erickbernal\\repos_erickbernal\\fase1_sitecpro\\backend\\taller\\taller\\entities\\vehicleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A01BEB9A-2A32-4011-9F68-9B88BA025956}|Taller\\Taller.csproj|solutionrelative:taller\\entities\\vehicleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A01BEB9A-2A32-4011-9F68-9B88BA025956}|Taller\\Taller.csproj|d:\\erickbernal\\repos_erickbernal\\fase1_sitecpro\\backend\\taller\\taller\\entities\\serviceservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A01BEB9A-2A32-4011-9F68-9B88BA025956}|Taller\\Taller.csproj|solutionrelative:taller\\entities\\serviceservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A01BEB9A-2A32-4011-9F68-9B88BA025956}|Taller\\Taller.csproj|d:\\erickbernal\\repos_erickbernal\\fase1_sitecpro\\backend\\taller\\taller\\controllers\\location\\departmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A01BEB9A-2A32-4011-9F68-9B88BA025956}|Taller\\Taller.csproj|solutionrelative:taller\\controllers\\location\\departmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A01BEB9A-2A32-4011-9F68-9B88BA025956}|Taller\\Taller.csproj|d:\\erickbernal\\repos_erickbernal\\fase1_sitecpro\\backend\\taller\\taller\\data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A01BEB9A-2A32-4011-9F68-9B88BA025956}|Taller\\Taller.csproj|solutionrelative:taller\\data\\dbinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A01BEB9A-2A32-4011-9F68-9B88BA025956}|Taller\\Taller.csproj|d:\\erickbernal\\repos_erickbernal\\fase1_sitecpro\\backend\\taller\\taller\\data\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A01BEB9A-2A32-4011-9F68-9B88BA025956}|Taller\\Taller.csproj|solutionrelative:taller\\data\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A01BEB9A-2A32-4011-9F68-9B88BA025956}|Taller\\Taller.csproj|d:\\erickbernal\\repos_erickbernal\\fase1_sitecpro\\backend\\taller\\taller\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A01BEB9A-2A32-4011-9F68-9B88BA025956}|Taller\\Taller.csproj|solutionrelative:taller\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A01BEB9A-2A32-4011-9F68-9B88BA025956}|Taller\\Taller.csproj|d:\\erickbernal\\repos_erickbernal\\fase1_sitecpro\\backend\\taller\\taller\\taller.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{A01BEB9A-2A32-4011-9F68-9B88BA025956}|Taller\\Taller.csproj|solutionrelative:taller\\taller.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -33,82 +21,53 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 304,
+          "DockedWidth": 393,
           "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "VehiclePartsController.cs",
-              "DocumentMoniker": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\Taller\\Taller\\Controllers\\Vehicles\\VehiclePartsController.cs",
-              "RelativeDocumentMoniker": "Taller\\Controllers\\Vehicles\\VehiclePartsController.cs",
-              "ToolTip": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\Taller\\Taller\\Controllers\\Vehicles\\VehiclePartsController.cs",
-              "RelativeToolTip": "Taller\\Controllers\\Vehicles\\VehiclePartsController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAkAAAA",
+              "Title": "ServiceDetalleController.cs",
+              "DocumentMoniker": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\Taller\\Taller\\Controllers\\Service\\ServiceDetalleController.cs",
+              "RelativeDocumentMoniker": "Taller\\Controllers\\Service\\ServiceDetalleController.cs",
+              "ToolTip": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\Taller\\Taller\\Controllers\\Service\\ServiceDetalleController.cs",
+              "RelativeToolTip": "Taller\\Controllers\\Service\\ServiceDetalleController.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAcwBsAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-09T22:28:46.027Z",
+              "WhenOpened": "2024-04-10T21:03:54.948Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "VehicleService.cs",
-              "DocumentMoniker": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\Taller\\Taller\\Entities\\VehicleService.cs",
-              "RelativeDocumentMoniker": "Taller\\Entities\\VehicleService.cs",
-              "ToolTip": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\Taller\\Taller\\Entities\\VehicleService.cs",
-              "RelativeToolTip": "Taller\\Entities\\VehicleService.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAQwA8AAAAbAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-08T21:54:06.723Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\Taller\\Taller\\Program.cs",
-              "RelativeDocumentMoniker": "Taller\\Program.cs",
-              "ToolTip": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\Taller\\Taller\\Program.cs",
-              "RelativeToolTip": "Taller\\Program.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAABsAAAApAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-08T19:36:49.856Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "DepartmentController.cs",
-              "DocumentMoniker": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\Taller\\Taller\\Controllers\\Location\\DepartmentController.cs",
-              "RelativeDocumentMoniker": "Taller\\Controllers\\Location\\DepartmentController.cs",
-              "ToolTip": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\Taller\\Taller\\Controllers\\Location\\DepartmentController.cs",
-              "RelativeToolTip": "Taller\\Controllers\\Location\\DepartmentController.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAB4AAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-08T22:59:14.41Z"
-            },
+              "Title": "Taller",
+              "DocumentMoniker": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\Taller\\Taller\\Taller.csproj",
+              "RelativeDocumentMoniker": "Taller\\Taller.csproj",
+              "ToolTip": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\Taller\\Taller\\Taller.csproj",
+              "RelativeToolTip": "Taller\\Taller.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-04-10T18:23:29.24Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 215,
+          "SelectedChildIndex": 0,
+          "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DataContext.cs",
-              "DocumentMoniker": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\Taller\\Taller\\Data\\DataContext.cs",
-              "RelativeDocumentMoniker": "Taller\\Data\\DataContext.cs",
-              "ToolTip": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\Taller\\Taller\\Data\\DataContext.cs",
-              "RelativeToolTip": "Taller\\Data\\DataContext.cs",
-              "ViewState": "AQIAACQAAAAAAAAAAIA1wDMAAAA1AAAA",
+              "DocumentIndex": 1,
+              "Title": "ServiceServices.cs",
+              "DocumentMoniker": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\Taller\\Taller\\Entities\\ServiceServices.cs",
+              "RelativeDocumentMoniker": "Taller\\Entities\\ServiceServices.cs",
+              "ToolTip": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\Taller\\Taller\\Entities\\ServiceServices.cs",
+              "RelativeToolTip": "Taller\\Entities\\ServiceServices.cs",
+              "ViewState": "AQIAACAAAAAAAAAAAAAcwEAAAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-08T19:32:40.22Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "DbInitializer.cs",
-              "DocumentMoniker": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\Taller\\Taller\\Data\\DbInitializer.cs",
-              "RelativeDocumentMoniker": "Taller\\Data\\DbInitializer.cs",
-              "ToolTip": "D:\\ErickBernal\\Repos_ErickBernal\\fase1_Sitecpro\\BackEnd\\Taller\\Taller\\Data\\DbInitializer.cs",
-              "RelativeToolTip": "Taller\\Data\\DbInitializer.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAAIkAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-08T15:17:30.346Z"
+              "WhenOpened": "2024-04-10T21:14:16.625Z",
+              "EditorCaption": ""
             }
           ]
         }
