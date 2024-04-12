@@ -16,9 +16,13 @@
 
       <q-tabs align="left">
         <q-route-tab @click="openPasswordModal" label="Log" />
-
+        <q-route-tab
+          label="Repuestos"
+          to="/repuestos"
+          @click="amInVehicleParts"
+        />
         <!--  -->
-        <q-btn-dropdown auto-close stretch flat icon="build" label="Repuestos">
+        <!-- <q-btn-dropdown auto-close stretch flat icon="build" label="R">
           <q-list>
             <q-item clickable to="/buscarrepuesto" @click="amInVehicleParts">
               <q-item-section>Buscar repuesto</q-item-section>
@@ -28,13 +32,12 @@
               <q-item-section>Crear repuesto</q-item-section>
             </q-item>
           </q-list>
-        </q-btn-dropdown>
+        </q-btn-dropdown> -->
         <!--  -->
-        <q-route-tab to="/servicios" label="Servicios" @click="amInServices" />
+        <q-route-tab label="Servicios" to="/servicios" @click="amInServices" />
         <q-route-tab label="Cliente" to="/cliente" @click="amInClient" />
+        <q-route-tab label="Vehiculos" to="/vehiculo" @click="amInInVehicle" />
         <q-route-tab label="Factura" to="/factura" @click="amInInvoice" />
-        <!--  -->
-
         <!--  -->
       </q-tabs>
     </q-header>
@@ -126,8 +129,30 @@ const amInClient = () => {
 const amInInvoice = () => {
   localStorage.set("bannerName", "Factura");
 };
+const amInInVehicle = () => {
+  localStorage.set("bannerName", "Vehiculos");
+};
 
 defineOptions({
   name: "MainLayout",
 });
 </script>
+
+<style scoped>
+.parallax-container {
+  position: relative; /* Establecer la posición relativa */
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Ocultar cualquier contenido que se desborde */
+}
+
+.parallax-container q-parallax {
+  position: absolute; /* Posicionar el parallax absolutamente dentro de su contenedor */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Enviar al fondo */
+  filter: blur(5px); /* Aplicar desenfoque */
+}
+</style>

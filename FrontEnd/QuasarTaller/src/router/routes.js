@@ -52,12 +52,20 @@ const routes = [
         component: () => import("pages/vehicleParts/NewVehiclePart.vue"),
       },
       {
+        path: "/repuestos",
+        component: () => import("pages/vehicleParts/VehiclePartPage.vue"),
+      },
+      {
         path: "/cliente",
         component: () => import("pages/client/ClientBaner.vue"),
       },
       {
         path: "/factura",
         component: () => import("pages/invoice/InvoicePage.vue"),
+      },
+      {
+        path: "/vehiculo",
+        component: () => import("pages/vehicle/VehiclePage.vue"),
       },
     ],
   },

@@ -16,12 +16,16 @@
             type="number"
             mask="int"
             filled
+            lazy-rules
+            :rules="[
+              (val) =>
+                (val && val.length > 0) || 'Ingrese un kilometraje valido',
+            ]"
           />
-
           <q-select
             v-model="newServices.servicesType"
             :options="servicesType"
-            label="Tipo de cliente"
+            label="Tipo de servicio"
             filled
           />
           <q-select

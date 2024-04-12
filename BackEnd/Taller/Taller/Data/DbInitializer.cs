@@ -200,8 +200,8 @@ namespace TallerApi.Data.DefaultData
             {
                 new ServiceType {Id = 1,Type = "Motor" },
                 new ServiceType {Id = 2,Type = "Frenos" },
-                new ServiceType { Id = 2, Type = "Hidraulico" },
-                new ServiceType { Id = 2, Type = "Carroceria" },
+                new ServiceType { Id = 3, Type = "Hidraulico" },
+                new ServiceType { Id = 4, Type = "Carroceria" },
             };
         }
         public static List<ServiceWork> GetServiceWorkToLoad()
