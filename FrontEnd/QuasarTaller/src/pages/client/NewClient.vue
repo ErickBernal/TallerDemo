@@ -1,53 +1,144 @@
 <template>
-  <h4 class="justify-center">Nuevo cliente</h4>
-  <q-page class="q-pa-md">
-    <q-card class="q-mb-md">
-      <q-card-section>
-        <q-form @submit="submitForm">
-          <q-input v-model="newClient.name" label="Nombre" />
-          <q-input v-model="newClient.lastName" label="Apellido" />
-          <q-input v-model="newClient.dpi" label="DPI" />
-          <q-input v-model="newClient.nit" label="NIT" />
-          <q-input v-model="newClient.phone" label="Teléfono" />
-          <q-input v-model="newClient.cellphone" label="Celular" />
-
-          <q-select
-            v-model="newClient.TypeClientId"
-            :options="clientTypes"
-            label="Tipo de Cliente"
-          />
-          <q-card class="q-mb-md">
-            <q-card-section>
-              Dirección
-              <q-form @submit="submitForm">
-                <q-select
-                  v-model="selectedCountry"
-                  :options="countries"
-                  label="País"
-                  @update:modelValue="updateSelectedCountryId"
-                />
-                <q-select
-                  v-model="selectedDepartment"
-                  :options="departments"
-                  label="Departamento"
-                  @update:modelValue="updateSelectedDepartmentId"
-                />
-                <q-select
-                  v-model="selectedMunicipality"
-                  :options="municipalities"
-                  label="Municipio"
-                />
-                <q-input v-model="newClient.address" label="Direccion" />
-                <q-input v-model="newClient.zone" label="Zona" />
-              </q-form>
-            </q-card-section>
-          </q-card>
-
-          <q-btn type="submit" label="Agregar Cliente" color="primary" />
-        </q-form>
+  <!-- <q-page class="q-pa-md"> -->
+  <q-card class="my-card" flat bordered shadow-xl>
+    <!--  -->
+    <q-card-section>
+      <q-card-section class="bg-teal text-white">
+        <div class="text-h5 q-mt-sm q-mb-xs">Nuevo clientes</div>
       </q-card-section>
-    </q-card>
-  </q-page>
+      <br />
+      <q-form @submit="submitForm" class="q-gutter-md">
+        <q-input
+          v-model="newClient.name"
+          label="Nombre"
+          filled
+          type="string"
+          mask="string"
+          lazy-rules
+          :rules="[(val) => (val && val.length > 0) || 'Ingrese un Nombre']"
+        />
+        <q-input
+          v-model="newClient.lastName"
+          label="Apellido"
+          filled
+          type="string"
+          mask="string"
+          lazy-rules
+          :rules="[(val) => (val && val.length > 0) || 'Ingrese un Apellido']"
+        />
+        <q-input
+          v-model="newClient.dpi"
+          label="DPI"
+          filled
+          type="number"
+          mask="int"
+          lazy-rules
+          :rules="[(val) => (val && val.length > 0) || 'Ingrese un DPI valido']"
+        />
+        <q-input
+          v-model="newClient.nit"
+          label="NIT"
+          filled
+          type="number"
+          mask="int"
+          lazy-rules
+          :rules="[(val) => (val && val.length > 0) || 'Ingrese un NIT valido']"
+        />
+        <q-input
+          v-model="newClient.phone"
+          label="Teléfono"
+          filled
+          type="number"
+          mask="int"
+          lazy-rules
+          :rules="[
+            (val) =>
+              (val && val.length == 8) ||
+              'Ingrese un numero de telefono valido',
+          ]"
+        />
+        <q-input
+          v-model="newClient.cellphone"
+          label="Celular"
+          filled
+          type="number"
+          mask="int"
+          lazy-rules
+          :rules="[
+            (val) =>
+              (val && val.length == 8) ||
+              'Ingrese un numero de telefono valido',
+          ]"
+        />
+
+        <q-select
+          v-model="newClient.TypeClientId"
+          :options="clientTypes"
+          label="Tipo de Cliente"
+          filled
+        />
+        <br />
+
+        <q-card class="q-mb-md">
+          <q-card-section>
+            <q-card-section class="bg-grey-8 text-white">
+              <div class="text-h5 q-mt-sm q-mb-xs">Direccion</div>
+            </q-card-section>
+            <br />
+            <q-form @submit="submitForm" class="q-gutter-md">
+              <q-select
+                v-model="selectedCountry"
+                :options="countries"
+                label="País"
+                @update:modelValue="updateSelectedCountryId"
+                filled
+              />
+              <q-select
+                v-model="selectedDepartment"
+                :options="departments"
+                label="Departamento"
+                @update:modelValue="updateSelectedDepartmentId"
+                filled
+              />
+              <q-select
+                v-model="selectedMunicipality"
+                :options="municipalities"
+                label="Municipio"
+                filled
+              />
+              <q-input
+                v-model="newClient.address"
+                label="Direccion"
+                filled
+                type="string"
+                mask="string"
+                lazy-rules
+                :rules="[
+                  (val) =>
+                    (val && val.length > 0) || 'Ingrese una direccion valida',
+                ]"
+              />
+              <q-input
+                v-model="newClient.zone"
+                label="Zona"
+                filled
+                type="number"
+                mask="int"
+                lazy-rules
+                :rules="[
+                  (val) => (val && val.length > 0) || 'Ingrese una zona valida',
+                ]"
+              />
+            </q-form>
+            <q-form @submit="submitForm" class="q-gutter-md"> </q-form>
+          </q-card-section>
+        </q-card>
+
+        <q-btn type="submit" label="Agregar Cliente" color="primary" />
+      </q-form>
+    </q-card-section>
+  </q-card>
+  <!-- </q-page> -->
 </template>
 
 <script setup>
@@ -130,29 +221,13 @@ const submitForm = async () => {
     );
 
     console.log("Address agregado correctamente:", response.data);
-    // $q.notify({
-    //   type: "positive",
-    //   message: "Cliente agregado correctamente",
-    // });
   } catch (error) {
     console.error("Error al agregar cliente:", error);
-    // $q.notify({
-    //   type: "negative",
-    //   message: "Error al agregar cliente",
-    // });
   }
 };
 
 // Método para actualizar el ID del Departamento seleccionado
 const updateSelectedDepartmentId = async (value) => {
-  // console.log(
-  //   "++++> " +
-  //     selectedDepartment.value.id +
-  //     " _..._ " +
-  //     selectedDepartment.value.label +
-  //     " _..._ " +
-  //     selectedCountry.value.label
-  // );
   selectedMunicipality.value = "";
   selectedDepartment.value = value;
   try {

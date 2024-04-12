@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 using Taller.Data;
 using Taller.Entities;
 
@@ -22,35 +24,94 @@ namespace Taller.Controllers.Location
         [HttpGet]
         public async Task<ActionResult<List<ServiceDetalle>>> GetAllServiceDetalle()
         {
-            var ServiceDetalle = await _context.ServiceDetalles.ToListAsync();
+            //var serviceDetalles = await _context.ServiceDetalles.Include(sd => sd.Client).ToListAsync();
+            //if (serviceDetalles == null)
+            //    return NotFound("No se encontraron detalles de servicio.");
+
+            //return Ok(serviceDetalles);
 
 
-            return Ok(ServiceDetalle);
 
-            //public List<Vehicle> = new List<Vehicle>{};
+            var serviceDetalles = await _context.ServiceDetalles
+                .Include(sd => sd.Client)
+                .ToListAsync();
+            await _context.ServiceDetalles
+               .Include(sd => sd.Vehicle)
+               .ToListAsync();
 
-            //var ServiceDetalle = await _context.ServiceDetalles
-            //    .Include(sd => sd.Vehicle)
-            //    .Select(sd => new EditServiceDetalle
-            //    {
-            //        // Mapea los datos que deseas devolver
-            //        Id = sd.Id,
+            if (serviceDetalles == null)
+                return NotFound("No se encontraron detalles de servicio.");
 
-            //    })
-            //    .ToListAsync();
+            var serviceDetalleDtos = new List<ServiceDetalle>();
+            foreach (var detalle in serviceDetalles)
+            {
+                var dto = new ServiceDetalle
+                {
+                    Id = detalle.Id,
+                    ClientId = detalle.ClientId,
+                    State = detalle.State,
+                    Km = detalle.Km,
+                    ServiceType = detalle.ServiceType,
+                    ServiceTypeId = detalle.ServiceTypeId,
+                    VehicleId = detalle.Vehicle.Id,
+                    Vehicle = new Vehicle
+                    {
+                        Id = detalle.Vehicle.Id,
+                        Placa = detalle.Vehicle.Placa,
+                        VehicleLineaId = detalle.Vehicle.VehicleLineaId,
+                        //VehicleLinea = await _context.VehicleLineas.FindAsync(detalle.Vehicle.VehicleLineaId)
+                    },
 
-            //return Ok(ServiceDetalle);
+                    Client = new Client
+                    {
+                        Id = detalle.Client.Id,
+                        Name = detalle.Client.Name,
+                        LastName = detalle.Client.LastName,
+                    }
+                };
+                serviceDetalleDtos.Add(dto);
+            }
+
+            return Ok(serviceDetalleDtos);
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<ServiceDetalle>> GetServiceDetalleById(int id)
+        [HttpGet("{idVehicle}")]
+        public async Task<ActionResult<ServiceDetalle>> GetServiceDetalleById(int idVehicle)
         {
-            var c = await _context.ServiceDetalles.FindAsync(id);
-            if (c == null)
-                return NotFound("ServiceDetalle not found.");
+            //var c = await _context.ServiceDetalles.FindAsync(idVehicle);
+            var serviceDetalle = await _context.ServiceDetalles.FirstOrDefaultAsync(x => x.VehicleId == idVehicle);
+            if (serviceDetalle != null)
+            {
+                var client = await _context.Clients.FirstOrDefaultAsync(x => x.Id == serviceDetalle.ClientId);
+                if (client == null)
+                    return NotFound("GetServiceDetalleById/client not found.");
+                //serviceDetalle.Client = client;
 
-            return Ok(c);
+                var servicesType = await _context.ServiceTypes.FirstOrDefaultAsync(x => x.Id == serviceDetalle.ServiceTypeId);
 
+
+                var vehicle = await _context.Vehicles.FirstOrDefaultAsync(x => x.Id == serviceDetalle.VehicleId);
+                if (vehicle == null)
+                    return NotFound("GetServiceDetalleById/vehicle not found.");
+
+                var typeClient = await _context.TypeClients.FirstOrDefaultAsync(x => x.Id == client.TypeClientId);
+
+
+                var options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve
+                };
+
+                var jsonString = JsonSerializer.Serialize(serviceDetalle, options);
+
+
+                return Ok(jsonString);
+            }
+
+            if (serviceDetalle == null)
+                return NotFound("ServiceDetalle by idVehicle not found.");
+
+            return NotFound("ServiceDetalleById not found.");
         }
 
         [HttpPost]

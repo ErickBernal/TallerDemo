@@ -1,16 +1,25 @@
 <template>
+  <!--  -->
+  <!-- <p>(estoy en child)Datos del Hijo: {{ sendDataParentToChild }}</p> -->
+  <!-- <button @click="getDataFromChild">
+    (estoy en child)Enviar Datos al Padre
+  </button> -->
+  <!--  -->
+
   <q-select
     v-model="vehicleSelected"
     :options="vehicles"
     label="Vehiculo"
     @update:modelValue="getVehicleLineById"
-    @click="$emit('sendDataChild')"
     filled
   >
     <template v-slot:append>
       <span v-if="vehicleLineSelected">
-        {{ vehicleLineSelected.line }} {{ vehicleLineSelected.type }}
-        {{ vehicleLineSelected.color }}
+        <!-- {{ getVehicle(vehicleSelected) }} -->
+        <div class="text-gray text-h6 q-mt-sm q-mb-xs">
+          {{ vehicleLineSelected.line }} {{ vehicleLineSelected.type }}
+          {{ vehicleLineSelected.color }}
+        </div>
       </span>
       <span v-else> Cargando... </span>
     </template>
@@ -18,12 +27,35 @@
 </template>
 <!-- ------------------------------------------------------------------------------ -->
 <script setup>
-import { ref, onMounted, onBeforeMount } from "vue";
+import {
+  ref,
+  onMounted,
+  onBeforeMount,
+  onBeforeUnmount,
+  onUnmounted,
+  defineProps,
+  defineEmits,
+} from "vue";
 import axios from "axios";
+//----------------------------------------------
 
+//sendDataParentToChild: in FindVehicle.vue , receives the data from StatusServices.vue
+const props = defineProps({
+  sendDataParentToChild: Object,
+});
+
+const emit = defineEmits(["enviarDatosPadre"]);
+
+//send de data to parent
+const getDataFromChild = () => {
+  emit("enviarDatosPadre", vehicleSelected.value);
+};
+
+//----------------------------------------------
 const vehicleSelected = ref("");
 const vehicles = ref([]);
 const vehicleLineSelected = ref([]);
+// const props = defineProps(["vehicleSelected2"]);
 
 async function getVehicles() {
   try {
@@ -55,15 +87,19 @@ async function getVehicleLineById() {
       type: res.type,
       line: res.line,
     };
+    getDataFromChild();
   } catch (error) {
     console.error("Error al obtener departamentos:", error);
   }
 }
 
-const emit = defineEmits(["sendDataChild"]);
-
 onBeforeMount(async () => {
   getVehicles();
+});
+
+onUnmounted(() => {
+  // Envía la prop a otro componente antes de desmontar
+  // emit("getVehicle", vehicleSelected);
 });
 
 onMounted(async () => {});

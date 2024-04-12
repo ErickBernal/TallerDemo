@@ -1,18 +1,24 @@
 <template>
   <q-page class="q-pa-md">
-    <div class="q-gutter-md">
-      <div class="q-gutter-md q-mb-md">
-        <q-input v-model="filterText" placeholder="Buscar..." />
-        <!-- <q-btn @click="filterData" label="Filtrar" color="primary" /> -->
+    <q-card-section class="bg-teal text-white">
+      <div class="text-h5 q-mt-sm q-mb-xs">Modificar Servicios</div>
+    </q-card-section>
+
+    <q-card class="q-mb-md" no-border>
+      <div class="q-gutter-md">
+        <div class="q-gutter-md q-mb-md">
+          <q-input v-model="filterText" placeholder="Buscar..." />
+          <!-- <q-btn @click="filterData" label="Filtrar" color="primary" /> -->
+        </div>
+        <q-table
+          :rows="filteredRows"
+          :columns="columns"
+          row-key="id"
+          :loading="loading"
+          no-data-label="No hay datos disponibles"
+        />
       </div>
-      <q-table
-        :rows="filteredRows"
-        :columns="columns"
-        row-key="id"
-        :loading="loading"
-        no-data-label="No hay datos disponibles"
-      />
-    </div>
+    </q-card>
   </q-page>
 </template>
 

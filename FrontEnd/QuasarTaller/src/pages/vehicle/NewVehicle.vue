@@ -1,37 +1,56 @@
 <template>
-  <h5>Nuevo vehiculo</h5>
-  <q-page class="q-pa-md">
-    <div class="q-gutter-md">
-      <div class="q-gutter-md q-mb-md">
-        Buscar linea
-        <q-input v-model="filterText" placeholder="Buscar..." />
-        <!-- <q-btn @click="filterData" label="Filtrar" color="primary" /> -->
+  <!-- <h5>Nuevo vehiculo</h5> -->
+  <!-- <q-page class="q-pa-md"> -->
+  <q-card class="my-card" flat bordered shadow-xl>
+    <q-card-section>
+      <q-card-section class="bg-teal text-white">
+        <div class="text-h5 q-mt-sm q-mb-xs">Nuevo Vehiculo</div>
+      </q-card-section>
+      <div class="q-gutter-md">
+        <div class="q-gutter-md q-mb-md">
+          <q-input v-model="filterText" placeholder="Buscar vehiculo..." />
+          <!-- <q-btn @click="filterData" label="Filtrar" color="primary" /> -->
+        </div>
+        <q-table
+          :rows="filteredRows"
+          :columns="columns"
+          row-key="id"
+          :loading="loading"
+          no-data-label="No hay datos disponibles"
+          filled
+        >
+          <template v-slot:body-cell-Selected="props">
+            <q-td :props="props">
+              <q-checkbox
+                v-model="props.row.selected"
+                @change="logSelectedRow(props.row)"
+              />
+            </q-td>
+          </template>
+        </q-table>
       </div>
-      <q-table
-        :rows="filteredRows"
-        :columns="columns"
-        row-key="id"
-        :loading="loading"
-        no-data-label="No hay datos disponibles"
-      >
-        <template v-slot:body-cell-Selected="props">
-          <q-td :props="props">
-            <q-checkbox
-              v-model="props.row.selected"
-              @change="logSelectedRow(props.row)"
-            />
-          </q-td>
-        </template>
-      </q-table>
-    </div>
-    <br />
-    <br />
-    <q-form>
-      <q-input v-model="newVehicle.Placa" label="Ingrese No. Placa" />
-    </q-form>
-    <br />
-    <q-btn @click="saveNewVehicle" label="Guardar" color="primary" />
-  </q-page>
+      <br />
+      <br />
+      <q-form>
+        <q-input
+          v-model="newVehicle.Placa"
+          label="Ingrese No. Placa"
+          filled
+          type="string"
+          mask="string"
+          lazy-rules
+          :rules="[
+            (val) =>
+              /^[A-Za-z]{3}\d{3}$/.test(val) ||
+              'Ingrese una placa válida (3 letras seguidas de 3 números)',
+          ]"
+        />
+      </q-form>
+      <br />
+      <q-btn @click="saveNewVehicle" label="Guardar" color="primary" />
+      <!-- </q-page> -->
+    </q-card-section>
+  </q-card>
 </template>
 
 <script setup>

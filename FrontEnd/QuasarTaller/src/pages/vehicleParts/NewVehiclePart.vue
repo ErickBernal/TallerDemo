@@ -1,59 +1,68 @@
 <template>
-  <div class="q-pa-md row items-start q-gutter-md">
-    <!--  -->
-    <q-dialog v-model="isActiveNewVehicle">
-      <q-card class="my-card">
-        <q-card class="my-card">
-          <q-card-section class="bg-teal text-white">
-            <div class="text-h6">Crear Repuesto</div>
-            <!-- <div class="text-subtitle2">by John Doe666</div> -->
+  <!-- <div class="q-pa-md row items-start q-gutter-md"> -->
+  <!--  -->
+  <!-- <q-dialog v-model="isActiveNewVehicle"> -->
+  <q-card class="my-card">
+    <q-card class="my-card">
+      <q-card-section class="bg-grey-8 text-white">
+        <div class="text-h6">Crear Repuesto</div>
+        <!-- <div class="text-subtitle2">by John Doe666</div> -->
+      </q-card-section>
+      <!--  -->
+      <q-card class="q-mb-md">
+        <q-card class="q-mb-md">
+          <q-card-section>
+            <div class="q-gutter-md">
+              <q-form @submit="saveVehiclePart">
+                <q-input
+                  v-model="newVehiclePat.name"
+                  label="Nombre repuesto"
+                  type="string"
+                  mask="string"
+                  lazy-rules
+                  :rules="[
+                    (val) => (val && val.length > 0) || 'Ingrese un nombre',
+                  ]"
+                />
+                <q-input
+                  v-model="newVehiclePat.stock"
+                  label="Cantidad"
+                  type="number"
+                  mask="int"
+                  lazy-rules
+                  :rules="[
+                    (val) => (val && val.length > 0) || 'Ingrese una cantidad',
+                  ]"
+                />
+                <q-input
+                  v-model="newVehiclePat.unitPrice"
+                  label="Q. (precio unitario)"
+                  type="number"
+                  mask="int"
+                  lazy-rules
+                  :rules="[
+                    (val) =>
+                      (val && val.length > 0) || 'Ingrese un precio valido',
+                  ]"
+                />
+                <br />
+                <q-btn
+                  class="bg-teal text-white"
+                  label="Crear repuesto"
+                  color="primary"
+                  @click="saveVehiclePart"
+                ></q-btn>
+              </q-form>
+            </div>
           </q-card-section>
-          <!--  -->
-          <q-card class="q-mb-md">
-            <q-card class="q-mb-md">
-              <q-card-section>
-                <div class="q-gutter-md">
-                  <q-form @submit="saveVehiclePart">
-                    <q-input
-                      v-model="newVehiclePat.name"
-                      label="Nombre repuesto"
-                    />
-                    <q-input
-                      v-model="newVehiclePat.stock"
-                      label="Cantidad"
-                      type="number"
-                      mask="int"
-                      lazy-rules
-                      :rules="[
-                        (val) =>
-                          (val && val.length > 0) || 'Please type something',
-                      ]"
-                    />
-                    <q-input
-                      v-model="newVehiclePat.unitPrice"
-                      label="Q. (precio unitario)"
-                      type="number"
-                      mask="int"
-                    />
-                    <q-separator />
-                    <br />
-                    <q-btn
-                      class="bg-teal text-white"
-                      label="Crear repuesto"
-                      color="primary"
-                      @click="saveVehiclePart"
-                    ></q-btn>
-                  </q-form>
-                </div>
-              </q-card-section>
-            </q-card>
-          </q-card>
         </q-card>
-        <!--  -->
       </q-card>
-    </q-dialog>
+    </q-card>
     <!--  -->
-  </div>
+  </q-card>
+  <!-- </q-dialog> -->
+  <!--  -->
+  <!-- </div> -->
 </template>
 
 <script setup>
