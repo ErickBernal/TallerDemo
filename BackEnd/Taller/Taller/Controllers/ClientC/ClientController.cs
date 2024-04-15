@@ -22,8 +22,58 @@ namespace Taller.Controllers.ClientC
         public async Task<ActionResult<List<Client>>> GetAllClient()
         {
             var Client = await _context.Clients.ToListAsync();
+            if (Client == null)
+                return NotFound("No se encontraron detalles del cliente.");
 
-            return Ok(Client);
+            var typeClient = await _context.Clients.Include(t => t.TypeClient).ToListAsync();
+            var muni = await _context.Clients.Include(m => m.Municipality).ToListAsync();
+            await _context.Municipalities.Include(d => d.Department).ToListAsync();
+            await _context.Departments.Include(c => c.Country).ToListAsync();
+
+            //build response
+            var clientsToReturn = new List<Client>();
+            foreach (var client in Client)
+            {
+                var c = new Client
+                {
+                    Id = client.Id,
+                    Name = client.Name,
+                    LastName = client.LastName,
+                    DPI = client.DPI,
+                    Nit = client.Nit,
+                    Phone = client.Phone,
+                    Cellphone = client.Cellphone,
+                    TypeClientId = client.TypeClientId,
+                    Zone = client.Zone,
+                    Address = client.Address,
+                    MunicipalityId = client.MunicipalityId,
+                    ServiceDetalles = null,
+                    TypeClient = new TypeClient
+                    {
+                        Id = client.TypeClient.Id,
+                        Type = client.TypeClient.Type,
+                        Clients = null
+                    },
+                    Municipality = new Municipality
+                    {
+                        Id = client.Municipality.Id,
+                        Name= client.Municipality.Name,
+                        DepartmentId = client.Municipality.DepartmentId,
+                        Department = new Department
+                        {
+                            Id = client.Municipality.Department.Id,
+                            Name = client.Municipality.Department.Name,
+                            CountryId = client.Municipality.Department.CountryId,
+                            Country = new Country {
+                                Id = client.Municipality.Department.Country.Id,
+                                Name = client.Municipality.Department.Country.Name
+                            },
+                        },
+                    },
+                };
+                clientsToReturn.Add(c);
+            }
+            return Ok(clientsToReturn);
         }
 
         [HttpGet("{id}")]

@@ -43,41 +43,32 @@
               <span v-else> Cargando... </span>
             </template>
           </q-select>
+          <!-- asignar cliente -->
           <!--  -->
-          <q-card class="my-card">
-            <!--  -->
-            <q-card-section class="bg-grey-8 text-white">
-              <div class="text-h8">Asignar Cliente</div>
-            </q-card-section>
-            <!--  -->
-            <q-card class="q-mb-md">
-              <q-card class="q-mb-md">
-                <q-card-section>
-                  <div class="q-gutter-md">
-                    <div class="q-gutter-md q-mb-md">
-                      <q-input
-                        v-model="filterText"
-                        placeholder="Buscar Cliente..."
-                      />
-                      <!-- <q-btn @click="filterData" label="Filtrar" color="primary" /> -->
-                    </div>
-                    <q-table
-                      :rows="filteredRows"
-                      :columns="columns"
-                      row-key="id"
-                      :loading="loading"
-                      selection="single"
-                      v-model:selected="rowSelected"
-                      no-data-label="No hay datos disponibles"
-                    />
-                    selected: {{ JSON.stringify(rowSelected) }}
-                  </div>
-                </q-card-section>
-              </q-card>
-            </q-card>
-            <!--  -->
-          </q-card>
+          <q-card-section class="bg-grey-8 text-white">
+            <div class="text-h8">Asignar Cliente</div>
+          </q-card-section>
           <!--  -->
+          <q-card-section>
+            <div class="q-gutter-md">
+              <div class="q-gutter-md q-mb-md">
+                <q-input v-model="filterText" placeholder="Buscar Cliente..." />
+                <!-- <q-btn @click="filterData" label="Filtrar" color="primary" /> -->
+              </div>
+              <q-table
+                :rows="filteredRows"
+                :columns="columns"
+                row-key="id"
+                :loading="loading"
+                selection="single"
+                v-model:selected="rowSelected"
+                no-data-label="No hay datos disponibles"
+              />
+              <!-- selected: {{ JSON.stringify(rowSelected) }} -->
+            </div>
+          </q-card-section>
+          <!--  -->
+          <!-- asignar cliente -->
           <q-btn
             type="submit"
             label="Crear servicio"

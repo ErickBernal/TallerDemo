@@ -57,7 +57,7 @@ const routes = [
       },
       {
         path: "/cliente",
-        component: () => import("pages/client/ClientBaner.vue"),
+        component: () => import("pages/client/ClientPage.vue"),
       },
       {
         path: "/factura",
