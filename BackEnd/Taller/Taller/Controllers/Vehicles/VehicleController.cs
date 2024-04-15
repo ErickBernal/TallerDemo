@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 using Taller.Data;
 using Taller.Entities;
 
@@ -22,8 +24,33 @@ namespace Taller.Controllers.Vehicles
         public async Task<ActionResult<List<Vehicle>>> GetAllVehicle()
         {
             var Vehicle = await _context.Vehicles.ToListAsync();
+            if (Vehicle == null)
+                return NotFound("No se encontro vehiculos (get)");
 
-            return Ok(Vehicle);
+            //cargando la linea de cada vehiculo
+            await _context.Vehicles.Include(v => v.VehicleLinea).ToListAsync();
+
+            var vehiclesToReturn = new List<Vehicle>();
+            foreach (var v in Vehicle)
+            {
+                var vehicle = new Vehicle
+                {
+                    Id = v.Id,
+                    Placa = v.Placa,
+                    VehicleLineaId = v.VehicleLineaId,
+                    VehicleLinea = new VehicleLinea
+                    {
+                        Id = v.VehicleLinea.Id,
+                        Color = v.VehicleLinea.Color,
+                        Type = v.VehicleLinea.Type,
+                        Line = v.VehicleLinea.Line,
+                    }
+                };
+
+                vehiclesToReturn.Add(vehicle);
+            }
+
+            return Ok(vehiclesToReturn);
         }
 
         [HttpGet("{id}")]
@@ -53,6 +80,7 @@ namespace Taller.Controllers.Vehicles
                 return NotFound("Vehicle not found (put).");
 
             dbVehicle.Placa = updateVehicle.Placa;
+            dbVehicle.VehicleLineaId = updateVehicle.VehicleLineaId;
             await _context.SaveChangesAsync();
 
             return Ok(await _context.Vehicles.ToListAsync());

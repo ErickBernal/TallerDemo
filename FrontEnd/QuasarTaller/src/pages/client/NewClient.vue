@@ -4,10 +4,10 @@
     <!--  -->
     <q-card-section>
       <q-card-section class="bg-teal text-white">
-        <div class="text-h5 q-mt-sm q-mb-xs">Nuevo clientes</div>
+        <div class="text-h5 q-mt-sm q-mb-xs">{{ componentName }}</div>
       </q-card-section>
       <br />
-      <q-form @submit="submitForm" class="q-gutter-md">
+      <q-form class="q-gutter-md">
         <q-input
           v-model="newClient.name"
           label="Nombre"
@@ -85,7 +85,7 @@
               <div class="text-h5 q-mt-sm q-mb-xs">Direccion</div>
             </q-card-section>
             <br />
-            <q-form @submit="submitForm" class="q-gutter-md">
+            <q-form class="q-gutter-md">
               <q-select
                 v-model="selectedCountry"
                 :options="countries"
@@ -130,11 +130,13 @@
                 ]"
               />
             </q-form>
-            <q-form @submit="submitForm" class="q-gutter-md"> </q-form>
+            <q-form class="q-gutter-md"> </q-form>
           </q-card-section>
         </q-card>
 
-        <q-btn type="submit" label="Agregar Cliente" color="primary" />
+        <q-btn type="submit" @click="submitForm" color="primary">{{
+          componentName
+        }}</q-btn>
       </q-form>
     </q-card-section>
   </q-card>
@@ -142,11 +144,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onBeforeMount, defineProps } from "vue";
 import axios from "axios";
-import { useQuasar } from "quasar";
+// import { useQuasar } from "quasar";
 
-const { cookies, fullscreen } = useQuasar();
+// const { cookies, fullscreen } = useQuasar();
 
 const newClient = ref({
   MunicipalityId: "",
@@ -163,6 +165,8 @@ const newClient = ref({
   MunicipalityId: "",
 });
 
+const varUpdateClient = ref([]);
+
 const clientTypes = ref([]);
 const countries = ref([]);
 const departments = ref([]);
@@ -172,8 +176,31 @@ const selectedCountry = ref("");
 const selectedDepartment = ref("");
 const selectedMunicipality = ref("");
 const newAddress = ref("");
+const defaultValues = ref([]);
 
-onMounted(async () => {
+const props = defineProps({
+  componentName: String,
+  name: String,
+  lastName: String,
+  dpi: String,
+  nit: String,
+  tel: String,
+});
+
+onBeforeMount(async () => {
+  getTypeClients();
+  getCountries();
+  loadDefaultValues();
+});
+
+function loadDefaultValues() {
+  console.log("name:" + props.name);
+  console.log("lastName:" + props.lastName);
+  newClient.value.name = props.name;
+  newClient.value.lastName = props.lastName;
+}
+
+async function getTypeClients() {
   // Obtener tipos de cliente
   try {
     const response = await axios.get(
@@ -186,9 +213,11 @@ onMounted(async () => {
     }));
   } catch (error) {
     console.error("Error al obtener tipos de cliente:", error);
+    alert("Error al obtener tipos de cliente:");
   }
+}
 
-  // Obtener lista de países
+async function getCountries() {
   try {
     const response = await axios.get(
       process.env.API_BASE_URL + "/taller/Country"
@@ -199,31 +228,60 @@ onMounted(async () => {
     }));
   } catch (error) {
     console.error("Error al obtener países:", error);
+    alert("Error al obtener paises");
   }
-});
+}
+
+const createNewClient = async () => {
+  if (newClient.value.name == "") {
+    alert("Agregue un nombre");
+  } else if (newClient.value.lastName == "") {
+    alert("Agregue un apellido");
+  } else if (newClient.value.dpi == "") {
+    alert("Agregue DPI");
+  } else if (newClient.value.nit == "") {
+    alert("Agregue nit");
+  } else if (newClient.value.phone == "") {
+    alert("Agregue telefono");
+  } else if (newClient.value.cellphone == "") {
+    alert("Agregue celular");
+  } else if (newClient.value.TypeClientId.id == "") {
+    alert("Seleccione un tipo de cliente");
+  } else if (newClient.value.zone == "") {
+    alert("Agregue una zona valida");
+  } else if (newClient.value.address == "") {
+    alert("Agregue la direccion");
+  } else if (selectedMunicipality.value.id == "") {
+    alert("Seleccione una municipalidad");
+  } else {
+    try {
+      const response = await axios.post(
+        process.env.API_BASE_URL + "/taller/Client",
+        {
+          name: newClient.value.name,
+          lastname: newClient.value.lastName,
+          dpi: newClient.value.dpi,
+          nit: newClient.value.nit,
+          phone: newClient.value.phone,
+          cellphone: newClient.value.cellphone,
+          typeClientId: newClient.value.TypeClientId.id,
+          zone: newClient.value.zone,
+          address: newClient.value.address,
+          municipalityId: selectedMunicipality.value.id,
+        }
+      );
+      console.log("Address agregado correctamente:", response.data);
+    } catch (error) {
+      console.error("Error al agregar cliente:", error);
+    }
+  }
+};
+
+const updateClient = async () => {};
 
 const submitForm = async () => {
-  try {
-    const response = await axios.post(
-      process.env.API_BASE_URL + "/taller/Client",
-      {
-        name: newClient.value.name,
-        lastname: newClient.value.lastName,
-        dpi: newClient.value.dpi,
-        nit: newClient.value.nit,
-        phone: newClient.value.phone,
-        cellphone: newClient.value.cellphone,
-        typeClientId: newClient.value.TypeClientId.id,
-        zone: newClient.value.zone,
-        address: newClient.value.address,
-        municipalityId: selectedMunicipality.value.id,
-      }
-    );
-
-    console.log("Address agregado correctamente:", response.data);
-  } catch (error) {
-    console.error("Error al agregar cliente:", error);
-  }
+  if (props.bottomName == "Agregar Cliente") createNewClient();
+  if (props.bottomName == "Actualizar Cliente") updateClient();
 };
 
 // Método para actualizar el ID del Departamento seleccionado
