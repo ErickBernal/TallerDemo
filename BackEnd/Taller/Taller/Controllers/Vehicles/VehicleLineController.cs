@@ -24,8 +24,37 @@ namespace Taller.Controllers.Vehicles
         public async Task<ActionResult<List<VehicleLinea>>> GetAllVehicleLinea()
         {
             var VehicleLinea = await _context.VehicleLineas.ToListAsync();
+            if (VehicleLinea == null)
+                return NotFound("No se encontraron detalles de servicio.");
 
-            return Ok(VehicleLinea);
+            await _context.VehicleLineas.Include(vl => vl.VehicleBrand).ToListAsync();
+            await _context.VehicleLineas.Include(vl => vl.VehicleModel).ToListAsync();
+
+            var returnVehicleLinea = new List<VehicleLinea>();
+            foreach (var vehicle in VehicleLinea)
+            {
+                var v = new VehicleLinea
+                {
+                    Id = vehicle.Id,
+                    Type = vehicle.Type,
+                    Color = vehicle.Color,
+                    Line = vehicle.Line,
+                    VehicleModelId = vehicle.VehicleModelId,
+                    VehicleModel = new VehicleModel
+                    {
+                        Id = vehicle.VehicleModel.Id,
+                        Model = vehicle.VehicleModel.Model
+                    },
+                    VehicleBrandId = vehicle.VehicleBrandId,
+                    VehicleBrand = new VehicleBrand
+                    {
+                        Id =vehicle.VehicleBrand.Id,
+                        Brand = vehicle.VehicleBrand.Brand
+                    }
+                };
+                returnVehicleLinea.Add(v);
+            }
+            return Ok(returnVehicleLinea);
         }
 
         [HttpGet("{id}")]
@@ -44,7 +73,7 @@ namespace Taller.Controllers.Vehicles
         {
             _context.VehicleLineas.Add(VehicleLinea);
             await _context.SaveChangesAsync();
-            return Ok(await _context.VehicleLineas.ToListAsync());
+            return Ok(VehicleLinea);
         }
 
         [HttpPut]

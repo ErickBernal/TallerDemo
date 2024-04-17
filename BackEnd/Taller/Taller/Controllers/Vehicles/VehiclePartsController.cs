@@ -21,9 +21,7 @@ namespace Taller.Controllers.Vehicles
         [HttpGet]
         public async Task<ActionResult<List<VehiclePart>>> GetAllVehicle()
         {
-            var Vehicle = await _context.VehicleParts.ToListAsync();
-
-            return Ok(Vehicle);
+            return Ok(await _context.VehicleParts.ToListAsync());
         }
 
         [HttpGet("{id}")]
@@ -42,7 +40,7 @@ namespace Taller.Controllers.Vehicles
         {
             _context.VehicleParts.Add(Vehicle);
             await _context.SaveChangesAsync();
-            return Ok(await _context.VehicleParts.ToListAsync());
+            return Ok(Vehicle);
         }
 
         [HttpPut]
