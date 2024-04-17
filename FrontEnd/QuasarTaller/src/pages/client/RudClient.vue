@@ -21,11 +21,49 @@
           :loading="loading"
           no-data-label="No hay datos disponibles"
         >
-          <!-- Columna para botones CRUD -->
-          <template #body-cell-CRUD="props">
+          <!-- Columna para botones Update -->
+          <template #body-cell-Update="props">
             <q-td :props="props">
-              <q-btn icon="edit" @click="openEditDialog(props.row)" />
+              <q-btn icon="save" @click="openEditDialog(props.row)" />
+            </q-td>
+          </template>
+          <!-- Columna para botones Delete -->
+          <template #body-cell-Delete="props">
+            <q-td :props="props">
               <q-btn icon="delete" @click="openDeleteDialog(props.row)" />
+            </q-td>
+          </template>
+          <!-- Edited row -->
+          <template v-slot:body-cell="props">
+            <q-td :props="props">
+              <q-input
+                v-model="props.row[props.col.name]"
+                input-class="text-center"
+                dense
+                borderless
+              />
+            </q-td>
+          </template>
+          <!--  -->
+          <template #body-cell-typeClient="props">
+            <q-td :props="props">
+              <div class="q-gutter-xl">
+                <q-select
+                  color="orange"
+                  filled
+                  v-model="props.row[props.col.name]"
+                  :options="optionsTypeClient"
+                  :option-value="'id'"
+                  :option-label="'type'"
+                  label="Tipo de cliente"
+                />
+              </div>
+            </q-td>
+          </template>
+          <!-- DropDown button  -->
+          <template #body-cell-DIR="props">
+            <q-td :props="props">
+              <q-btn icon="map" @click="openAddressDialog(props.row)" />
             </q-td>
           </template>
           <!--  -->
@@ -36,29 +74,99 @@
     <!--  -->
     <q-dialog v-model="deleteDialogVisible">
       <q-card>
+        <q-card-section class="bg-grey-8 text-white">
+          <div class="text-h5 q-mt-sm q-mb-xs">Eliminar usuario</div>
+        </q-card-section>
         <q-card-section>
           <q-card-section>
-            <p><strong>Placa:</strong> {{ editedRow.placa }}</p>
+            <p><strong>Nombre:</strong> {{ editedRow.name }}</p>
           </q-card-section>
           <q-card-section>
-            <p><strong>Color:</strong> {{ editedRow.color }}</p>
+            <p><strong>Apellido:</strong> {{ editedRow.lastName }}</p>
           </q-card-section>
           <q-card-section>
-            <p><strong>Tipo:</strong> {{ editedRow.type }}</p>
+            <p><strong>Dpi:</strong> {{ editedRow.dpi }}</p>
           </q-card-section>
         </q-card-section>
         <q-card-actions align="right">
-          <q-btn label="Cancelar" color="negative" @click="closeEditDialog" />
-          <q-btn label="Eliminar" color="primary" @click="deleteVehicle" />
+          <q-btn label="Cancelar" color="negative" @click="closeDeleteDialog" />
+          <q-btn label="Eliminar" color="primary" @click="deleteClient" />
         </q-card-actions>
       </q-card>
     </q-dialog>
     <!--  -->
-    <q-dialog v-model="createDialogVisible">
-      <div class="row q-col-gutter-sm q-ma-xs">
-        <NewClient componentName="Create nuevo usuario" />
-      </div>
+    <q-dialog v-model="editDialogVisible">
+      <q-card>
+        <q-card-section
+          class="bg-teal text-white"
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <div class="text-h5 q-mt-sm q-mb-xs">Actualizar usuario</div>
+        </q-card-section>
+        <!--  -->
+        <q-card-section>
+          <q-card-section>
+            <q-badge color="secondary" multi-line> Datos </q-badge>
+
+            <p><strong>Nombre:</strong> {{ editedRow.name }}</p>
+            <p><strong>Apellido:</strong> {{ editedRow.lastName }}</p>
+            <p><strong>Dpi:</strong> {{ editedRow.dpi }}</p>
+            <p><strong>Telefono:</strong> {{ editedRow.phone }}</p>
+            <p><strong>Celular:</strong> {{ editedRow.cellphone }}</p>
+            <p>
+              <strong>Tipo de cliente:</strong> {{ editedRow.typeClient.type }}
+            </p>
+            <!-- 
+            <q-badge color="secondary" multi-line> Direccion </q-badge>
+            <p>
+              <strong>Pais:</strong>
+              {{ editedRow.municipality.department.country.name }}
+            </p>
+            <p>
+              <strong>Departamento:</strong>
+              {{ editedRow.municipality.department.name }}
+            </p>
+            <p>
+              <strong>Municipalidad:</strong>
+              {{ editedRow.municipality.name }}
+            </p>
+            <p>
+              <strong>Direccion:</strong>
+              {{ editedRow.address }}
+            </p>
+            <p>
+              <strong>Zona:</strong>
+              {{ editedRow.zone }}
+            </p> -->
+          </q-card-section>
+        </q-card-section>
+        <!--  -->
+        <q-card-actions align="right">
+          <q-btn label="Cancelar" color="negative" @click="closeEditDialog" />
+          <q-btn label="Actualizar" color="primary" @click="saveChanges" />
+        </q-card-actions>
+      </q-card>
     </q-dialog>
+    <!--Create new user  -->
+    <q-dialog v-model="createDialogVisible">
+      <NewClient componentName="Create nuevo usuario" />
+    </q-dialog>
+    <!-- Address  -->
+    <q-dialog v-model="addressVisible">
+      <AddressComponent
+        v-model:selectedCountry="selectedCountry"
+        v-model:selectedDepartment="selectedDepartment"
+        v-model:selectedMunicipality="selectedMunicipality"
+        v-model:selectedAddress="selectedAddress"
+        v-model:selectedZone="selectedZone"
+        v-model:activateBtn="activateBtn"
+      />
+    </q-dialog>
+
     <!--  -->
   </q-card>
 </template>
@@ -66,53 +174,94 @@
 <script setup>
 import { ref, onMounted, computed } from "vue";
 import axios from "axios";
-import { useQuasar } from "quasar";
+import AddressComponent from "./AddressComponent.vue";
 import NewClient from "./NewClient.vue";
 
-const $q = useQuasar();
 const loading = ref(false);
 const rows = ref([]);
-const Clients = ref([]);
 const onlyOneGet = ref(true);
+const filterText = ref("");
+let selectedRow = null;
+const editDialogVisible = ref(false);
+const deleteDialogVisible = ref(false);
+const createDialogVisible = ref(false);
+const addressVisible = ref(false);
+//new props
+const selectedCountry = ref("");
+const selectedDepartment = ref("");
+const selectedMunicipality = ref("");
+const selectedAddress = ref("");
+const selectedZone = ref("");
+const editedRow = ref({});
+const activateBtn = ref(true);
+
 const columns = [
   {
     name: "name",
-    align: "left",
+    align: "center",
     label: "Nombre",
     field: "name",
     sortable: true,
   },
   {
     name: "lastName",
-    align: "left",
+    align: "center",
     label: "Apellido",
     field: "lastName",
     sortable: true,
   },
   {
-    name: "DPI",
+    name: "dpi",
     align: "center",
-    label: "Dpi",
+    label: "DPI",
     field: "dpi",
     sortable: false,
   },
   {
-    name: "nit",
+    name: "phone",
     align: "center",
-    label: "NIT",
-    field: "nit",
+    label: "Telefono",
+    field: "phone",
+    sortable: false,
+  },
+
+  {
+    name: "cellphone",
+    align: "center",
+    label: "Celular",
+    field: "cellphone",
     sortable: false,
   },
   {
-    name: "CRUD",
+    name: "typeClient",
+    align: "center",
+    label: "Tipo de cliente",
+    field: "typeClient",
+    sortable: false,
+  },
+  {
+    name: "DIR",
+    align: "center",
+    label: "Direccion",
+    field: "ddress",
+    sortable: false,
+  },
+  {
+    name: "Update",
     align: "center",
     label: "Editar",
-    field: "CRUD",
+    field: "Update",
+    sortable: false,
+  },
+  {
+    name: "Delete",
+    align: "center",
+    label: "Eliminar",
+    field: "Delete",
     sortable: false,
   },
 ];
 
-const filterText = ref("");
 const filteredRows = computed(() => {
   return rows.value.filter(
     (row) =>
@@ -120,22 +269,15 @@ const filteredRows = computed(() => {
       row.lastName
         .toString()
         .toLowerCase()
-        .includes(filterText.value.toLowerCase())
+        .includes(filterText.value.toLowerCase()) ||
+      row.dpi.toString().toLowerCase().includes(filterText.value.toLowerCase())
   );
 });
 
-let selectedRow = null;
-const editDialogVisible = ref(false);
-const deleteDialogVisible = ref(false);
-const createDialogVisible = ref(false);
-
-const editedRow = ref({
-  name: "",
-  lastName: "",
-  placa: "",
-  linea: "",
-  lineaId: 0,
-});
+const optionsTypeClient = ref([
+  { id: 1, type: "Individual", clients: null },
+  { id: 2, type: "Empresa", clients: null },
+]);
 
 async function getClients() {
   if (onlyOneGet.value) {
@@ -160,20 +302,24 @@ async function getClients() {
   }
 }
 
-function start() {
-  getClients();
-}
-
 function openCreateUser() {
   createDialogVisible.value = true;
+}
+
+function openAddressDialog(row) {
+  addressVisible.value = true;
+  selectedRow = row;
+  selectedCountry.value = row.municipality.department.country;
+  selectedDepartment.value = row.municipality.department;
+  selectedMunicipality.value = row.municipality;
+  selectedAddress.value = row.address;
+  selectedZone.value = row.zone;
 }
 
 function openEditDialog(row) {
   selectedRow = row;
   editedRow.value = { ...row };
-
   editDialogVisible.value = true;
-  console.log("--21>" + JSON.stringify(editedRow.value));
 }
 
 function closeEditDialog() {
@@ -192,11 +338,10 @@ function closeDeleteDialog() {
   deleteDialogVisible.value = false;
 }
 
-async function deleteVehicle() {
+async function deleteClient() {
   try {
     const url =
-      process.env.API_BASE_URL + "/taller/Vehicle?id=" + selectedRow.id;
-    console.log("---->..." + url);
+      process.env.API_BASE_URL + "/taller/Client?id=" + selectedRow.id;
     await axios.delete(url);
     getClients();
     closeDeleteDialog();
@@ -207,23 +352,31 @@ async function deleteVehicle() {
 }
 
 async function saveChanges() {
-  if (editedRow.value.linea == null) {
-    editedRow.value.linea = {
-      id: editedRow.value.vehicleLineaId,
-    };
-  }
+  alert("Seguro que quiere actualizar los datos de: " + selectedRow.name);
   try {
-    const url = process.env.API_BASE_URL + "/taller/Vehicle";
+    const url = process.env.API_BASE_URL + "/taller/Client";
     await axios.put(url, {
       id: editedRow.value.id,
-      placa: editedRow.value.placa,
-      vehicleLineaId: editedRow.value.linea.id,
+      name: editedRow.value.name,
+      lastname: editedRow.value.lastName,
+      dpi: editedRow.value.dpi,
+      nit: editedRow.value.nit,
+      phone: editedRow.value.phone,
+      cellphone: editedRow.value.cellphone,
+      typeclientid: editedRow.value.typeClientId,
+      zone: editedRow.value.zone,
+      address: editedRow.value.address,
+      municipalityid: editedRow.value.municipalityId,
     });
     getClients();
     closeEditDialog();
   } catch (error) {
     console.error("Error al guardar los cambios:", error);
   }
+}
+
+function start() {
+  getClients();
 }
 
 onMounted(start);

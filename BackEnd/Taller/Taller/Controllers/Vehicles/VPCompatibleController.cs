@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
+using System.Text.Json;
+using System.Threading.Tasks;
 using Taller.Data;
 using Taller.Entities;
 
@@ -17,64 +21,85 @@ namespace Taller.Controllers.Vehicles
             _context = context;
         }
 
-
         [HttpGet]
-        public async Task<ActionResult<List<VehiclePartsCompatible>>> GetAllVehicle()
+        public async Task<ActionResult<List<VehiclePartsCompatible>>> GetAllVpcVehicle()
         {
-            var Vehicle = await _context.VpartsCompatibles.ToListAsync();
+            var vpartsCompatibles = await _context.VpartsCompatibles.ToListAsync();
 
-            return Ok(Vehicle);
+            if (vpartsCompatibles == null) 
+                return NotFound("No se encontraron VehiclePartsCompatible.");
+
+            await _context.VpartsCompatibles.Include(x => x.VehiclePart).ToListAsync();
+            await _context.VpartsCompatibles.Include(x => x.VehicleLinea).ToListAsync();
+
+            var options = new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            };
+            var jsonString = JsonSerializer.Serialize(vpartsCompatibles, options);
+
+
+            return Ok(jsonString);
+
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<VehiclePartsCompatible>> GetVehicleById(int id)
+        public async Task<ActionResult<VehiclePartsCompatible>> GetVpcVehicleById(int id)
         {
             var c = await _context.VpartsCompatibles.FindAsync(id);
             if (c == null)
                 return NotFound("Vehicle not found.");
 
             return Ok(c);
-
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<VehiclePartsCompatible>>> AddVehicle(VehiclePartsCompatible Vehicle)
+        public async Task<ActionResult<VehiclePartsCompatible>> AddVpcVehicle(VehiclePartsCompatible vehicle)
         {
-            _context.VpartsCompatibles.Add(Vehicle);
+            _context.VpartsCompatibles.Add(vehicle);
             await _context.SaveChangesAsync();
-            return Ok(await _context.VpartsCompatibles.ToListAsync());
+            return CreatedAtAction(nameof(GetVpcVehicleById), new { id = vehicle.Id }, vehicle);
         }
 
-        [HttpPut]
-        public async Task<ActionResult<VehiclePartsCompatible>> UpdateVehicle(VehiclePartsCompatible updateVehicle)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateVpcVehicle(int id, VehiclePartsCompatible updateVehicle)
         {
-            var dbVehicle = await _context.VpartsCompatibles.FindAsync(updateVehicle.Id);
-            if (dbVehicle == null)
-                return NotFound("Vehicle not found (put).");
+            if (id != updateVehicle.Id)
+                return BadRequest("ID del vehículo no coincide con el cuerpo de la solicitud.");
 
-            dbVehicle.VehicleLinea = updateVehicle.VehicleLinea;
-            dbVehicle.VehiclePart = updateVehicle.VehiclePart;
-            await _context.SaveChangesAsync();
+            _context.Entry(updateVehicle).State = EntityState.Modified;
 
-            return Ok(await _context.VpartsCompatibles.ToListAsync());
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!VehicleExists(id))
+                    return NotFound("Vehicle not found.");
+                else
+                    throw;
+            }
 
+            return NoContent();
         }
 
-        [HttpDelete]
-        public async Task<ActionResult<VehiclePartsCompatible>> DeleteVehicle(int id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteVpcVehicle(int id)
         {
-            var dbVehicle = await _context.VpartsCompatibles.FindAsync(id);
-            if (dbVehicle == null)
-                return NotFound("Vehicle not found (del).");
+            var vehicle = await _context.VpartsCompatibles.FindAsync(id);
+            if (vehicle == null)
+                return NotFound("Vehicle not found.");
 
-            _context.VpartsCompatibles.Remove(dbVehicle);
+            _context.VpartsCompatibles.Remove(vehicle);
             await _context.SaveChangesAsync();
 
-            return Ok(await _context.VpartsCompatibles.ToListAsync());
-
+            return NoContent();
         }
 
-
+        private bool VehicleExists(int id)
+        {
+            return _context.VpartsCompatibles.Any(e => e.Id == id);
+        }
     }
 }
-
