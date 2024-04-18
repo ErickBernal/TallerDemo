@@ -54,7 +54,6 @@ namespace Taller.Controllers.DetalleVehiclePartsment
 
             dbDetalleVehicleParts.VehiclePartId = updateDetalleVehicleParts.VehiclePartId;
             dbDetalleVehicleParts.ServiceDetalleId = updateDetalleVehicleParts.ServiceDetalleId;
-            dbDetalleVehicleParts.InvoiceId = updateDetalleVehicleParts.InvoiceId;
             await _context.SaveChangesAsync();
 
             return Ok(await _context.DetalleVehicleParts.ToListAsync());

@@ -34,7 +34,7 @@ namespace Taller.Data
 
         public DbSet<Invoice> Invoices { get; set; }
         //public DbSet<DetalleClientService> DetalleClientServices { get; set; }
-        public DbSet<DetalleWorkService> DetalleWorkServices { get; set; }
+        //public DbSet<DetalleWorkService> DetalleWorkServices { get; set; }
         public DbSet<DetalleVehicleParts> DetalleVehicleParts { get; set; }
 
 
@@ -43,7 +43,7 @@ namespace Taller.Data
 
             base.OnModelCreating(modelBuilder);
 
-  
+
             //modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
             //modelBuilder.Entity<Country>()
@@ -51,6 +51,15 @@ namespace Taller.Data
             //    .WithOne(oi => oi.Country)
             //    .HasForeignKey(oi => oi.CountryId);
             //modelBuilder.Entity<Country>().HasData(DbInitializer.Prub());
+
+
+
+            modelBuilder.Entity<DetalleVehicleParts>()
+                .HasOne(dvp => dvp.ServiceDetalle)
+                .WithMany(sd => sd.DetalleVehicleParts)
+                .HasForeignKey(dvp => dvp.ServiceDetalleId)
+                .OnDelete(DeleteBehavior.Restrict);
+
 
 
             modelBuilder.Entity<Country>().HasData(DbInitializer.GetCountriesToLoad());
@@ -65,7 +74,11 @@ namespace Taller.Data
             modelBuilder.Entity<VehicleLinea>().HasData(DbInitializer.GetVehicleLineasToLoad());
 
             modelBuilder.Entity<ServiceType>().HasData(DbInitializer.GetTypeClientToLoad());
+            modelBuilder.Entity<Invoice>().HasData(DbInitializer.GetInvoiceToLoad());
             modelBuilder.Entity<ServiceWork>().HasData(DbInitializer.GetServiceWorkToLoad());
+
+
+            
         }
     }
 }

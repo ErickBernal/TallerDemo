@@ -52,7 +52,7 @@ namespace Taller.Controllers.Location
             if (dbServiceListWork == null)
                 return NotFound("ServiceListWork not found (put).");
 
-            dbServiceListWork.ServiceTypeId = updateServiceListWork.ServiceTypeId;
+            //dbServiceListWork.ServiceTypeId = updateServiceListWork.ServiceTypeId;
             dbServiceListWork.ServiceWorkId = updateServiceListWork.ServiceWorkId;
 
             await _context.SaveChangesAsync();

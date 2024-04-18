@@ -12,7 +12,7 @@ using Taller.Data;
 namespace Taller.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20240410182422_initiaD")]
+    [Migration("20240418234026_initiaD")]
     partial class initiaD
     {
         /// <inheritdoc />
@@ -481,34 +481,6 @@ namespace Taller.Migrations
                     b.ToTable("DetalleVehicleParts");
                 });
 
-            modelBuilder.Entity("Taller.Entities.DetalleWorkService", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("InvoiceId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ServiceDetalleId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ServiceWorkId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("InvoiceId");
-
-                    b.HasIndex("ServiceDetalleId");
-
-                    b.HasIndex("ServiceWorkId");
-
-                    b.ToTable("DetalleWorkServices");
-                });
-
             modelBuilder.Entity("Taller.Entities.Invoice", b =>
                 {
                     b.Property<int>("Id")
@@ -526,6 +498,14 @@ namespace Taller.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Invoices");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DateTime = new DateTime(2024, 4, 18, 0, 0, 0, 0, DateTimeKind.Local),
+                            Value = 2200
+                        });
                 });
 
             modelBuilder.Entity("Taller.Entities.Log", b =>
@@ -5782,7 +5762,7 @@ namespace Taller.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ServiceTypeId")
+                    b.Property<int>("InvoiceId")
                         .HasColumnType("int");
 
                     b.Property<int>("ServiceWorkId")
@@ -5790,7 +5770,7 @@ namespace Taller.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ServiceTypeId");
+                    b.HasIndex("InvoiceId");
 
                     b.HasIndex("ServiceWorkId");
 
@@ -6198,7 +6178,7 @@ namespace Taller.Migrations
             modelBuilder.Entity("Taller.Entities.DetalleVehicleParts", b =>
                 {
                     b.HasOne("Taller.Entities.Invoice", "Invoice")
-                        .WithMany("DetalleVehiclePartss")
+                        .WithMany("DetalleVehicleParts")
                         .HasForeignKey("InvoiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -6206,7 +6186,7 @@ namespace Taller.Migrations
                     b.HasOne("Taller.Entities.ServiceDetalle", "ServiceDetalle")
                         .WithMany("DetalleVehicleParts")
                         .HasForeignKey("ServiceDetalleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Taller.Entities.VehiclePart", "VehiclePart")
@@ -6220,33 +6200,6 @@ namespace Taller.Migrations
                     b.Navigation("ServiceDetalle");
 
                     b.Navigation("VehiclePart");
-                });
-
-            modelBuilder.Entity("Taller.Entities.DetalleWorkService", b =>
-                {
-                    b.HasOne("Taller.Entities.Invoice", "Invoice")
-                        .WithMany("DetalleWorkServices")
-                        .HasForeignKey("InvoiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Taller.Entities.ServiceDetalle", "ServiceDetalle")
-                        .WithMany("DetalleWorkServices")
-                        .HasForeignKey("ServiceDetalleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Taller.Entities.ServiceWork", "ServiceWork")
-                        .WithMany("DetalleWorkServices")
-                        .HasForeignKey("ServiceWorkId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Invoice");
-
-                    b.Navigation("ServiceDetalle");
-
-                    b.Navigation("ServiceWork");
                 });
 
             modelBuilder.Entity("Taller.Entities.Municipality", b =>
@@ -6289,9 +6242,9 @@ namespace Taller.Migrations
 
             modelBuilder.Entity("Taller.Entities.ServiceListWork", b =>
                 {
-                    b.HasOne("Taller.Entities.ServiceType", "ServiceType")
-                        .WithMany("ServiceListWorks")
-                        .HasForeignKey("ServiceTypeId")
+                    b.HasOne("Taller.Entities.Invoice", "Invoice")
+                        .WithMany("ServiceListWork")
+                        .HasForeignKey("InvoiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -6301,7 +6254,7 @@ namespace Taller.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("ServiceType");
+                    b.Navigation("Invoice");
 
                     b.Navigation("ServiceWork");
                 });
@@ -6372,29 +6325,23 @@ namespace Taller.Migrations
 
             modelBuilder.Entity("Taller.Entities.Invoice", b =>
                 {
-                    b.Navigation("DetalleVehiclePartss");
+                    b.Navigation("DetalleVehicleParts");
 
-                    b.Navigation("DetalleWorkServices");
+                    b.Navigation("ServiceListWork");
                 });
 
             modelBuilder.Entity("Taller.Entities.ServiceDetalle", b =>
                 {
                     b.Navigation("DetalleVehicleParts");
-
-                    b.Navigation("DetalleWorkServices");
                 });
 
             modelBuilder.Entity("Taller.Entities.ServiceType", b =>
                 {
                     b.Navigation("ServiceDetalles");
-
-                    b.Navigation("ServiceListWorks");
                 });
 
             modelBuilder.Entity("Taller.Entities.ServiceWork", b =>
                 {
-                    b.Navigation("DetalleWorkServices");
-
                     b.Navigation("ServiceListWorks");
                 });
 

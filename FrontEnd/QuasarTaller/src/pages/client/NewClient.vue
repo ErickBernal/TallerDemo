@@ -95,7 +95,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeMount, defineProps } from "vue";
+import { ref, onMounted, onBeforeMount, defineProps, defineModel } from "vue";
 import axios from "axios";
 import AddressComponent from "./AddressComponent.vue";
 // import { useQuasar } from "quasar";
@@ -123,6 +123,7 @@ const selectedAddress = ref("");
 const selectedZone = ref("");
 //child to RudClient.vue
 const createDialogVisible = defineModel("createDialogVisible");
+const rows = defineModel("rows");
 
 onBeforeMount(async () => {
   getTypeClients();
@@ -158,6 +159,23 @@ async function getCountries() {
   } catch (error) {
     console.error("Error al obtener países:", error);
     alert("Error al obtener paises");
+  }
+}
+
+async function getClients() {
+  try {
+    const url = process.env.API_BASE_URL + "/taller/Client";
+    const response = await axios.get(url);
+    //   rows.value = response.data.map((res) => ({
+    //     id: res.id,
+    //     name: res.name,
+    //     lastName: res.lastName,
+    //     DPI: res.dpi,
+    //     typeClient: res.typeClient.type,
+    //   }));
+    rows.value = response.data;
+  } catch (error) {
+    console.error("Error al obtener datos (vehicleLinea):", error);
   }
 }
 
@@ -207,6 +225,8 @@ const createNewClient = async () => {
     }
     createDialogVisible.value = false;
   }
+  getClients();
+  createDialogVisible.value = false;
 };
 </script>
 

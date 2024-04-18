@@ -204,6 +204,13 @@ namespace TallerApi.Data.DefaultData
                 new ServiceType { Id = 4, Type = "Carroceria" },
             };
         }
+        public static List<Invoice> GetInvoiceToLoad()
+        {
+            return new List<Invoice>
+            {
+                new Invoice{Id=1, DateTime= DateTime.Today,Value=2200}
+            };
+        }
         public static List<ServiceWork> GetServiceWorkToLoad()
         {
             return new List<ServiceWork>
