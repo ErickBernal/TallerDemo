@@ -44,8 +44,10 @@
                   <q-select
                     filled
                     v-model="model"
-                    label="Simple select"
-                    :options="stringOptions"
+                    label="Compatible"
+                    :options="VPCompatibles"
+                    :option-value="'id'"
+                    :option-label="optionLabelTemplate"
                     behavior="menu"
                   ></q-select>
                 </q-td>
@@ -120,6 +122,9 @@ function closeEditDialog() {
 const { localStorage, notify } = useQuasar();
 const loading = ref(false);
 const rows = ref([]);
+const VPCompatibles = ref([]);
+const model = ref();
+
 const isActiveFindVehicle = ref(true);
 
 const columns = [
@@ -204,15 +209,9 @@ async function getVehicleParts() {
 async function getVehicleCompatibleParts() {
   loading.value = true;
   try {
-    const url = process.env.API_BASE_URL + "/taller/VehicleParts";
+    const url = process.env.API_BASE_URL + "/taller/VPCompatible";
     const response = await axios.get(url);
-    rows.value = response.data.map((res) => ({
-      id: res.id,
-      name: res.name,
-      stock: res.stock,
-      unitPrice: res.unitPrice,
-    }));
-    console.log("215-------->" + JSON.stringify(response.data));
+    VPCompatibles.value = response.data;
   } catch (error) {
     console.error("Error al obtener datos:", error);
   } finally {
@@ -256,8 +255,13 @@ function closeDeleteDialog() {
   editedRow.value.unitPrice = 0;
 }
 
+const optionLabelTemplate = (option) => {
+  return `${option.vehicleLinea.color} ${option.vehicleLinea.type} ${option.vehicleLinea.line}`;
+};
+
 function start() {
   getVehicleParts();
+  getVehicleCompatibleParts();
   localStorage.set("owner", false);
 }
 
