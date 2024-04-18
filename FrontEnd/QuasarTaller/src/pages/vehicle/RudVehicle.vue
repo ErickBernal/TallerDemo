@@ -7,7 +7,7 @@
     <q-card class="q-mb-md" no-border>
       <q-card-section>
         <div class="q-gutter-md q-mb-md">
-          <q-input v-model="filterText" placeholder="Buscar..." />
+          <q-input v-model="filterText" placeholder="Buscar vehiculo..." />
         </div>
         <q-table
           :rows="filteredRows"

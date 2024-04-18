@@ -174,16 +174,16 @@ namespace Taller.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ServiceTypeId = table.Column<int>(type: "int", nullable: false),
+                    InvoiceId = table.Column<int>(type: "int", nullable: false),
                     ServiceWorkId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ServiceListWorks", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ServiceListWorks_ServiceTypes_ServiceTypeId",
-                        column: x => x.ServiceTypeId,
-                        principalTable: "ServiceTypes",
+                        name: "FK_ServiceListWorks_Invoices_InvoiceId",
+                        column: x => x.InvoiceId,
+                        principalTable: "Invoices",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -382,44 +382,11 @@ namespace Taller.Migrations
                         column: x => x.ServiceDetalleId,
                         principalTable: "ServiceDetalles",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_DetalleVehicleParts_VehicleParts_VehiclePartId",
                         column: x => x.VehiclePartId,
                         principalTable: "VehicleParts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "DetalleWorkServices",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ServiceWorkId = table.Column<int>(type: "int", nullable: false),
-                    ServiceDetalleId = table.Column<int>(type: "int", nullable: false),
-                    InvoiceId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_DetalleWorkServices", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_DetalleWorkServices_Invoices_InvoiceId",
-                        column: x => x.InvoiceId,
-                        principalTable: "Invoices",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_DetalleWorkServices_ServiceDetalles_ServiceDetalleId",
-                        column: x => x.ServiceDetalleId,
-                        principalTable: "ServiceDetalles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_DetalleWorkServices_ServiceWorks_ServiceWorkId",
-                        column: x => x.ServiceWorkId,
-                        principalTable: "ServiceWorks",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -433,6 +400,11 @@ namespace Taller.Migrations
                     { 2, "El Salvador" },
                     { 3, "Honduras" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Invoices",
+                columns: new[] { "Id", "DateTime", "Value" },
+                values: new object[] { 1, new DateTime(2024, 4, 18, 0, 0, 0, 0, DateTimeKind.Local), 2200 });
 
             migrationBuilder.InsertData(
                 table: "ServiceTypes",
@@ -1470,21 +1442,6 @@ namespace Taller.Migrations
                 column: "VehiclePartId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DetalleWorkServices_InvoiceId",
-                table: "DetalleWorkServices",
-                column: "InvoiceId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DetalleWorkServices_ServiceDetalleId",
-                table: "DetalleWorkServices",
-                column: "ServiceDetalleId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_DetalleWorkServices_ServiceWorkId",
-                table: "DetalleWorkServices",
-                column: "ServiceWorkId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Municipalities_DepartmentId",
                 table: "Municipalities",
                 column: "DepartmentId");
@@ -1505,9 +1462,9 @@ namespace Taller.Migrations
                 column: "VehicleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ServiceListWorks_ServiceTypeId",
+                name: "IX_ServiceListWorks_InvoiceId",
                 table: "ServiceListWorks",
-                column: "ServiceTypeId");
+                column: "InvoiceId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ServiceListWorks_ServiceWorkId",
@@ -1547,9 +1504,6 @@ namespace Taller.Migrations
                 name: "DetalleVehicleParts");
 
             migrationBuilder.DropTable(
-                name: "DetalleWorkServices");
-
-            migrationBuilder.DropTable(
                 name: "Logs");
 
             migrationBuilder.DropTable(
@@ -1562,10 +1516,10 @@ namespace Taller.Migrations
                 name: "VpartsCompatibles");
 
             migrationBuilder.DropTable(
-                name: "Invoices");
+                name: "ServiceDetalles");
 
             migrationBuilder.DropTable(
-                name: "ServiceDetalles");
+                name: "Invoices");
 
             migrationBuilder.DropTable(
                 name: "ServiceWorks");

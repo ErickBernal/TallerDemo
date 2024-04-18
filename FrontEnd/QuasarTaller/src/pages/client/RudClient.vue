@@ -153,7 +153,7 @@
     </q-dialog>
     <!--Create new user  -->
     <q-dialog v-model="createDialogVisible">
-      <NewClient componentName="Create nuevo usuario" />
+      <NewClient componentName="Create nuevo usuario" createDialogVisible="1" />
     </q-dialog>
     <!-- Address  -->
     <q-dialog v-model="addressVisible">
