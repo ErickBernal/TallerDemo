@@ -25,22 +25,48 @@ namespace Taller.Controllers.Vehicles
         public async Task<ActionResult<List<VehiclePartsCompatible>>> GetAllVpcVehicle()
         {
             var vpartsCompatibles = await _context.VpartsCompatibles.ToListAsync();
-
             if (vpartsCompatibles == null) 
                 return NotFound("No se encontraron VehiclePartsCompatible.");
 
             await _context.VpartsCompatibles.Include(x => x.VehiclePart).ToListAsync();
             await _context.VpartsCompatibles.Include(x => x.VehicleLinea).ToListAsync();
+            //var options = new JsonSerializerOptions
+            //{
+            //    ReferenceHandler = ReferenceHandler.Preserve
+            //};
+            //var jsonString = JsonSerializer.Serialize(vpartsCompatibles, options);
 
-            var options = new JsonSerializerOptions
+            var retList = new List<VehiclePartsCompatible>();
+            foreach (var vpart in vpartsCompatibles)
             {
-                ReferenceHandler = ReferenceHandler.Preserve
-            };
-            var jsonString = JsonSerializer.Serialize(vpartsCompatibles, options);
+                var v = new VehiclePartsCompatible
+                {
+                    Id = vpart.Id,
+                    VehicleLineaId = vpart.VehicleLineaId,
+                    VehicleLinea = new VehicleLinea
+                    {
+                        Id = vpart.VehicleLinea.Id,
+                        Color = vpart.VehicleLinea.Color,
+                        Type = vpart.VehicleLinea.Type,
+                        Line = vpart.VehicleLinea.Line,
+                        VehicleModelId = vpart.VehicleLinea.VehicleModelId,
+          
+                    },
+                    VehiclePartId = vpart.VehiclePartId,
+                    VehiclePart = new VehiclePart
+                    {
+                        Id = vpart.VehiclePart.Id,
+                        Name =vpart.VehiclePart.Name,
+                        Stock = vpart.VehiclePart.Stock,
+                        UnitPrice = vpart.VehiclePart.UnitPrice
+                    }
+                };
+                retList.Add(v);
+            }
 
 
-            return Ok(jsonString);
 
+            return Ok(retList);
         }
 
         [HttpGet("{id}")]

@@ -13,18 +13,6 @@ namespace Taller.Entities
         public ICollection<DetalleWorkService>? DetalleWorkServices { get; set; }
         public ICollection<DetalleVehicleParts>? DetalleVehiclePartss { get; set; }
     }
-    //public class DetalleClientService
-    //{
-    //    [Key]
-    //    public int Id { get; set; }
-
-    //    public int ClientId { get; set; }
-    //    public Client? Client { get; set; }
-    //    public int ServiceDetalleId { get; set; }
-    //    public ServiceDetalle? ServiceDetalle { get; set; }
-    //    public int InvoiceId { get; set; }
-    //    public Invoice? Invoice { get; set; }
-    //}
 
 
     public class DetalleWorkService
