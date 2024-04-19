@@ -42,7 +42,7 @@ namespace Taller.Controllers.Invoicement
         {
             _context.Invoices.Add(Invoice);
             await _context.SaveChangesAsync();
-            return Ok(await _context.Invoices.ToListAsync());
+            return Ok(Invoice);
         }
 
         [HttpPut]

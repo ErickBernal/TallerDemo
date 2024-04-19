@@ -1,221 +1,121 @@
 <template>
-  <!--  -->
-
-  <q-card
-    class="horizontal-card"
-    flat
-    bordered
-    shadow-xl
-    :class="{ 'h-50': !dense, 'h-100': dense }"
-  >
-    <!-- <q-card-section class="horizontal-section bg-teal text-white   "> -->
-    <q-card-section class="horizontal-section bg-teal text-white">
-      <q-card-section horizontal>
-        <!-- <div class="text-h6 q-mt-sm q-mb-xs text-white">Cliente:</div> -->
-        <q-select
-          filled
-          v-model="clientSelected"
-          :options="clients"
-          :option-value="'id'"
-          :option-label="getLabelClientes"
-          :dense="dense"
-          bg-color="white"
-        >
-          <template v-slot:before>
-            <q-avatar>
-              <img src="https://cdn.quasar.dev/img/avatar5.jpg" />
-            </q-avatar>
-          </template>
-
-          <template v-slot:append>
-            <q-icon
-              v-if="model !== ''"
-              name="close"
-              @click.stop.prevent="clientSelected = ''"
-              class="cursor-pointer"
-            ></q-icon>
-          </template>
-        </q-select>
-      </q-card-section>
-      <!--  -->
-      <q-card-section horizontal>
-        <!-- <div class="text-h6 q-mt-sm q-mb-xs">Vehiculo:</div> -->
-        <q-select
-          filled
-          v-model="vehicleSelected"
-          :options="vehicles"
-          :option-value="'id'"
-          :option-label="getLabelVehicles"
-          :dense="dense"
-          bg-color="white"
-        >
-          <template v-slot:before>
-            <q-avatar>
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVakPl6weDWAvYrqQFM-LndbL5-JIJgVH7meM0Uo3RjgeI3DgcuqYJhewVn6GKgu0QwBo&usqp=CAU"
-              />
-            </q-avatar>
-          </template>
-
-          <template v-slot:append>
-            <q-icon
-              v-if="model !== ''"
-              name="close"
-              @click.stop.prevent="vehicleSelected = ''"
-              class="cursor-pointer"
-            ></q-icon>
-          </template>
-        </q-select>
-      </q-card-section>
-      <div class="q-pb-lg">
-        <q-toggle v-model="dense" label="Dense" />
-      </div>
-    </q-card-section>
-  </q-card>
-  <!--  -->
-
+  <!-- Banner  -->
+  <InvoiceTop
+    v-model:clientSelected="clientSelected"
+    v-model:vehicleSelected="vehicleSelected"
+  />
   <div class="row q-col-gutter-sm q-ma-xs">
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-      <q-card class="my-card" flat bordered shadow-xl>
-        <q-card-section class="bg-teal text-white">
-          <div class="text-h5 q-mt-sm q-mb-xs">Repuestos utilizados</div>
-        </q-card-section>
-        <q-card-section>
-          <q-table
-            flat
-            bordered
-            title="Repuestos"
-            :rows="VehicleParts"
-            :columns="columnsVehicleParts"
-            row-key="id"
-            :loading="loading"
-          >
-            <template #body-cell-Cant="props">
-              <q-td :props="props">
-                <q-input
-                  v-model="props.row.detalleVehicleParts"
-                  label="Cantidad"
-                  filled
-                  type="number"
-                  mask="int"
-                  lazy-rules
-                  :rules="[
-                    (val) => (val && val.length > 0) || 'Ingrese cantidad',
-                  ]"
-                />
-              </q-td>
-            </template>
-          </q-table>
-          <q-btn icon="delete" @click="prueba()" />
-        </q-card-section>
-      </q-card>
+      <InvoiceVehiclePartsUsed v-model:VehicleParts="VehicleParts" />
     </div>
-    <!--  -->
-    <!--  -->
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-      <q-card>
-        <q-card-section class="bg-teal text-white">
-          <div class="text-h5 q-mt-sm q-mb-xs">Servicios implementados</div>
-        </q-card-section>
-        <!--  -->
-        <q-card class="q-mb-md">
-          <q-card-section>
-            <q-form @submit="submitForm" class="q-gutter-md">
-              <q-input
-                v-model="newServices.km"
-                label="Kilometraje del vehiculo"
-                type="number"
-                mask="int"
-                filled
-              />
-
-              <q-select
-                v-model="newServices.servicesType"
-                :options="servicesType"
-                label="Tipo de cliente"
-                filled
-              />
-              <q-select
-                v-model="newServices.vehicle"
-                :options="vehicles"
-                label="Vehiculo"
-                @update:modelValue="getVehicleLineById"
-                filled
-              >
-                <template v-slot:append>
-                  <span v-if="vehicleLine">
-                    {{ vehicleLine.line }} {{ vehicleLine.type }}
-                    {{ vehicleLine.color }}
-                  </span>
-                  <span v-else> Cargando... </span>
-                </template>
-              </q-select>
-
-              <q-btn type="submit" label="Crear servicio" color="primary" />
-            </q-form>
-          </q-card-section>
-        </q-card>
-        <!--  -->
-      </q-card>
+      <InvoiceImplementationServices
+        v-model:selectedTableWorks="selectedTableWorks"
+      />
     </div>
   </div>
+  <!-- invoice -->
+  <br />
+  <!-- <InvoicePageArea
+    v-model:clientSelected="clientSelected"
+    v-model:vehicleSelected="vehicleSelected"
+    v-model:selectedTableWorks="selectedTableWorks"
+    v-model:VehicleParts="VehicleParts"
+  /> -->
+  <q-card>
+    <q-card-section
+      class="bg-teal text-white"
+      style="display: flex; justify-content: center; align-items: center"
+    >
+      <q-btn class="bg-grey-8" label="Facturar" @click="createInvoice" />
+    </q-card-section>
+  </q-card>
+  <br />
+  <q-card horizontal>
+    <q-card-section class="q-pt-xs col-4">
+      <div class="row q-col-gutter-sm q-ma-xs">
+        <div
+          class="col-lg-6 col-md-6 col-sm-12 col-xs-12"
+          v-if="clientSelected != ''"
+        >
+          <q-card class="my-card">
+            <q-table
+              bordered
+              auto-width
+              title="Datos del Cliente"
+              :rows="formattedRowsClient"
+              :columns="columnsClient"
+              row-key="id"
+              hide-bottom
+              color="primary"
+              card-class="bg-grey-6 text-white "
+              table-class="text-grey-10"
+              table-header-class="text-white"
+              class="my-table"
+              dense
+            >
+            </q-table>
+          </q-card>
+        </div>
+        <div
+          class="col-lg-6 col-md-6 col-sm-12 col-xs-12"
+          v-if="vehicleSelected != ''"
+        >
+          <q-card class="my-card">
+            <q-table
+              dense
+              bordered
+              auto-width
+              title="Datos del vehiculo"
+              :rows="formattedRowsVehicle"
+              :columns="columnsVehicle"
+              row-key="id"
+              hide-bottom
+              color="primary"
+              card-class="bg-grey-6 text-white "
+              table-class="text-grey-10"
+              table-header-class="text-white"
+            />
+          </q-card>
+        </div>
+      </div>
+    </q-card-section>
+    <!--  -->
+    <q-card-section class="col-7 flex flex-center" v-if="vehicleSelected != ''">
+      <q-table
+        flat
+        bordered
+        :title="formattedInvoiceTittle"
+        :rows="mergeInvoiceData"
+        :columns="columnsPayment"
+        row-key="id"
+        :loading="loading"
+      >
+      </q-table>
+    </q-card-section>
+  </q-card>
+  <q-btn icon="delete" @click="mergeSelectedData()" />
 </template>
 <!-- ------------------------------------------------------------------------------ -->
 <script setup>
-import { ref, onMounted, onBeforeMount } from "vue";
+import { ref, onBeforeMount, computed } from "vue";
+import InvoiceTop from "./InvoiceTop.vue";
+import InvoiceImplementationServices from "./InvoiceImplementationServices.vue";
+import InvoiceVehiclePartsUsed from "./InvoiceVehiclePartsUsed.vue";
 import axios from "axios";
-import { useQuasar } from "quasar";
 
-const newServices = ref({
-  vehicle: "",
-  servicesType: "",
-  km: "",
-});
-
-const vehicles = ref([]);
-const servicesType = ref([]);
-const vehicleLine = ref([]); // Inicialmente establecido como null
-const dense = ref(false);
-const clients = ref([]);
+const vehicleLine = ref([]);
 const clientSelected = ref([]);
 const vehicleSelected = ref([]);
 const selectedTableRow = ref([]);
-const VehicleParts = ref([]);
 const VehiclePartSelected = ref([]);
 const serviceWork = ref([]);
 const ServiceDetalle = ref([]);
 const loading = ref(false);
+const selectedTableWorks = ref([]);
+const VehicleParts = ref([]);
+const invoiceValue = ref([]);
 
-const columnsVehicleParts = [
-  {
-    name: "name",
-    align: "center",
-    label: "Nombre",
-    field: "name",
-    sortable: true,
-  },
-  {
-    name: "stock",
-    align: "center",
-    label: "Stock",
-    field: "stock",
-    sortable: true,
-  },
-  {
-    name: "unitprice",
-    align: "center",
-    label: "(Q) Precio unitario",
-    field: "unitPrice",
-    sortable: true,
-  },
-  {
-    name: "Cant",
-    align: "center",
-    label: "Cant.compra",
-    field: "Cant",
-    sortable: true,
-  },
-];
 const columnsServicioDetalle = [
   {
     name: "name",
@@ -246,7 +146,8 @@ const columnsServicioDetalle = [
     sortable: true,
   },
 ];
-const columnsWorks = [
+
+const columnsClient = [
   {
     name: "name",
     align: "center",
@@ -255,143 +156,225 @@ const columnsWorks = [
     sortable: true,
   },
   {
-    name: "stock",
+    name: "lastName",
     align: "center",
-    label: "Stock",
-    field: "stock",
+    label: "Apellido",
+    field: "lastName",
     sortable: true,
   },
   {
-    name: "unitprice",
+    name: "nit",
     align: "center",
-    label: "(Q) Precio unitario",
-    field: "unitPrice",
+    label: "Nit",
+    field: "nit",
     sortable: true,
   },
   {
-    name: "Cant",
+    name: "type",
     align: "center",
-    label: "Cant.compra",
-    field: "Cant",
+    label: "Tipo de cliente",
+    field: (row) => row.typeClient.type,
+
     sortable: true,
   },
 ];
 
-const getLabelClientes = (option) => {
-  if (option == "") return "Seleccione Cliente";
-  return `${option.name} ${option.lastName}   DPI:${option.dpi} Tel: ${option.phone}`;
-};
+const columnsVehicle = [
+  {
+    name: "Placa",
+    align: "center",
+    label: "Placa",
+    field: "placa",
+    sortable: true,
+  },
 
-const getLabelVehicles = (option) => {
-  if (option == "") return "Seleccione Vehiculo";
-  return `${option.placa}: ${option.vehicleLinea.type} ${option.vehicleLinea.line} `;
-};
+  {
+    name: "type",
+    required: true,
+    label: "Tipo",
+    align: "center",
+    field: (row) => row.vehicleLinea.type,
+    sortable: true,
+  },
+  {
+    name: "Linea",
+    required: true,
+    label: "Linea",
+    align: "center",
+    field: (row) => row.vehicleLinea.line,
+    sortable: true,
+  },
+  {
+    name: "color",
+    required: true,
+    label: "Color",
+    align: "center",
+    field: (row) => row.vehicleLinea.color,
+    sortable: true,
+  },
+];
 
-async function getClients() {
-  try {
-    const response = await axios.get(
-      process.env.API_BASE_URL + "/taller/Client"
-    );
-    clients.value = response.data;
-  } catch (error) {
-    alert("Error al obtener Clientes");
-  }
+const columnsPayment = [
+  {
+    name: "Cantidad",
+    align: "center",
+    label: "Cantidad",
+    field: "cant",
+    sortable: true,
+  },
+
+  {
+    name: "name",
+    required: true,
+    label: "Nombre",
+    align: "center",
+    field: "name",
+    sortable: true,
+  },
+  {
+    name: "Precio unitario",
+    required: true,
+    label: "Precio unitario",
+    align: "center",
+    field: "unitPrice",
+    sortable: true,
+  },
+  {
+    name: "Precio total",
+    required: true,
+    label: "(Q)sub total",
+    align: "center",
+    field: "total",
+    sortable: true,
+  },
+];
+const formattedRowsClient = computed(() => {
+  // console.log(JSON.stringify(clientSelected.value));
+  return clientSelected.value ? [clientSelected.value] : [];
+});
+
+const formattedRowsVehicle = computed(() => {
+  return vehicleSelected.value ? [vehicleSelected.value] : [];
+});
+
+function getInvoiceValue() {
+  const mergedData = [];
+  const payment = ref(0);
+
+  // Agrega los datos de selectedTableWorks a la variable mergedData
+  VehicleParts.value.forEach((item) => {
+    if (item.detalleVehicleParts != null) {
+      mergedData.push({
+        cant: item.detalleVehicleParts,
+        name: item.name,
+        unitPrice: item.unitPrice,
+        total: item.unitPrice * item.detalleVehicleParts,
+      });
+      payment.value = payment.value + item.unitPrice * item.detalleVehicleParts;
+    }
+  });
+
+  // Agrega los datos de selectedTableWorks a la variable mergedData
+  selectedTableWorks.value.forEach((item) => {
+    mergedData.push({
+      cant: 1,
+      name: item.work,
+      unitPrice: item.priceWork,
+      total: item.priceWork,
+    });
+    payment.value = payment.value + item.priceWork;
+  });
+  // console.log("merge: " + JSON.stringify(mergedData));
+  return payment.value;
 }
 
-async function getVehicles() {
-  try {
-    const response = await axios.get(
-      process.env.API_BASE_URL + "/taller/Vehicle"
-    );
-    vehicles.value = response.data;
-  } catch (error) {
-    alert("Error al obtener Vehiculos");
-  }
-}
-
-async function getVehicleParts() {
-  loading.value = true;
-
-  try {
-    const response = await axios.get(
-      process.env.API_BASE_URL + "/taller/VehicleParts"
-    );
-    VehicleParts.value = response.data;
-  } catch (error) {
-    alert("Error al obtener Vehiculos");
-  }
-  loading.value = false;
-}
-
-async function getVehicleLineById(value) {
-  try {
-    const response = await axios.get(
-      process.env.API_BASE_URL +
-        "/taller/VehicleLine/" +
-        newServices.value.vehicle.vehicleLineaId
-    );
-    const res = response.data;
-    vehicleLine.value = {
-      color: res.color,
-      type: res.type,
-      line: res.line,
-    };
-  } catch (error) {
-    console.error("Error al obtener departamentos:", error);
-  }
-}
-
-async function submitForm() {
-  try {
-    const sendData = {
-      state: 1,
-      km: newServices.value.km,
-      serviceTypeId: newServices.value.servicesType.id,
-      vehicleId: newServices.value.vehicle.id,
-    };
-    const response = await axios.post(
-      process.env.API_BASE_URL + "/taller/ServiceDetalle",
-      sendData
-    );
-
-    alert("Servicio agregado correctamente:");
-  } catch (error) {
-    alert("SError al agregar nuevo servicio");
-  }
-}
+const formattedInvoiceTittle = computed(() => {
+  const payment = ref(0);
+  payment.value = getInvoiceValue();
+  return payment.value != 0
+    ? "Total a pagar: Q " + payment.value
+    : "Total a pagar: Q 0";
+});
 
 async function getServiceDetalle() {
   try {
     const response = await axios.get(
       process.env.API_BASE_URL + "/taller/ServiceDetalle"
     );
-    serviceWork.value = response.data;
+    ServiceDetalle.value = response.data;
   } catch (error) {
     alert("Error al obtener ServiceWork");
   }
 }
 
-async function getServicesWork() {
+const mergeInvoiceData = computed(() => {
+  const mergedData = [];
+  // Agrega los datos de selectedTableWorks a la variable mergedData
+  VehicleParts.value.forEach((item) => {
+    if (item.detalleVehicleParts != null) {
+      mergedData.push({
+        cant: item.detalleVehicleParts,
+        name: item.name,
+        unitPrice: item.unitPrice,
+        total: item.unitPrice * item.detalleVehicleParts,
+      });
+    }
+  });
+
+  // Agrega los datos de selectedTableWorks a la variable mergedData
+  selectedTableWorks.value.forEach((item) => {
+    mergedData.push({
+      cant: 1,
+      name: item.work,
+      unitPrice: item.priceWork,
+      total: item.priceWork,
+    });
+  });
+  // console.log("merge: " + JSON.stringify(mergedData));
+  return mergedData;
+});
+
+async function createInvoice() {
+  loadInvoice();
+  loadDetalleVehicleParts();
+}
+
+async function loadInvoice() {
   try {
-    const response = await axios.get(
-      process.env.API_BASE_URL + "/taller/ServiceWork"
+    const sendData = {
+      dateTime: new Date(),
+      value: getInvoiceValue(),
+    };
+    const response = await axios.post(
+      process.env.API_BASE_URL + "/taller/Invoice",
+      sendData
     );
-    serviceWork.value = response.data;
+    alert("Factura creada correctamente:");
+    invoiceValue.value = response.data;
   } catch (error) {
-    alert("Error al obtener ServiceWork");
+    alert("Error al crear la factura");
   }
 }
 
-function prueba() {
-  console.log("-.-.-->" + JSON.stringify(serviceWork.value));
-  // console.log("----******-->" + JSON.stringify(vehicles.value));
+async function loadDetalleVehicleParts() {
+  try {
+    const sendData = {
+      vehiclePartId: new Date(),
+      serviceDetalleId: getInvoiceValue(),
+      invoiceId: invoiceValue.value.id,
+    };
+    const response = await axios.post(
+      process.env.API_BASE_URL + "/taller/DetalleVP",
+      sendData
+    );
+    alert("Factura creada correctamente:");
+    invoiceValue.value = response.data;
+  } catch (error) {
+    alert("Error al crear la factura");
+  }
 }
 
 onBeforeMount(async () => {
-  getClients();
-  getVehicles();
-  getVehicleParts();
-  getServicesWork();
   getServiceDetalle();
 });
 </script>
