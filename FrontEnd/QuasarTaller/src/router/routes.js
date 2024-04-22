@@ -23,32 +23,32 @@ const routes = [
         component: () => import("pages/serviceTaller/ServicesPage.vue"),
       },
       {
-        path: "/nuevoservicio",
+        path: "/servicios/nuevo",
         component: () => import("pages/serviceTaller/NewServices.vue"),
       },
       {
-        path: "/estatusservicio",
+        path: "/servicios/estado",
         component: () => import("pages/serviceTaller/StatusServices.vue"),
       },
       {
-        path: "/nuevocliente",
+        path: "/cliente/nuevo",
         component: () => import("pages/client/NewClient.vue"),
       },
       {
-        path: "/agregartrabajo",
+        path: "/trabajo/nuevo",
         component: () => import("src/pages/work/NewWork.vue"),
       },
       {
-        path: "/nuevovehiculo",
+        path: "/vehiculo/nuevo",
         component: () => import("pages/NewVehicle.vue"),
       },
 
       {
-        path: "/buscarrepuesto",
+        path: "/repuesto/buscar",
         component: () => import("pages/vehicleParts/FindVehicleParts.vue"),
       },
       {
-        path: "/nuevorepuesto",
+        path: "/repuesto/nuevo",
         component: () => import("pages/vehicleParts/NewVehiclePart.vue"),
       },
       {

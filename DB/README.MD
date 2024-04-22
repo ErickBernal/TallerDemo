@@ -89,3 +89,9 @@ WHERE TABLE_TYPE = 'BASE TABLE';
 EXEC sp_executesql @sql;
 -- -------------------------------------------------------
 ```
+
+## Modelo entidad relacion implementado
+
+- > Nota: las lineas punteadas, representan la estrutura inicial, que fue cambia a razon de necesidad.
+
+![img](../miscelaneos/img/Db_fase1_sitecpro.drawio.png)

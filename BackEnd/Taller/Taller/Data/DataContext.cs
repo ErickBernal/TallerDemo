@@ -36,7 +36,7 @@ namespace Taller.Data
         //public DbSet<DetalleClientService> DetalleClientServices { get; set; }
         //public DbSet<DetalleWorkService> DetalleWorkServices { get; set; }
         public DbSet<DetalleVehicleParts> DetalleVehicleParts { get; set; }
-
+        public DbSet<DetalleServicesInvoice> DetalleServicesInvoices { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -53,12 +53,11 @@ namespace Taller.Data
             //modelBuilder.Entity<Country>().HasData(DbInitializer.Prub());
 
 
-
-            modelBuilder.Entity<DetalleVehicleParts>()
-                .HasOne(dvp => dvp.ServiceDetalle)
-                .WithMany(sd => sd.DetalleVehicleParts)
-                .HasForeignKey(dvp => dvp.ServiceDetalleId)
-                .OnDelete(DeleteBehavior.Restrict);
+            //modelBuilder.Entity<DetalleVehicleParts>()
+            //    .HasOne(dvp => dvp.ServiceDetalle)
+            //    .WithMany(sd => sd.DetalleVehicleParts)
+            //    .HasForeignKey(dvp => dvp.ServiceDetalleId)
+            //    .OnDelete(DeleteBehavior.Restrict);
 
 
 

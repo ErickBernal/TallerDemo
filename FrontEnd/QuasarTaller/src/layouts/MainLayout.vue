@@ -21,19 +21,7 @@
           to="/repuestos"
           @click="amInVehicleParts"
         />
-        <!--  -->
-        <!-- <q-btn-dropdown auto-close stretch flat icon="build" label="R">
-          <q-list>
-            <q-item clickable to="/buscarrepuesto" @click="amInVehicleParts">
-              <q-item-section>Buscar repuesto</q-item-section>
-            </q-item>
 
-            <q-item clickable to="/nuevorepuesto" @click="amInVehicleParts">
-              <q-item-section>Crear repuesto</q-item-section>
-            </q-item>
-          </q-list>
-        </q-btn-dropdown> -->
-        <!--  -->
         <q-route-tab label="Servicios" to="/servicios" @click="amInServices" />
         <q-route-tab label="Cliente" to="/cliente" @click="amInClient" />
         <q-route-tab label="Vehiculos" to="/vehiculo" @click="amInInVehicle" />
