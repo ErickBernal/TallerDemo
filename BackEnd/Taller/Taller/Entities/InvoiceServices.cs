@@ -12,24 +12,8 @@ namespace Taller.Entities
 
         public ICollection<DetalleVehicleParts>? DetalleVehicleParts { get; set; }
         public ICollection<ServiceListWork>? ServiceListWork { get; set; }
-
+        public ICollection<DetalleServicesInvoice>? DetalleServicesInvoice { get; set; }
     }
-
-
-    //public class DetalleWorkService
-    //{
-    //    [Key]
-    //    public int Id { get; set; }
-
-    //    public int ServiceWorkId { get; set; }
-    //    public ServiceWork? ServiceWork { get; set; }
-
-    //    public int ServiceDetalleId { get; set; }
-    //    public ServiceDetalle? ServiceDetalle { get; set; }
-
-    //    public ICollection<Invoice>? Invoices { get; set; }
-
-    //}
 
     public class DetalleVehicleParts
     {
@@ -47,4 +31,17 @@ namespace Taller.Entities
         //public ICollection<Invoice>? Invoices { get; set; }
 
     }
+
+    public class DetalleServicesInvoice
+    {
+        [Key]
+        public int Id { get; set; }
+
+        public int InvoiceId { get; set; }
+        public Invoice? Invoice { get; set; }
+            
+        public int ServiceDetalleId { get; set; }
+        public ServiceDetalle? ServiceDetalle { get; set; }
+    }
+
 }//
