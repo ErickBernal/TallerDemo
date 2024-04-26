@@ -37,6 +37,8 @@ namespace Taller.Data
         //public DbSet<DetalleWorkService> DetalleWorkServices { get; set; }
         public DbSet<DetalleVehicleParts> DetalleVehicleParts { get; set; }
         public DbSet<DetalleServicesInvoice> DetalleServicesInvoices { get; set; }
+        public DbSet<Login> logins { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

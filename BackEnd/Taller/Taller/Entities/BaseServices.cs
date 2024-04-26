@@ -10,6 +10,9 @@ namespace Taller.Entities
         public int Id { get; set; }
         public string? Pwd { get; set; }
     }
+
+
+
     public class Log
     {
         [Key]
@@ -17,6 +20,19 @@ namespace Taller.Entities
         public string? Description { get; set; }
         public DateTime? Date { get; set; }
     }
+
+    public class Login
+    {
+        [Key]
+        public int Id { get; set; }
+        public string? Nombre { get; set; }
+        public string? Apellido { get; set; }
+        public string? Email { get; set; }
+        public string? Password { get; set; }
+
+    }
+
+
     public class Country
     {
         [Key]
@@ -87,3 +103,5 @@ namespace Taller.Entities
     }
 
 }//
+
+

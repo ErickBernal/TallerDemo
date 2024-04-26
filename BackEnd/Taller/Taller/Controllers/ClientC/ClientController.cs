@@ -11,10 +11,11 @@ namespace Taller.Controllers.ClientC
     public class ClientController : ControllerBase
     {
         private readonly DataContext _context;
-
-        public ClientController(DataContext context)
+        private readonly ILogger<ClientController> _logger;
+        public ClientController(DataContext context, ILogger<ClientController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
 
@@ -73,6 +74,7 @@ namespace Taller.Controllers.ClientC
                 };
                 clientsToReturn.Add(c);
             }
+            _logger.LogWarning("Get clients.");
             return Ok(clientsToReturn);
         }
 
@@ -83,8 +85,8 @@ namespace Taller.Controllers.ClientC
             if (c == null)
                 return NotFound("Client not found.");
 
+            _logger.LogInformation("Get client id:."+c.Name+" --->"+c);
             return Ok(c);
-
         }
 
         [HttpPost]
