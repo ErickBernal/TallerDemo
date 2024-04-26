@@ -26,7 +26,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.pkg.github.com/sitecpro/index.json": {}
         },
         "frameworks": {
           "net8.0": {
@@ -80,6 +81,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[9.0.0-preview.2.24128.4, )"
+            },
+            "NLog.Web.AspNetCore": {
+              "target": "Package",
+              "version": "[5.3.8, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

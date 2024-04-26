@@ -163,3 +163,6 @@ D:\ErickBernal\Repos_ErickBernal\fase1_Sitecpro\BackEnd\Taller\Taller\bin\Debug\
 D:\ErickBernal\Repos_ErickBernal\fase1_Sitecpro\BackEnd\Taller\Taller\bin\Debug\net8.0\System.Web.Http.Cors.dll
 D:\ErickBernal\Repos_ErickBernal\fase1_Sitecpro\BackEnd\Taller\Taller\bin\Debug\net8.0\Newtonsoft.Json.dll
 D:\ErickBernal\Repos_ErickBernal\fase1_Sitecpro\BackEnd\Taller\Taller\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+D:\ErickBernal\Repos_ErickBernal\fase1_Sitecpro\BackEnd\Taller\Taller\bin\Debug\net8.0\NLog.dll
+D:\ErickBernal\Repos_ErickBernal\fase1_Sitecpro\BackEnd\Taller\Taller\bin\Debug\net8.0\NLog.Extensions.Logging.dll
+D:\ErickBernal\Repos_ErickBernal\fase1_Sitecpro\BackEnd\Taller\Taller\bin\Debug\net8.0\NLog.Web.AspNetCore.dll
