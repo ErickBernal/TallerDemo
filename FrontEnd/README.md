@@ -80,7 +80,7 @@ Older V2 to latest v2
 
 # Para relizar la comunicacion hacia el backend
 
-- Es neceario crear un archivo **.env** en la [rais](./QuasarTaller/)
+- Es neceario crear un archivo **.env** en la [raiz](./QuasarTaller/)
 - En el archivo **.env** crear la variable
 
 ```bash
